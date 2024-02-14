@@ -19,6 +19,8 @@ function App() {
           <Route path="signin" element={<SignIn/>}></Route>
           <Route path="drafts" element={<Drafts/>}></Route>
           <Route path="published" element={<Published/>}></Route>
+          <Route path="publishedproduct" element={<PublishedProduct/>}></Route>
+
           <Route path="drafts/:"></Route>
         </Route>
       </Routes>
