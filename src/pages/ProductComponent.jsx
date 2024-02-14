@@ -1,5 +1,5 @@
 import React from 'react';
-import '../index.css'; // Include the CSS file
+import '../index.css';
 
 function ProductComponent({ name, img, desc, urls }) {
   return (

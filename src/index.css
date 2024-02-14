@@ -29,7 +29,7 @@ code {
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  background-color: rgb(220, 210, 210);
+  background-color: #EEEDEB;
   padding:20px;
 }
 
