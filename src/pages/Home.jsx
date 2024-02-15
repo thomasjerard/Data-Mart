@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ProductComponent from './ProductComponent';
 import Navbar from './Navbar';
-import '../index.css'
+import '../index.css';
 
 function Home() {
   const products = [
@@ -12,26 +12,61 @@ function Home() {
 
   ];
 
+  const [searchInput, setSearchInput] = useState('');
+
+  const handleSearchInputChange = (event) => {
+    const searchText = event.target.value;
+    setSearchInput(searchText);
+
+  }
+  const filteredProducts = products.filter((product) => {
+    // return product.name.toLowerCase().includes(searchInput.toLowerCase());
+    const nameMatch = product.name.toLowerCase().includes(searchInput.toLowerCase());
+    const domainMatch =
+      product.domains.some((domain) => domain.toLowerCase().includes(searchInput.toLowerCase()));
+    return nameMatch || domainMatch;
+  });
+
+  const inputStyle = {
+    marginTop: '30px',
+    borderRadius: '5px',
+    padding: '10px',
+    fontSize: '1rem',
+    width: '80%',
+  };
+
+
+
   return (
     <div>
-      <Navbar/>
-      <div className='productpage-header'>
+      <Navbar />
+      <div className="productpage-header">
         <h1>Data Products</h1>
-        <p style={{marginTop:'10px'}}>Duis Bibendum neque egestas congue quisque egestas diam in arcu cursus. Massa tincidunt dui ut ornare lectus. A diam maecenas sed enim ut. Cras semper auctor neque vitae tempus quam pellentesque nec nam. </p>
-      </div>
-    <div className="products-container">
-      {products.map(product => (
-        <ProductComponent
-          key={product.key}
-          name={product.name}
-          desc={product.desc}
-          img={product.img}
-          by={product.by}
-          url={product.url}
-          domains={product.domains}
+        <p style={{ marginTop: '10px' }}>
+          Duis Bibendum neque egestas congue quisque egestas diam in arcu cursus. Massa tincidunt dui ut ornare
+          lectus. A diam maecenas sed enim ut. Cras semper auctor neque vitae tempus quam pellentesque nec nam.
+        </p>
+        <input
+          placeholder="Search by tag or name..."
+          type="text"
+          style={inputStyle}
+          value={searchInput}
+          onChange={handleSearchInputChange}
         />
-      ))}
-    </div>
+      </div>
+      <div className="products-container">
+        {filteredProducts.map((product) => (
+          <ProductComponent
+            key={product.key}
+            name={product.name}
+            desc={product.desc}
+            img={product.img}
+            by={product.by}
+            url={product.url}
+            domains={product.domains}
+          />
+        ))}
+      </div>
     </div>
   );
 }
