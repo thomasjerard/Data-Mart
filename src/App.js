@@ -2,7 +2,6 @@ import './App.scss';
 import {BrowserRouter, Routes, Route, RedirectFunction, redirect} from "react-router-dom";
 import Home from './pages/Home';
 import Published from './pages/Published';
-import PublishedProduct from './pages/PublishedProduct';
 import Drafts from './pages/Drafts';
 import DraftProduct from './pages/DraftProduct';
 import ProductPage from './pages/ProductPage';
