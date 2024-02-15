@@ -10,6 +10,7 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+<<<<<<< HEAD
 * {
  margin: 0;
  padding: 0;
@@ -92,3 +93,5 @@ user-name input::placeholder{
   border-width: 3px;
 }
 
+=======
+>>>>>>> upstream/main
