@@ -4,7 +4,6 @@ import {Button} from '@carbon/react'
 function SignIn() {
   return (
     <div>
-      <Home/>
       <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'></link>
       <div class="wrapper">
       <form action="">

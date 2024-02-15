@@ -7,6 +7,7 @@ import Drafts from './pages/Drafts';
 import DraftProduct from './pages/DraftProduct';
 import Product from './pages/Product';
 import SignIn from './pages/SignIn';
+import ConsumerPage from './pages/ConsumerPage';
 
 
 function App() {
@@ -20,6 +21,8 @@ function App() {
           <Route path="signin" element={<SignIn/>}></Route>
           <Route path="drafts" element={<Drafts/>}></Route>
           <Route path="published" element={<Published/>}></Route>
+          <Route path="consumer" element={<ConsumerPage/>}></Route>
+          <Route path= "navbar" element={<navbar/>}></Route>
         </Route>
       </Routes>
     </BrowserRouter>    

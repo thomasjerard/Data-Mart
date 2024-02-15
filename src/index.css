@@ -21,7 +21,7 @@ body{
   justify-content:center;
   align-items:center;
   min-height:100vh;
-  background:url('background_image.jpg') no-repeat;
+  background: white;
   background-size: cover;
   background-position: center;
 }
@@ -80,4 +80,8 @@ user-name input::placeholder{
   color:#333;
   font-weight: 600;
   margin-bottom: 10px;
+}
+.table{
+  width: 1250px;
+  height: 
 }
