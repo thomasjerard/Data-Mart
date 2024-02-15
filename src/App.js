@@ -2,7 +2,6 @@ import './App.scss';
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 import Home from './pages/Home';
 import Published from './pages/Published';
-import PublishedProduct from './pages/PublishedProduct';
 import Drafts from './pages/Drafts';
 import DraftProduct from './pages/DraftProduct';
 import Product from './pages/Product';
@@ -19,7 +18,6 @@ function App() {
           <Route path="signin" element={<SignIn/>}></Route>
           <Route path="drafts" element={<Drafts/>}></Route>
           <Route path="published" element={<Published/>}></Route>
-          <Route path="publishedproduct" element={<PublishedProduct/>}></Route>
 
           <Route path="drafts/:"></Route>
         </Route>
