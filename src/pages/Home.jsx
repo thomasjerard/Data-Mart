@@ -1,7 +1,7 @@
 import React from 'react';
 import ProductComponent from './ProductComponent';
 import Navbar from './Navbar';
-import '../index.css'
+import '../styles/Home.scss'
 import img1 from "../images/product-bgd.jpg"
 
 function Home() {
