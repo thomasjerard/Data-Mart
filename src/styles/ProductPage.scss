@@ -1,0 +1,34 @@
+#productPage{
+    margin: auto 10%; 
+    padding: 2em;
+    .heading-content{
+        padding: 25px;
+        h2{
+            font-weight: 800;
+        }
+    }
+    p{
+        margin: 0.5em 0;
+    }
+    Table{
+        margin: 1em 0;
+    }
+    .heading{
+        display: flex;
+        flex-direction: row;
+        margin: 1.2em 0;
+    }
+    h4{
+        font-weight: bold;
+    }
+    img{
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    }
+    CopyButton{
+        display: inline-block;
+    }
+    .link{
+        display: flex;
+        flex-direction: row;
+    }
+}
