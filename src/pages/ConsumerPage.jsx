@@ -1,5 +1,7 @@
 import React from 'react'
 import '../App.scss';
+import img1 from './pic 1.png'
+import img2 from './pic 2.png'
 import {
 
     DataTable,
@@ -16,6 +18,10 @@ import {
 
 function ConsumerPage(){
     return(
+        <div class="add">
+            <Button> Add people </Button>
+
+        
     <div class="table">
         <Table aria-label="sample table">
     <TableHead>
@@ -24,7 +30,7 @@ function ConsumerPage(){
       UserName
     </TableHeader>
       <TableHeader>
-        stage
+        Stage
         
       </TableHeader>
       <TableHeader>
@@ -37,11 +43,14 @@ function ConsumerPage(){
   </TableHead>
   <TableBody>
     <TableRow>
-      <TableCell>
+      <TableCell class= "Name">
+        
+        <img class = "image" src ={img2} ></img>
+
         Thomas123
-      </TableCell>
+      </TableCell> 
       <TableCell>
-        consumer
+        Consumer
       </TableCell>
       <TableCell>
         5 min ago
@@ -53,10 +62,11 @@ function ConsumerPage(){
     </TableRow>
     <TableRow>
       <TableCell>
-        vaidehi456
+      <img class = "image" src = {img1} ></img>
+        Vaidehi456
       </TableCell>
       <TableCell>
-        consumer
+        Consumer
       </TableCell>
       <TableCell>
         Active
@@ -69,6 +79,7 @@ function ConsumerPage(){
     </TableRow>
     <TableRow>
       <TableCell>
+      <img class = "image" src = {img1}></img>
         Bhavya789
       </TableCell>
       <TableCell>
@@ -84,6 +95,7 @@ function ConsumerPage(){
     </TableRow>
     <TableRow>
       <TableCell>
+      <img class = "image" src = {img1}></img>
         Dimpul999
       </TableCell>
       <TableCell>
@@ -99,6 +111,7 @@ function ConsumerPage(){
     </TableRow>
     <TableRow>
       <TableCell>
+      <img class = "image" src = {img2}></img>
         Mahidhar111
       </TableCell>
       <TableCell>
@@ -114,6 +127,7 @@ function ConsumerPage(){
     </TableRow>
     <TableRow>
       <TableCell>
+      <img class = "image" src = {img1}></img>
         sandra55
 
       </TableCell>
@@ -132,6 +146,7 @@ function ConsumerPage(){
     </TableRow>
   </TableBody>
 </Table>
+</div>
 </div>
     )
 
