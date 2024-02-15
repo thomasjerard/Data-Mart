@@ -1,11 +1,22 @@
 import React from 'react';
 import '../index.css';
 
-function ProductComponent({ name, by, img, desc, url }) {
+function ProductComponent({ name, by, img, desc, url, domains }) {
 
   const headerStyle={
     fontWeight:'600',
     fontSize:'1.75rem'
+  }
+
+  const domainStyle={
+    backgroundColor:'black',
+    borderRadius:'10px',
+    marginRight:'5px',
+    padding:'3px',
+    color:'white'
+  }
+  const domainsList={
+    paddingTop:'10px'
   }
 
   const handleClick=()=>{
@@ -17,6 +28,13 @@ function ProductComponent({ name, by, img, desc, url }) {
       <div className="product-info">
         <h1 style={headerStyle}>{name}</h1>
         <p>by <span style={{fontWeight:'600'}}>{by}</span></p>
+        <div style={domainsList}>
+        {domains.map(d => {
+          return <span style={domainStyle}>{d}</span>
+          
+        })
+        }
+        </div>
         <p>{desc}</p>
       </div>
     </div>
