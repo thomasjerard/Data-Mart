@@ -19,24 +19,6 @@ function SignIn() {
   }
 
   return (
-<<<<<<< HEAD
-    <div class="signIn">
-      <h2>Log In To Proceed</h2>
-      <form onSubmit={handleSubmit}>
-        <label>
-          <p>Username:</p>
-          <input type="text" onChange={e => setUserName(e.target.value)}/><br/>
-        </label>
-        <label>
-          <p>Password:</p>        
-          <input type="password" onChange={e => SetPassword(e.target.value)}/><br/>
-        </label><br/>
-        <label>
-          <input type="submit" value="submit"/><br/>
-        </label>
-      </form>
-
-=======
 
     <div id="signIn">
       <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'></link>
@@ -55,7 +37,6 @@ function SignIn() {
       </form>
       <button type="submit" class="btn">Login</button>
       </div>
->>>>>>> upstream/main
     </div>
   )
 }
