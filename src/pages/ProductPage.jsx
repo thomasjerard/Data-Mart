@@ -5,6 +5,7 @@ import Navbar from '../components/Navbar'
 import prodImg from '../images/product.jpg'
 import { redirect } from 'react-router-dom'
 import CopyButton from '@carbon/react/lib/components/CopyButton'
+
 function Product() {
 
   const product = {

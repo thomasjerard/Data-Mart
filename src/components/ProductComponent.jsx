@@ -2,7 +2,7 @@ import React from 'react';
 import '../index.css';
 import { useNavigate} from 'react-router';
 
-function ProductComponent({ name, by, img, desc, url, domains }) {
+function ProductComponent({ name, by, img, desc, url, domains, productStage }) {
 
   const navigate = useNavigate();
 
@@ -23,7 +23,7 @@ function ProductComponent({ name, by, img, desc, url, domains }) {
   }
 
   const handleClick=()=>{
-    navigate('/product');
+    navigate(`/${productStage}`);
   }
 
   return (

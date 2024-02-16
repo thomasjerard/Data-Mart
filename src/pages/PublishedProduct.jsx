@@ -1,9 +1,13 @@
 import React from 'react';
-import Navbar from './Navbar';
+import Navbar from '../components/Navbar';
+import { useNavigate } from 'react-router-dom';
 
 function PublishedProduct() {
+  
+  const navigate = useNavigate();
+
   const handleClick = () => {
-    console.log("I was clicked");
+    navigate('/consumer');
   };
 
   const productStyle = {

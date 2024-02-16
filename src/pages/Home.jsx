@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import ProductComponent from '../components/ProductComponent';
-import Navbar from './Navbar';
+import Navbar from '../components/Navbar';
 import '../styles/Home.scss';
+import img1 from '../images/product-bgd.jpg';
+import { useNavigate } from 'react-router-dom';
 
 function Home() {
   const products = [
@@ -16,8 +18,8 @@ function Home() {
   const handleSearchInputChange = (event) => {
     const searchText = event.target.value;
     setSearchInput(searchText);
-
   }
+
   const filteredProducts = products.filter((product) => {
     // return product.name.toLowerCase().includes(searchInput.toLowerCase());
     const nameMatch = product.name.toLowerCase().includes(searchInput.toLowerCase());
@@ -44,8 +46,6 @@ function Home() {
   }
 
   let domains=['duadwef','fewwefewf','fewhwjfhewj','fewhewhfiuewf','chcychdhu'];
-
-
 
   return (
     <div>
@@ -87,6 +87,7 @@ function Home() {
             by={product.by}
             url={product.url}
             domains={product.domains}
+            productStage="product"
           />
         ))}
       </div>
