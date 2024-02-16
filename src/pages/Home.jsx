@@ -2,17 +2,24 @@ import React, { useState } from 'react';
 import ProductComponent from '../components/ProductComponent';
 import Navbar from './Navbar';
 import '../styles/Home.scss';
+import { Search } from '@carbon/icons-react';
+
 
 function Home() {
   const products = [
-    { key: "1", domains:['Weather Data','Mobile App data'], name: "Product 1", url:'product1',by:'Jake Weatherald', desc: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", img: "https://picsum.photos/1000/300" },
-    { key: "2", domains:['Legal Data','Healthcare data'],  name: "Product 2", url:'product2', by:'Jake Weatherald', desc: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", img: "https://picsum.photos/1000/300" },
-    { key: "3", domains:['Brand data','Mobile App data'],  name: "Product 3", url:'product3', by:'Jake Weatherald', desc: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", img: "https://picsum.photos/1000/300" },
-    { key: "4", domains:['Environmental Data','Weather data'],  name: "Product 4", url:'product4', by:'Jake Weatherald', desc: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", img: "https://picsum.photos/1000/300" },
+    { key: "1", domains:['Weather Data','Mobile App Data'], name: "Product 1", url:'product1',by:'Jake Weatherald', desc: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", img: "https://picsum.photos/1000/300" },
+    { key: "2", domains:['Legal Data','Healthcare Data'],  name: "Product 2", url:'product2', by:'Jake Weatherald', desc: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", img: "https://picsum.photos/1000/300" },
+    { key: "3", domains:['Brand Data','Mobile App Data'],  name: "Product 3", url:'product3', by:'Jake Weatherald', desc: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", img: "https://picsum.photos/1000/300" },
+    { key: "4", domains:['Environmental Data','Weather Data'],  name: "Product 4", url:'product4', by:'Jake Weatherald', desc: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", img: "https://picsum.photos/1000/300" },
 
   ];
 
   const [searchInput, setSearchInput] = useState('');
+  const [activeDomain, setActiveDomain] = useState(null);
+
+  const handleDomainSelect = (domain) => {
+    setActiveDomain(domain === activeDomain ? null : domain);
+  }
 
   const handleSearchInputChange = (event) => {
     const searchText = event.target.value;
@@ -20,12 +27,9 @@ function Home() {
 
   }
   const filteredProducts = products.filter((product) => {
-    // return product.name.toLowerCase().includes(searchInput.toLowerCase());
     const nameMatch = product.name.toLowerCase().includes(searchInput.toLowerCase());
-    // const domainMatch =
-    //   product.domains.some((domain) => domain.toLowerCase().includes(searchInput.toLowerCase()));
-    // return nameMatch || domainMatch;
-    return nameMatch;
+    const domainMatch = activeDomain ? product.domains.includes(activeDomain) : true;
+    return nameMatch && domainMatch;
   });
 
   const inputStyle = {
@@ -34,20 +38,33 @@ function Home() {
     padding: '10px',
     fontSize: '1rem',
     width: '80%',
+    position: 'relative', 
   };
 
-  const domainStyle={
-    backgroundColor:'black',
-    borderRadius:'10px',
-    marginRight:'5px',
-    padding:'3px',
-    color:'white'
-  }
+  const searchIconStyle = {
+    position: 'relative',
+    top: '50%',
+    right: '40px',
+    color: '#666',
+  };
 
-  let domains=['duadwef','fewwefewf','fewhwjfhewj','fewhewhfiuewf','chcychdhu'];
+  let domains=['Weather Data','Healthcare Data','Legal Data','Brand Data','Mobile App Data','Environmental Data'];
 
+ const domainsListStyle={
+  marginTop:'15px',
+ }
 
-
+ const small={
+  fontSize:'0.67rem',
+  textAlign:'center',
+  marginTop:'3px',
+  marginBottom:'3px'
+ }
+ const domainButtonStyle = {
+  marginBottom: '5px',
+  marginTop:'5px',
+  display:'inline-block'
+};
   return (
     <div>
       <Navbar />
@@ -57,26 +74,36 @@ function Home() {
           Duis Bibendum neque egestas congue quisque egestas diam in arcu cursus. Massa tincidunt dui ut ornare
           lectus. A diam maecenas sed enim ut. Cras semper auctor neque vitae tempus quam pellentesque nec nam.
         </p>
-        <h3 style={{textAlign:'left', paddingLeft:'50px'}}>Filter by name</h3>
-        <input
-          placeholder="Enter term to search..."
-          type="text"
-          style={inputStyle}
-          value={searchInput}
-          onChange={handleSearchInputChange}
-        />
+        <div style={{ position: 'relative' }}>
+          <input
+            placeholder="Enter term to search..."
+            type="text"
+            style={inputStyle}
+            value={searchInput}
+            onChange={handleSearchInputChange}
+          />
+          <span style={searchIconStyle}><Search/></span>
+        </div>
+        
       </div>
-
 
       <div className='productpage-header'>
       <h3>Filter by domain</h3>
-      {domains.map(d => {
-          return <span style={domainStyle}>{d}</span>
-          
-        })
-        }
+      <div style={domainsListStyle}>
+          {domains.map((domain) => (
+            <span
+              key={domain}
+              className='domain-list'
+              onClick={() => handleDomainSelect(domain)}
+              style={{ backgroundColor: domain === activeDomain ? '#7FC7D9' : '#F2F1EB' , ...domainButtonStyle}}
+            >
+              <span style={small}>⚫</span> {domain}
+            </span>
+          ))}
+        </div>
      
       </div>
+
 
       <div className="products-container">
         {filteredProducts.map((product) => (
