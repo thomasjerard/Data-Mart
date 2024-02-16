@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import ProductComponent from './ProductComponent';
+import ProductComponent from '../components/ProductComponent';
 import Navbar from './Navbar';
-import '../index.css';
+import '../styles/Home.scss';
 
 function Home() {
   const products = [

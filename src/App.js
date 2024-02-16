@@ -6,6 +6,7 @@ import Drafts from './pages/Drafts';
 import DraftProduct from './pages/DraftProduct';
 import ProductPage from './pages/ProductPage';
 import SignIn from './pages/SignIn';
+import ConsumerPage from './pages/ConsumerPage';
 import { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 
@@ -31,7 +32,8 @@ function App() {
           <Route path="signin" element={<SignIn/>}></Route>
           <Route path="drafts" element={<Drafts/>}></Route>
           <Route path="published" element={<Published/>}></Route>
-          <Route path="drafts"></Route>
+          <Route path="consumer" element={<ConsumerPage/>}></Route>
+          <Route path= "navbar" element={<navbar/>}></Route>
         </Route>
       </Routes>
     </BrowserRouter>    
