@@ -22,9 +22,10 @@ function Home() {
   const filteredProducts = products.filter((product) => {
     // return product.name.toLowerCase().includes(searchInput.toLowerCase());
     const nameMatch = product.name.toLowerCase().includes(searchInput.toLowerCase());
-    const domainMatch =
-      product.domains.some((domain) => domain.toLowerCase().includes(searchInput.toLowerCase()));
-    return nameMatch || domainMatch;
+    // const domainMatch =
+    //   product.domains.some((domain) => domain.toLowerCase().includes(searchInput.toLowerCase()));
+    // return nameMatch || domainMatch;
+    return nameMatch;
   });
 
   const inputStyle = {
@@ -35,6 +36,16 @@ function Home() {
     width: '80%',
   };
 
+  const domainStyle={
+    backgroundColor:'black',
+    borderRadius:'10px',
+    marginRight:'5px',
+    padding:'3px',
+    color:'white'
+  }
+
+  let domains=['duadwef','fewwefewf','fewhwjfhewj','fewhewhfiuewf','chcychdhu'];
+
 
 
   return (
@@ -42,18 +53,31 @@ function Home() {
       <Navbar />
       <div className="productpage-header">
         <h1>Data Products</h1>
-        <p style={{ marginTop: '10px' }}>
+        <p style={{ marginTop: '10px', marginBottom:'20px' }}>
           Duis Bibendum neque egestas congue quisque egestas diam in arcu cursus. Massa tincidunt dui ut ornare
           lectus. A diam maecenas sed enim ut. Cras semper auctor neque vitae tempus quam pellentesque nec nam.
         </p>
+        <h3 style={{textAlign:'left', paddingLeft:'50px'}}>Filter by name</h3>
         <input
-          placeholder="Search by tag or name..."
+          placeholder="Enter term to search..."
           type="text"
           style={inputStyle}
           value={searchInput}
           onChange={handleSearchInputChange}
         />
       </div>
+
+
+      <div className='productpage-header'>
+      <h3>Filter by domain</h3>
+      {domains.map(d => {
+          return <span style={domainStyle}>{d}</span>
+          
+        })
+        }
+     
+      </div>
+
       <div className="products-container">
         {filteredProducts.map((product) => (
           <ProductComponent
