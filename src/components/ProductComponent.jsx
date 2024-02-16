@@ -1,7 +1,10 @@
 import React from 'react';
 import '../index.css';
+import { useNavigate} from 'react-router';
 
 function ProductComponent({ name, by, img, desc, url, domains }) {
+
+  const navigate = useNavigate();
 
   const headerStyle={
     fontWeight:'600',
@@ -20,8 +23,9 @@ function ProductComponent({ name, by, img, desc, url, domains }) {
   }
 
   const handleClick=()=>{
-    window.location.href=`https://xxpennyxx.github.io/${url}`
+    navigate('/product');
   }
+
   return (
     <div className="product-component" onClick={handleClick}>
       <img src={img} alt="Sample photo" height="200px"/>
@@ -31,7 +35,6 @@ function ProductComponent({ name, by, img, desc, url, domains }) {
         <div style={domainsList}>
         {domains.map(d => {
           return <span style={domainStyle}>{d}</span>
-
         })
         }
         </div>

@@ -3,6 +3,7 @@ import Home from './Home'
 import {Button} from '@carbon/react'
 import '../styles/SignIn.scss';
 import { useState } from 'react';
+import bg_Img from '../images/background_image.jpg'
 
 function SignIn() {
 
@@ -20,7 +21,7 @@ function SignIn() {
 
   return (
 
-    <div id="signIn">
+    <div id="signIn" style={{backgroundImage: `url(${bg_Img})`}}>
       <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'></link>
       <div class="wrapper">
       <form onSubmit={handleSubmit}>

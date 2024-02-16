@@ -1,5 +1,5 @@
 import React from 'react';
-import ProductComponent from './ProductComponent';
+import ProductComponent from '../components/ProductComponent';
 import Navbar from './Navbar';
 import '../styles/Home.scss'
 import img1 from "../images/product-bgd.jpg"

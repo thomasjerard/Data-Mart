@@ -54,7 +54,7 @@ function Product() {
       <Navbar/>
       <div id="productPage">
         <div className="heading">
-          <img src={prodImg} alt="prod" height="140px"/>
+          <img src={prodImg} alt="prod" height="140px" />
           <div className='heading-content'>
             <h2>{product.productName}</h2>
             <p>By produce name</p>
