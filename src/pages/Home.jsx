@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import ProductComponent from '../components/ProductComponent';
-import Navbar from './Navbar';
+import Navbar from '../components/Navbar';
 import '../styles/Home.scss';
 import { Search } from '@carbon/icons-react';
 
