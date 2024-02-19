@@ -38,7 +38,7 @@ function Home() {
   }
 
   let domains=['Weather Data','Healthcare Data','Legal Data','Brand Data','Mobile App Data','Environmental Data'];
- 
+  
   return (
     <div>
       <Navbar />
