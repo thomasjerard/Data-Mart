@@ -37,91 +37,60 @@ function Drafts() {
     setSearchInput(searchText);
   }
 
-  const inputStyle = {
-    marginTop: '30px',
-    borderRadius: '5px',
-    padding: '10px',
-    fontSize: '1rem',
-    width: '80%',
-    position: 'relative', 
-  };
-
-  const searchIconStyle = {
-    position: 'relative',
-    top: '50%',
-    right: '40px',
-    color: '#666',
-  };
 
   let domains=['Weather Data','Healthcare Data','Legal Data','Brand Data','Mobile App Data','Environmental Data'];
 
- const domainsListStyle={
-  marginTop:'15px',
- }
 
- const small={
-  fontSize:'0.67rem',
-  textAlign:'center',
-  marginTop:'3px',
-  marginBottom:'3px'
- }
- const domainButtonStyle = {
-  marginBottom: '5px',
-  marginTop:'5px',
-  display:'inline-block'
-};
-  return (
-    <div>
-      <Navbar />
-      <div className="productpage-header">
-        <h1>Draft Data Products</h1>
-        <p style={{ marginTop: '10px', marginBottom:'20px' }}>
-          Duis Bibendum neque egestas congue quisque egestas diam in arcu cursus. Massa tincidunt dui ut ornare
-          lectus. A diam maecenas sed enim ut. Cras semper auctor neque vitae tempus quam pellentesque nec nam.
-        </p>
-        <div style={{ position: 'relative' }}>
-          <input
-            placeholder="Enter term to search..."
-            type="text"
-            style={inputStyle}
-            value={searchInput}
-            onChange={handleSearchInputChange}
-          />
-          <span style={searchIconStyle}><Search/></span>
-        </div>
-        
+return (
+  <div>
+    <Navbar />
+    <div className="productpage-header">
+      <h1>Data Products</h1>
+      <p style={{ marginTop: '10px', marginBottom:'20px' }}>
+        Duis Bibendum neque egestas congue quisque egestas diam in arcu cursus. Massa tincidunt dui ut ornare
+        lectus. A diam maecenas sed enim ut. Cras semper auctor neque vitae tempus quam pellentesque nec nam.
+      </p>
+      <div style={{ position: 'relative' }}>
+        <input
+          placeholder="Enter term to search..."
+          type="text"
+          value={searchInput}
+          onChange={handleSearchInputChange}
+        />
+        <span className='search-icon'><Search/></span>
       </div>
+      
+    </div>
 
-      <div className='productpage-header'>
-        <h3>Filter by domain</h3>
-        <div style={domainsListStyle}>
-          {domains.map((domain) => (
-            <span
-              key={domain}
-              className='domain-list'
-              onClick={() => handleDomainSelect(domain)}
-              style={{
-                backgroundColor: selectedDomains.includes(domain) ? '#7FC7D9' : '#F2F1EB',
-                ...domainButtonStyle
-              }}
-            >
-              <span style={small}>⚫</span> {domain}
-            </span>
-          ))}
-        </div>
+    <div className='productpage-header'>
+      <h3>Filter by domain</h3>
+      <div className='domains'>
+        {domains.map((domain) => (
+          <span
+            key={domain}
+            className='domain-list domain-button'
+            onClick={() => handleDomainSelect(domain)}
+            style={{
+              backgroundColor: selectedDomains.includes(domain) ? '#7FC7D9' : '#F2F1EB',
+            }}
+          >
+            <span className='small'>⚫</span> {domain}
+          </span>
+        ))}
       </div>
+    </div>
 
-      <div className="products-container">
-        {filteredProducts.map((product) => (
-          <ProductComponent
-            key={product.key}
-            name={product.name}
-            desc={product.desc}
-            img={product.img}
-            by={product.by}
-            url={product.url}
-            domains={product.domains}
-            productStage="draftedproduct"
+    <div className="products-container">
+      {filteredProducts.map((product) => (
+        <ProductComponent
+          key={product.key}
+          name={product.name}
+          desc={product.desc}
+          img={product.img}
+          by={product.by}
+          url={product.url}
+          domains={product.domains}
+          productStage="draftedproduct"
           />
         ))}
       </div>

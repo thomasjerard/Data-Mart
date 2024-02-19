@@ -37,39 +37,8 @@ function Home() {
     setSearchInput(searchText);
   }
 
-  const inputStyle = {
-    marginTop: '30px',
-    borderRadius: '5px',
-    padding: '10px',
-    fontSize: '1rem',
-    width: '80%',
-    position: 'relative', 
-  };
-
-  const searchIconStyle = {
-    position: 'relative',
-    top: '50%',
-    right: '40px',
-    color: '#666',
-  };
-
   let domains=['Weather Data','Healthcare Data','Legal Data','Brand Data','Mobile App Data','Environmental Data'];
-
- const domainsListStyle={
-  marginTop:'15px',
- }
-
- const small={
-  fontSize:'0.67rem',
-  textAlign:'center',
-  marginTop:'3px',
-  marginBottom:'3px'
- }
- const domainButtonStyle = {
-  marginBottom: '5px',
-  marginTop:'5px',
-  display:'inline-block'
-};
+ 
   return (
     <div>
       <Navbar />
@@ -83,29 +52,27 @@ function Home() {
           <input
             placeholder="Enter term to search..."
             type="text"
-            style={inputStyle}
             value={searchInput}
             onChange={handleSearchInputChange}
           />
-          <span style={searchIconStyle}><Search/></span>
+          <span className='search-icon'><Search/></span>
         </div>
         
       </div>
 
       <div className='productpage-header'>
         <h3>Filter by domain</h3>
-        <div style={domainsListStyle}>
+        <div className='domains'>
           {domains.map((domain) => (
             <span
               key={domain}
-              className='domain-list'
+              className='domain-list domain-button'
               onClick={() => handleDomainSelect(domain)}
               style={{
                 backgroundColor: selectedDomains.includes(domain) ? '#7FC7D9' : '#F2F1EB',
-                ...domainButtonStyle
               }}
             >
-              <span style={small}>⚫</span> {domain}
+              <span className='small'>⚫</span> {domain}
             </span>
           ))}
         </div>

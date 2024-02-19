@@ -62,3 +62,39 @@
   padding-bottom:3px;
 
   }
+
+  input {
+    margin-top:30px;
+    border-radius: 5px;
+    padding:10px;
+    font-size: 1rem;
+    width: 80%;
+    position: relative;
+  };
+
+.search-icon{
+    position: relative;
+    top: 50%;
+    right: 40px;
+    color: #666;
+  };
+
+  .domains{
+    margin-top:15px
+   }
+
+   .small{
+    
+      font-size:0.67rem;
+      text-align:center;
+      margin-top:3px;
+      margin-bottom:3px
+  
+   }
+
+   .domain-button{
+      margin-bottom: 5px;
+      margin-top:5px;
+      display:inline-block
+  
+   }
