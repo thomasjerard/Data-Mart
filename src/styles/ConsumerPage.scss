@@ -2,9 +2,10 @@
 
     margin: auto 10%; 
     padding: 2em;
-    text-size: large;
+    font-size: small;
+}
 
-    .content{
+.content{
         display: flex;
         flex-direction: row;
         justify-content: space-between;
@@ -12,13 +13,17 @@
         padding-left: 0;
     }
 
-    img{
-        width: 100px;
+img{
+        width: 50px;
         border-radius: 50%;
         border: 2px solid black;
     }
 
-    td,th{
+td,th{
         font-size: large;
     }
+
+
+.edit{
+    font-size: 1rem;
 }
