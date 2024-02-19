@@ -27,7 +27,7 @@ function SignIn() {
       <form onSubmit={handleSubmit}>
         <h1>LOGIN</h1>
         <div class="user-name">
-       <input type="text" name="User Name" id="User Name" placeholder="User Name" autocomplete="on reuired" onChange={e => setUserName(e.target.value)}></input>
+       <input type="text" name="User Name" id="User Name" placeholder="User Name" autocomplete="on required" onChange={e => setUserName(e.target.value)}></input>
       <i class='bx bxs-user'></i>
       </div>
        <br></br>

@@ -59,7 +59,7 @@ function Home() {
   fontSize:'0.67rem',
   textAlign:'center',
   marginTop:'3px',
-  marginBottom:'3px'
+  marginBottom:'3px',
  }
  const domainButtonStyle = {
   marginBottom: '5px',

@@ -10,6 +10,7 @@ import SignIn from './pages/SignIn';
 import ConsumerPage from './pages/ConsumerPage';
 import { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
+import CarbonTable from './components/CarbonTable'
 
 function App() {
 
@@ -37,7 +38,8 @@ function App() {
           <Route path="draftedproduct" element={<DraftProduct/>}></Route>
           <Route path="consumer" element={<ConsumerPage/>}></Route>
           <Route path= "navbar" element={<Navbar/>}></Route>
-          <Route path= "consumer" element={<ConsumerPage/>}>s</Route>
+          <Route path= "consumer" element={<ConsumerPage/>}></Route>
+          <Route path= "table" element={<CarbonTable/>}></Route>
         </Route>
       </Routes>
     </BrowserRouter>    

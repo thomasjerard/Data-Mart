@@ -15,6 +15,9 @@ function Navbar() {
   const handleHome = () => {
     navigate("/")
   }
+  const handleSignin = () => {
+    navigate("/signin")
+  }
 
   return (
     <div id="navbar">
@@ -22,6 +25,7 @@ function Navbar() {
       <div className='empty'></div>
       <Button className="published" onClick={handlePublished}>Published</Button>
       <Button className="drafts" onClick={handleDraft}>Drafts</Button>
+      <Button className="signin" onClick={handleSignin}>Signin</Button>
     </div>
   )
 }
