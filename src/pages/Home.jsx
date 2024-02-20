@@ -42,6 +42,7 @@ function Home() {
   return (
     <div>
       <Navbar />
+      <div className='home'>
       <div className="productpage-header">
         <h1>Data Products</h1>
         <p style={{ marginTop: '10px', marginBottom:'20px' }}>
@@ -91,6 +92,7 @@ function Home() {
             productStage="product"
           />
         ))}
+      </div>
       </div>
     </div>
   );
