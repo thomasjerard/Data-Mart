@@ -1,22 +1,16 @@
 import React, { useState } from 'react';
 import '../styles/EditForm.scss';
+import '../styles/AddFormProduct.scss'
 import { Modal, TextInput, TextArea, DatePicker, DatePickerInput, Button } from '@carbon/react';
 const AddFormProduct = ({ isOpen, handleClose, handleAddProduct }) => {
   const [formData, setFormData] = useState({
     name: '',
-    description: '',
+    Description: '',
     creationdate: '',
     lastupdateddate: '',
-    copyurl: '',
+    url: '',
   });
   const handleChange = (event) => {
-    const { name, value } = event.target;
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      [name]: value,
-    }));
-  };
-  const handleDateChange = (event) => {
     const { name, value } = event.target;
     setFormData((prevFormData) => ({
       ...prevFormData,
@@ -29,63 +23,75 @@ const AddFormProduct = ({ isOpen, handleClose, handleAddProduct }) => {
     handleClose();
   };
   return (
-    <Modal open={isOpen} onRequestClose={handleClose} modalHeading="Add Product">
+    <Modal launcherButtonRef={Button} primaryButtonText="Add"  secondaryButtonText="Cancel" onRequestSubmit={handleSubmit} open={isOpen} onRequestClose={handleClose}>
+      <h2 class="heading">Add Data</h2>
       <div className="add-form-container">
-        <div className="close-btn" onClick={handleClose}>
-          <span>X</span>
-        </div>
-        <h2>Add Product</h2>
-        <form onSubmit={handleSubmit}>
-          <TextInput
+          <div class="name">
+          <label>
+            Name
+          </label>
+           <TextInput
             id="name"
             name="name"
-            labelText="Name"
             value={formData.name}
             onChange={handleChange}
             required
           />
+          </div>
+          <div class="Description">
+          <label>
+            Description
+          </label>
           <TextArea
-            id="description"
-            name="description"
-            labelText="Description"
-            value={formData.description}
+            id="Description"
+            name="Description"
+            value={formData.Description}
             onChange={handleChange}
             required
           />
+          </div>
+          <div class="CreationDate">
+          <label>
+            Creation Date
+          </label>
           <DatePicker dateFormat="m/d/Y" datePickerType="single">
             <DatePickerInput
               id="creationdate"
               name="creationdate"
-              labelText="Creation Date"
               placeholder="mm/dd/yyyy"
               value={formData.creationdate}
-              onChange={handleDateChange}
+              onChange={handleChange}
               required
             />
           </DatePicker>
+          </div>
+          <div class="LastUpdatedDate">
+          <label>
+            LastUpdatedDate
+          </label>
           <DatePicker dateFormat="m/d/Y" datePickerType="single">
             <DatePickerInput
               id="lastupdateddate"
               name="lastupdateddate"
-              labelText="Last Updated Date"
               placeholder="mm/dd/yyyy"
               value={formData.lastupdateddate}
-              onChange={handleDateChange}
+              onChange={handleChange}
               required
             />
           </DatePicker>
+          </div>
+          <div class="URL">
+          <label>
+            URL
+          </label>
           <TextInput
-            id="copyurl"
-            name="copyurl"
-            labelText="Copy URL"
-            value={formData.copyurl}
+            id="url"
+            name="url"
+            value={formData.url}
             onChange={handleChange}
             required
           />
-          <Button className="add" type="submit">
-            Add Product
-          </Button>
-        </form>
+          </div>
       </div>
     </Modal>
   );

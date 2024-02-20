@@ -1,66 +1,123 @@
-import React from 'react';
-import Navbar from '../components/Navbar';
-import { useNavigate } from 'react-router-dom';
+import React from 'react'
+import '../styles/ProductPage.scss'
+import { TableHeader, TableRow, TableHead, TableBody, TableCell , Table} from '@carbon/react'
+import Navbar from '../components/Navbar'
+import prodImg from '../images/product.jpg'
+import { redirect } from 'react-router-dom'
+import CopyButton from '@carbon/react/lib/components/CopyButton'
+import Button from '@carbon/react/lib/components/Button';
+
 
 function PublishedProduct() {
-  
-  const navigate = useNavigate();
 
-  const handleClick = () => {
-    navigate('/consumer');
-  };
+  const product = {
+    productName: "Factori Raw Location Data | Global mobile location data (1 year history)",
+    productDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc iaculis erat at turpis rhoncus, at ultrices turpis feugiat. In eu aliquam nunc. Integer venenatis purus at elit tincidunt, non congue.",
+    DataList: [
+      {
+        DataName:"Data 1",
+        DataDescription:"Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        creationDate: "19/11/2003",
+        UpdationDate:"20/4/2023",
+        link:"https://www.google.co.in/"
+      },
+      {
+        DataName:"Data 2",
+        DataDescription:"Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        creationDate: "19/11/2003",
+        UpdationDate:"20/4/2023",
+        link:"https://www.google.co.in/"
+      },
+      {
+        DataName:"Data 3",
+        DataDescription:"Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        creationDate: "19/11/2003",
+        UpdationDate:"20/4/2023",
+        link:"https://www.google.co.in/"
+      },{
+        DataName:"Data 4",
+        DataDescription:"Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        creationDate: "19/11/2003",
+        UpdationDate:"20/4/2023",
+        link:"https://www.google.co.in/"
+      }
+    ]
+  } 
 
-  const productStyle = {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-around',
-    margin:'20px',
-    backgroundColor:'#EEEDEB',
-    height:'400px',
-    padding:'20px'
-    
-  };
-
-  const imageStyle = {
-    maxWidth: '400px',
-    marginRight: '30px', 
-  };
-
-  const headerStyle={
-    marginBottom:'30px'
+  const handleClick = (e) => {
+    window.open("https://www.google.co.in/","_blank");
   }
-  const buttonStyle = {
-    display: 'block',
-    marginBottom: '10px', 
-  };
+
+  const handleCopy = (e) => {
+    e.preventDefault();
+  }
 
   return (
     <div>
-      <Navbar />
-      
-      <div style={productStyle}>
-        <img src='https://picsum.photos/300' alt="Sample photo" style={imageStyle} />
-        <div>
-          <div style={headerStyle}><h1>Product 1</h1></div>
-          <p style={headerStyle}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-          </p>
-          <button onClick={handleClick} style={buttonStyle}>
-            URL 1
-          </button>
-          <button onClick={handleClick} style={buttonStyle}>
-            URL 2
-          </button>
-          <div>
-          <button onClick={handleClick} style={buttonStyle}>
-            Add Consumer
-          </button>
+      <Navbar/>
+      <div id="productPage">
+        <div className="heading">
+          <img src={prodImg} alt="prod" height="140px" />
+          <div className='heading-content'>
+            <h2>{product.productName}</h2>
+            <p>By produce name</p>
           </div>
         </div>
-      </div>
-      </div>
+        <h4>Description</h4>
+        <p>{product.productDescription}</p>
+        <hr/>
+        <Table aria-label="sample table">
+          <TableHead>
+            <TableRow>
+              <TableHeader>
+                Name
+              </TableHeader>
+              <TableHeader>
+                Description
+              </TableHeader>
+              <TableHeader>
+                Creation Date
+              </TableHeader>
+              <TableHeader>
+                Last Updated
+              </TableHeader>
+              <TableHeader>
+                Copy URL
+              </TableHeader>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {
+              product.DataList.map(Data => (
+                <TableRow onClick={handleClick} id={Data.link} key={Data.name}>
+                <TableCell>
+                  {Data.DataName}
+                </TableCell>
+                <TableCell>
+                  {Data.DataDescription}
+                </TableCell>
+                <TableCell>
+                  {Data.creationDate}
+                </TableCell>
+                <TableCell>
+                  {Data.UpdationDate}
+                </TableCell>
+                <TableCell>
+                  <div className='link'>
+                    <span>{Data.link}</span>
+                    {/* <CopyButton onClick={handleCopy} /> */}
+                  </div>
+                </TableCell>
+              </TableRow>
+              ))
+            }
+          </TableBody>
+        </Table>
+        <Button onClick={()=>window.location.href="/consumer"}>Add Consumer</Button>
 
-  );
+      </div>
+    </div>
+  )
 }
 
-export default PublishedProduct;
+export default PublishedProduct

@@ -1,49 +1,141 @@
-import React from 'react';
+import React, {useState} from 'react';
 import '../styles/EditForm.scss';
 import Button from '@carbon/react/lib/components/Button';
+import boypic from '../images/boypic.png';
+import girlpic from '../images/girlpic.png';
+import { Modal, TextInput, TextArea, DatePicker, DatePickerInput } from '@carbon/react';
+
 
 const AddForm = ({ isOpen, handleClose, handleAddConsumer }) => {
+  const [formData, setFormData] = useState({
+    username: '',
+    stage: '',
+    lastviewed: '',
+    profile:''
+  });
+
   if (!isOpen) {
     return null;
   }
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const formData = {
-      username: e.target.username.value,
-      stage: e.target.stage.value,
-      lastviewed: e.target.lastviewed.value,
-    };
-    handleAddConsumer(formData);
-    handleClose();
+  const handleUsernameChange = (e) => {
+    const selectedUsername = e.target.value;
+    const selectedUser = additionalRows.find((user) => user.username === selectedUsername);
+
+    if (selectedUser) {
+      setFormData({
+        ...formData,
+        username: selectedUser.username,
+        stage: selectedUser.stage,
+        lastviewed: selectedUser.lastviewed,
+        profile:selectedUser.profile
+      });
+    } else {
+      setFormData({
+        ...formData,
+        username: selectedUsername,
+        stage: '',
+        lastviewed: '',
+        profile:''
+      });
+    }
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    handleAddConsumer(formData);
+    handleClose();
+    setFormData({
+      username: '',
+      stage: '',
+      lastviewed: '',
+      profile:''
+    });
+  };
+
+  const additionalRows = [
+    {
+      id: 'c',
+      profile: <img src={boypic} alt="pic" />,
+      username: 'Mahidhar789',
+      stage: 'Consumer',
+      lastviewed: '02/29/2024',
+    },
+    {
+      id: 'd',
+      profile: <img src={girlpic} alt="pic" />,
+      username: 'Sandra696969',
+      stage: 'Consumer',
+      lastviewed: '02/29/2024',
+    },
+    {
+      id: 'e',
+      profile: <img src={girlpic} alt="pic" />,
+      username: 'dimpul234',
+      stage: 'Consumer',
+      lastviewed: '02/29/2024',
+    },
+    {
+      id: 'f',
+      profile: <img src={girlpic} alt="pic" />,
+      username: 'bhavya8992',
+      stage: 'Consumer',
+      lastviewed: '02/29/2024',
+    },
+
+  ];
+
+  const suggestedUsernames = additionalRows.map(row => row.username);
+
   return (
-    <div className="edit-form-overlay">
-      <div className="edit-form-container">
-        <div className="close-btn" onClick={handleClose}>
-          <span>X</span>
-        </div>
-        <h2>Add Consumer</h2>
+    <Modal open={isOpen} onRequestClose={handleClose} primaryButtonText="Add">
+      <div className='modal-form'>
+        
+        <h2 style={{marginBottom:'20px'}}>Add Consumer</h2>
         <form onSubmit={handleSubmit}>
-          <label>
-            Username:</label>
-            <input type="text" name="username" required />
-          
-          <label>
-            Stage:</label>
-            <input type="text" name="stage" required />
-          
-          <label>
-            Last Viewed:</label>
-            <input type="text" name="lastviewed" required />
-          
-          <Button className="add" type="submit">
+            <TextInput
+              className='text-input'
+              type="text"
+              id="username"
+              name="username"
+              labelText="Username"
+              list="usernameSuggestions"
+              value={formData.username}
+              onChange={handleUsernameChange}
+              required
+            />
+            <datalist id="usernameSuggestions">
+              {suggestedUsernames.map((username, index) => (
+                <option key={index} value={username} />
+              ))}
+            </datalist>
+
+            <TextInput
+              type="text"
+              id="stage"
+              name="stage"
+              labelText="Stage"
+              value={formData.stage}
+              onChange={(e) => setFormData({ ...formData, stage: e.target.value })}
+              required
+            />
+            <DatePicker dateFormat='m/d/Y'datePickerType="single">
+            <DatePickerInput
+              name="lastviewed"
+              id="lastviewed"
+              labelText="Last Viewed"
+              value={formData.lastviewed}
+              onChange={(e) => setFormData({ ...formData, lastviewed: e.target.value })}
+              required
+            />
+            </DatePicker>
+
+          <Button style={{marginTop:'30px'}} className="add" type="submit">
             Add Consumer
           </Button>
         </form>
       </div>
-    </div>
+    </Modal>
   );
 };
 

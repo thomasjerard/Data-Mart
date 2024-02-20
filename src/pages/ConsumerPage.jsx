@@ -1,4 +1,4 @@
-import '../styles/ConsumerPage.scss'
+import '../styles/ConsumerPage.scss';
 import React, { useState } from 'react';
 import '../App.scss';
 import {
@@ -12,21 +12,20 @@ import {
   TableSelectRow,
   TableSelectAll,
 } from '@carbon/react';
+import Button from '@carbon/react/lib/components/Button';
 import { Edit } from '@carbon/icons-react';
-import Button from '@carbon/react/lib/components/Button'
-
 
 import Navbar from '../components/Navbar';
 import boypic from '../images/boypic.png';
 import girlpic from '../images/girlpic.png';
 import EditForm from '../components/EditForm';
-import AddForm from '../components/AddForm'; 
+import AddForm from '../components/AddForm';
 
 function ConsumerPage() {
   const [selectedRows, setSelectedRows] = useState([]);
   const [isEditFormOpen, setIsEditFormOpen] = useState(false);
   const [selectedRowData, setSelectedRowData] = useState(null);
-  const [isAddFormOpen, setIsAddFormOpen] = useState(false); 
+  const [isAddFormOpen, setIsAddFormOpen] = useState(false);
 
   const handleEdit = (rowId) => {
     const selectedRow = rows.find((row) => row.id === rowId);
@@ -50,18 +49,17 @@ function ConsumerPage() {
     handleCloseEditForm();
   };
 
-
   const handleCloseEditForm = () => {
     setIsEditFormOpen(false);
     setSelectedRowData(null);
   };
 
   const handleOpenAddForm = () => {
-    setIsAddFormOpen(true); 
+    setIsAddFormOpen(true);
   };
 
   const handleCloseAddForm = () => {
-    setIsAddFormOpen(false); 
+    setIsAddFormOpen(false);
   };
 
   const headers = [
@@ -69,7 +67,11 @@ function ConsumerPage() {
       key: 'select',
       header: () => (
         <TableSelectAll
-          onChange={(event) => setSelectedRows(event.target.checked ? rows.map((row) => row.id) : [])}
+          onChange={(event) =>
+            setSelectedRows(
+              event.target.checked ? rows.map((row) => row.id) : []
+            )
+          }
           checked={selectedRows.length === rows.length}
         />
       ),
@@ -90,10 +92,6 @@ function ConsumerPage() {
       key: 'lastviewed',
       header: 'Last Viewed',
     },
-    {
-      key: 'edit',
-      header: 'Edit',
-    },
   ];
 
   const initialRows = [
@@ -102,87 +100,85 @@ function ConsumerPage() {
       profile: <img src={boypic} alt="pic" />,
       username: 'Thomas123',
       stage: 'Consumer',
-      lastviewed: '2020-02-23',
+      lastviewed: '02/29/2024',
     },
     {
       id: 'b',
       profile: <img src={girlpic} alt="pic" />,
       username: 'vaidehi456',
       stage: 'Consumer',
-      lastviewed: '2020-07-12',
+      lastviewed: '02/29/2024',
     },
   ];
 
+
+
   const [consumers, setConsumers] = useState(initialRows);
-  const [rows, setRows]=useState(consumers);
+  const [rows, setRows] = useState([...initialRows]);
 
   const handleAddConsumer = (formData) => {
     const newConsumer = {
-      id: Date.now().toString(), 
-      profile: <img src={boypic} alt="pic" />, 
+      id: Date.now().toString(),
+      profile: <img src={boypic} alt="pic" />,
       ...formData,
     };
 
     setConsumers((prevConsumers) => [...prevConsumers, newConsumer]);
-    setRows((prevRows)=>[...prevRows,newConsumer])
-
-    console.log(consumers)
-
+    setRows((prevRows) => [...prevRows, newConsumer]);
   };
 
   return (
     <div>
       <Navbar />
-      <div className='consumerPage'>
-      <div className='content'>
-        <h1>Consumers Page</h1>
-          <Button onClick={handleOpenAddForm}>Add Consumer</Button> 
-          <EditForm isOpen={isEditFormOpen} handleClose={handleCloseEditForm} handleEditConsumer={handleEditConsumer} rowData={selectedRowData} />
-          <AddForm handleAddConsumer={handleAddConsumer} isOpen={isAddFormOpen} handleClose={handleCloseAddForm} />
-      </div>
-      <DataTable
-        rows={rows}
-        headers={headers}
-        isSortable
-        onSelect={({ selectedRows }) => setSelectedRows(selectedRows)}
-        selectedRows={selectedRows}
-      >
-        {({ rows, headers, getTableProps, getHeaderProps, getRowProps, getSelectionProps }) => (
-          <Table {...getTableProps()}>
-            <TableHead>
-              <TableRow>
-                <TableSelectAll {...getSelectionProps()}></TableSelectAll>
-                {headers.map((header) => (
-                  <TableHeader {...getHeaderProps({ header })}>{header.header}</TableHeader>
-                ))}
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {rows.map((row, rowIndex) => (
-                <TableRow {...getRowProps({ row })} key={row.id}>
-                  <TableSelectRow {...getSelectionProps({ row })}></TableSelectRow>
-                  {row.cells.map((cell, cellIndex) => (
-                    <TableCell key={cell.id}>
-                      {cellIndex === headers.length - 1 ? (
-                        <span className="edit" onClick={() => handleEdit(row.id)}>
-                          <Edit />
-                        </span>
-                      ) : (
-                        cell.value
-                      )}
-                    </TableCell>
+      <div className="consumerPage">
+        <div className="content">
+          <h1>Consumers Page</h1>
+          <Button onClick={handleOpenAddForm}>Add Consumer</Button>
+          <EditForm
+            isOpen={isEditFormOpen}
+            handleClose={handleCloseEditForm}
+            handleEditConsumer={handleEditConsumer}
+            rowData={selectedRowData}
+          />
+          <AddForm
+            handleAddConsumer={handleAddConsumer}
+            isOpen={isAddFormOpen}
+            handleClose={handleCloseAddForm}
+          />
+        </div>
+        <DataTable
+          rows={rows}
+          headers={headers}
+          isSortable
+          onSelect={({ selectedRows }) => setSelectedRows(selectedRows)}
+          selectedRows={selectedRows}
+        >
+          {({ rows, headers, getTableProps, getHeaderProps, getRowProps, getSelectionProps }) => (
+            <Table {...getTableProps()}>
+              <TableHead>
+                <TableRow>
+                  <TableSelectAll {...getSelectionProps()}></TableSelectAll>
+                  {headers.map((header) => (
+                    <TableHeader {...getHeaderProps({ header })}>{header.header}</TableHeader>
                   ))}
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        )}
-      </DataTable>
-
-      <br/>
-      {/* <Button onClick={handleOpenAddForm}>Add Consumer</Button>  */}
-      <EditForm isOpen={isEditFormOpen} handleClose={handleCloseEditForm} handleEditConsumer={handleEditConsumer} rowData={selectedRowData} />
-      <AddForm handleAddConsumer={handleAddConsumer} isOpen={isAddFormOpen} handleClose={handleCloseAddForm} />
+              </TableHead>
+              <TableBody>
+                {rows.map((row, rowIndex) => (
+                  <TableRow {...getRowProps({ row })} key={row.id}>
+                    <TableSelectRow {...getSelectionProps({ row })}></TableSelectRow>
+                    {row.cells.map((cell, cellIndex) => (
+                      <TableCell key={cell.id}>
+                        {cell.value}
+                      </TableCell>
+                    ))}
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          )}
+        </DataTable>
+        <br />
       </div>
     </div>
   );
