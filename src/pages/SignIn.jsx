@@ -1,29 +1,30 @@
 import React from 'react'
-import Home from './Home'
-import {Button} from '@carbon/react'
 import '../styles/SignIn.scss';
 import { useState } from 'react';
 import bg_Img from '../images/background_image.jpg'
 import { useDispatch } from 'react-redux';
 import { login } from '../global/AuthSlice'
+import { useCookies } from 'react-cookie';
 
 function SignIn() {
 
   const [username, setUserName] = useState();
   const [password, SetPassword] = useState();
+  const [cookies, setcookies] = useCookies(['isValid','isAdmin']);
 
   const dispatch = useDispatch();
 
   const handleSubmit = async e => {
     e.preventDefault();
     console.log("submitted");
-    dispatch(
-      login({
-        username,
-        password,
-        isAdmin: true
-      })
-    )
+    // dispatch(
+    //   login({
+    //     isValid: true,
+    //     isAdmin: true
+    //   })
+    // );
+    setcookies('isValid', true);
+    setcookies('isAdmin', true);
   }
 
   return (

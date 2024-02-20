@@ -3,8 +3,6 @@ import '../styles/ProductPage.scss'
 import { TableHeader, TableRow, TableHead, TableBody, TableCell , Table} from '@carbon/react'
 import Navbar from '../components/Navbar'
 import prodImg from '../images/product.jpg'
-import { redirect } from 'react-router-dom'
-import CopyButton from '@carbon/react/lib/components/CopyButton'
 
 function Product() {
 
@@ -103,7 +101,6 @@ function Product() {
                 <TableCell>
                   <div className='link'>
                     <span>{Data.link}</span>
-                    {/* <CopyButton onClick={handleCopy} /> */}
                   </div>
                 </TableCell>
               </TableRow>

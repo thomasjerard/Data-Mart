@@ -3,7 +3,6 @@ import ProductComponent from '../components/ProductComponent';
 import Navbar from '../components/Navbar';
 import '../styles/Home.scss';
 import img1 from '../images/product-bgd.jpg'
-import { useNavigate } from 'react-router-dom';
 import { Search } from '@carbon/icons-react';
 
 
@@ -36,14 +35,8 @@ function Published() {
     const searchText = event.target.value;
     setSearchInput(searchText);
   }
-
-
+  
   let domains=['Weather Data','Healthcare Data','Legal Data','Brand Data','Mobile App Data','Environmental Data'];
-
- const domainsListStyle={
-  marginTop:'15px',
- }
-
 
  return (
   <div>

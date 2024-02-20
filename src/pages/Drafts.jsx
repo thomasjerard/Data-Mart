@@ -3,7 +3,6 @@ import ProductComponent from '../components/ProductComponent';
 import Navbar from '../components/Navbar';
 import '../styles/Home.scss';
 import img1 from '../images/product-bgd.jpg'
-import { useNavigate } from 'react-router-dom';
 import { Search } from '@carbon/icons-react';
 
 

@@ -2,9 +2,14 @@ import React from 'react'
 import "../styles/Navbar.scss"
 import { Button } from '@carbon/react'
 import { useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux';
+import { logout } from '../global/AuthSlice'
+import { useCookies } from 'react-cookie';
 
 function Navbar() {
   const navigate = useNavigate();
+  // const dispatch = useDispatch();
+  const [cookie, setCookie, removeCookie] = useCookies(['isValid','isAdmin']);
 
   const handlePublished = () => {
     navigate("/published");
@@ -15,8 +20,12 @@ function Navbar() {
   const handleHome = () => {
     navigate("/")
   }
-  const handleSignin = () => {
-    navigate("/signin")
+  const handleSignOut = async e => {
+    e.preventDefault();
+    // dispatch(
+    //   logout()
+    // );    
+    setCookie('isValid',false);
   }
 
   return (
@@ -25,7 +34,7 @@ function Navbar() {
       <div className='empty'></div>
       <Button className="published" onClick={handlePublished}>Published</Button>
       <Button className="drafts" onClick={handleDraft}>Drafts</Button>
-      <Button className="signin" onClick={handleSignin}>Signin</Button>
+      <Button className="signOut" onClick={handleSignOut}>Log Out</Button>
     </div>
   )
 }

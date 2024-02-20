@@ -1,5 +1,5 @@
 import './App.scss';
-import {BrowserRouter, Routes, Route, RedirectFunction, redirect} from "react-router-dom";
+import {BrowserRouter, Routes, Route} from "react-router-dom";
 import Home from './pages/Home';
 import Published from './pages/Published';
 import Drafts from './pages/Drafts';
@@ -8,15 +8,16 @@ import PublishedProduct from './pages/PublishedProduct';
 import ProductPage from './pages/ProductPage';
 import SignIn from './pages/SignIn';
 import ConsumerPage from './pages/ConsumerPage';
-import { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import CarbonTable from './components/CarbonTable'
 import { useSelector } from 'react-redux';
 import { selectUser } from './global/AuthSlice';
+import { useCookies } from 'react-cookie';
 
 function App() {
 
   const user = useSelector(selectUser);
+  const [cookies, setcookies] = useCookies(['isValid','isAdmin']);
   
   // useEffect(() => {
   //   if(!token){
@@ -24,9 +25,11 @@ function App() {
   //   }
   // },[token]);
 
-  if(!user){
-    return <SignIn/>;
-  }
+  // if(!user){
+    // console.log(cookies.isValid)
+    if(!cookies.isValid)
+      return <SignIn/>;
+  // }
   
   return (
     <BrowserRouter>
