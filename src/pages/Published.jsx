@@ -48,8 +48,9 @@ function Published() {
  return (
   <div>
     <Navbar />
+    <div className='home'>
     <div className="productpage-header">
-      <h1>Data Products</h1>
+      <h1>Published Data Products</h1>
       <p style={{ marginTop: '10px', marginBottom:'20px' }}>
         Duis Bibendum neque egestas congue quisque egestas diam in arcu cursus. Massa tincidunt dui ut ornare
         lectus. A diam maecenas sed enim ut. Cras semper auctor neque vitae tempus quam pellentesque nec nam.
@@ -97,6 +98,7 @@ function Published() {
           productStage="publishedproduct"
           />
         ))}
+      </div>
       </div>
     </div>
   );
