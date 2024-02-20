@@ -135,6 +135,13 @@ function ConsumerPage() {
   return (
     <div>
       <Navbar />
+      <div className='consumerPage'>
+      <div className='content'>
+        <h1>Consumers Page</h1>
+          <Button onClick={handleOpenAddForm}>Add Consumer</Button> 
+          <EditForm isOpen={isEditFormOpen} handleClose={handleCloseEditForm} handleEditConsumer={handleEditConsumer} rowData={selectedRowData} />
+          <AddForm handleAddConsumer={handleAddConsumer} isOpen={isAddFormOpen} handleClose={handleCloseAddForm} />
+      </div>
       <DataTable
         rows={rows}
         headers={headers}
@@ -178,6 +185,7 @@ function ConsumerPage() {
       <Button onClick={handleOpenAddForm}>Add Consumer</Button> 
       <EditForm isOpen={isEditFormOpen} handleClose={handleCloseEditForm} handleEditConsumer={handleEditConsumer} rowData={selectedRowData} />
       <AddForm handleAddConsumer={handleAddConsumer} isOpen={isAddFormOpen} handleClose={handleCloseAddForm} />
+      </div>
     </div>
   );
 }

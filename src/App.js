@@ -11,10 +11,12 @@ import ConsumerPage from './pages/ConsumerPage';
 import { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import CarbonTable from './components/CarbonTable'
+import { useSelector } from 'react-redux';
+import { selectUser } from './global/AuthSlice';
 
 function App() {
 
-  const [token , setToken] = useState(true);
+  const user = useSelector(selectUser);
   
   // useEffect(() => {
   //   if(!token){
@@ -22,9 +24,10 @@ function App() {
   //   }
   // },[token]);
 
-  if(!token){
+  if(!user){
     return <SignIn/>;
   }
+  
   return (
     <BrowserRouter>
       <Routes>
