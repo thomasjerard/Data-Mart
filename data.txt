@@ -1,0 +1,15 @@
+weather data:
+
+product-1:
+Historical weather data API - Meteosource
+by Meteosource Weather API
+Description-Historical weather data for any location worldwide and observed hourly data for the requested day.The Historical Weather API allows you to quickly retrieve accurate, high resolution historical weather data for any location in the world. Our curated weather data is backed by over 120,000 weather stations as well as high resolution gridded weather datasets such as the ERA-5 re-analysis, and global satellite / doppler radar.
+url: https://datarade.ai/data-products/historical-weather-data-api-meteosource-meteosource-weather-api
+
+product-2:
+Customised Weather Data Validation
+by WeatherLogistics
+Description-Customised solutions for validation, scoring, post-processing, calibration and data cleansing of weather data products.
+WeatherLogistics has 10-years experience in climate data science. Its previous validation solutions include an inter-comparison assessment of numerical weather prediction models, assessment of meteorological data against soil moisture measurements, and pioneering research and development of a seasonal climate forecast system. More recently, its team developed software to score GFS and ECMWF products on a decentralised climate data marketplace.
+url: https://datarade.ai/data-products/customised-weather-data-validation-weatherlogistics
+
