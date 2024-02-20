@@ -182,7 +182,7 @@ function ConsumerPage() {
       </DataTable>
 
       <br/>
-      <Button onClick={handleOpenAddForm}>Add Consumer</Button> 
+      {/* <Button onClick={handleOpenAddForm}>Add Consumer</Button>  */}
       <EditForm isOpen={isEditFormOpen} handleClose={handleCloseEditForm} handleEditConsumer={handleEditConsumer} rowData={selectedRowData} />
       <AddForm handleAddConsumer={handleAddConsumer} isOpen={isAddFormOpen} handleClose={handleCloseAddForm} />
       </div>
