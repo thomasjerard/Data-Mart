@@ -203,7 +203,7 @@ function DraftProduct() {
         )}
       </DataTable>
       <br />
-      <Button onClick={handleOpenAddForm}>Add Product</Button>
+      <Button onClick={handleOpenAddForm}>Add Data</Button>
       <EditFormProduct
         isOpen={isEditFormOpen}
         handleClose={handleCloseEditForm}
