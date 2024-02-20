@@ -8,6 +8,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
   
   .edit-form-container {
     background: #fff;
@@ -54,4 +55,12 @@
   .add{
     margin-top: 15px;
   }
-}
+
+  .text-input{
+    margin-top: 10px;
+  }
+
+  .modal-form{
+    padding-left: 20px;
+    padding-right: 20px;
+  }
