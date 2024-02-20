@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import prodImg from '../images/product.jpg'
 import {
   DataTable,
   Table,
@@ -16,6 +17,12 @@ import Navbar from '../components/Navbar';
 import EditFormProduct from '../components/EditFormProduct';
 import AddFormProduct from '../components/AddFormProduct';
 function DraftProduct() {
+  const product = {
+    productName: "Factori Raw Location Data | Global mobile location data (1 year history)",
+    productDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc iaculis erat at turpis rhoncus, at ultrices turpis feugiat. In eu aliquam nunc. Integer venenatis purus at elit tincidunt, non congue.",
+
+  }
+  
   const [selectedRows, setSelectedRows] = useState([]);
   const [isEditFormOpen, setIsEditFormOpen] = useState(false);
   const [selectedRowData, setSelectedRowData] = useState(null);
@@ -146,6 +153,17 @@ function DraftProduct() {
   return (
     <div>
       <Navbar />
+      <div id="productPage">
+        <div className="heading">
+          <img src={prodImg} alt="prod" height="140px" />
+          <div className='heading-content'>
+            <h2>{product.productName}</h2>
+            <p>By produce name</p>
+          </div>
+        </div>
+        <h4>Description</h4>
+        <p>{product.productDescription}</p>
+        <hr/>
       <DataTable
         rows={rows}
         headers={headers}
@@ -194,6 +212,8 @@ function DraftProduct() {
       />
       <AddFormProduct handleAddProduct={handleAddProduct} isOpen={isAddFormOpen} handleClose={handleCloseAddForm} />
     </div>
+    </div>
   );
 }
+
 export default DraftProduct;
