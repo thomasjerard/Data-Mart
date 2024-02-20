@@ -1,6 +1,8 @@
 import '../styles/ConsumerPage.scss'
 import React, { useState } from 'react';
 import '../App.scss';
+import img1 from './pic 1.png'
+import img2 from './pic 2.png'
 import {
   DataTable,
   Table,
