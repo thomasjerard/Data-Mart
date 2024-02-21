@@ -3,10 +3,11 @@ import '../index.css';
 import '../styles/ProductComponent.scss'
 import { useNavigate} from 'react-router';
 
-function ProductComponent({ name, by, img, desc, url, domains, productStage }) {
+function ProductComponent({ id, name, by, img, desc, url, domains, productStage }) {
+
   const navigate = useNavigate();
   const handleClick=()=>{
-    navigate(`/${productStage}`);
+    navigate(`/${productStage}/${id}`);
   }
 
   return (

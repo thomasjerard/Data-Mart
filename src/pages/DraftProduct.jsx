@@ -131,6 +131,7 @@ function DraftProduct() {
   ];
   const [products, setProducts] = useState(initialRows);
   const [rows, setRows] = useState(products);
+
   const handleAddProduct = (formData) => {
     const newProduct = {
       id: Date.now().toString(),
@@ -139,6 +140,7 @@ function DraftProduct() {
     setProducts((prevProducts) => [...prevProducts, newProduct]);
     setRows((prevRows) => [...prevRows, newProduct]);
   };
+  
   const handleEditProduct = (formData) => {
     setProducts((prevProducts) =>
       prevProducts.map((product) =>

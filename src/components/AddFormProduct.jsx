@@ -20,6 +20,7 @@ const AddFormProduct = ({ isOpen, handleClose, handleAddProduct }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     handleAddProduct(formData);
+    console.log(formData);
     handleClose();
   };
   return (

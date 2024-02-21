@@ -27,21 +27,22 @@ function App() {
 
   // if(!user){
     // console.log(cookies.isValid)
-    if(!cookies.isValid)
-      return <SignIn/>;
+    // if(!cookies.isValid)
+    //   return <SignIn/>;
   // }
   
   return (
     <BrowserRouter>
+      {/* <Navbar/> */}
       <Routes>
         <Route path="/">
           <Route index element={<Home/>}></Route>
-          <Route path="product" element={<ProductPage/>}></Route>
+          <Route path="product/:productId" element={<ProductPage/>}></Route>
           <Route path="signin" element={<SignIn/>}></Route>
           <Route path="drafts" element={<Drafts/>}></Route>
           <Route path="published" element={<Published/>}></Route>
-          <Route path="publishedproduct" element={<PublishedProduct/>}></Route>
-          <Route path="draftedproduct" element={<DraftProduct/>}></Route>
+          <Route path="publishedproduct/:productId" element={<PublishedProduct/>}></Route>
+          <Route path="draftedproduct/:productId" element={<DraftProduct/>}></Route>
           <Route path="consumer" element={<ConsumerPage/>}></Route>
           <Route path= "navbar" element={<Navbar/>}></Route>
           <Route path= "consumer" element={<ConsumerPage/>}></Route>

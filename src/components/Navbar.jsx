@@ -26,6 +26,7 @@ function Navbar() {
     //   logout()
     // );    
     setCookie('isValid',false);
+    navigate("/signin");
   }
 
   return (

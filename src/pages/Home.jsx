@@ -1,19 +1,34 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect} from 'react';
 import ProductComponent from '../components/ProductComponent';
 import Navbar from '../components/Navbar';
 import '../styles/Home.scss';
-import img1 from '../images/product-bgd.jpg';
-import { useNavigate } from 'react-router-dom';
 import { Search } from '@carbon/icons-react';
+<<<<<<< HEAD
 import { AspectRatio } from '@carbon/react';
+=======
+import { useDispatch, useSelector } from 'react-redux';
+import { setproducts, allproducts } from '../global/ProductsSlice';
+import axios from "axios";
+
+>>>>>>> upstream/main
 
 function Home() {
-  const products = [
-    { key: "1", domains:['Weather Data','Mobile App Data'], name: "Product 1", url:'product1',by:'Jake Weatherald', desc: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", img: img1 },
-    { key: "2", domains:['Legal Data','Healthcare Data'],  name: "Product 2", url:'product2', by:'Jake Weatherald', desc: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", img: img1 },
-    { key: "3", domains:['Brand Data','Mobile App Data'],  name: "Product 3", url:'product3', by:'Jake Weatherald', desc: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", img: img1 },
-    { key: "4", domains:['Environmental Data','Weather Data'],  name: "Product 4", url:'product4', by:'Jake Weatherald', desc: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", img: img1 },
-  ];
+  const products = useSelector(allproducts);
+  const dispatch = useDispatch();
+
+  // const fetchProducts = async () => {
+  //   const response = await axios
+  //     .get("https://fakestoreapi.com/products")
+  //     .catch((err) => {
+  //       console.log("Err: ", err);
+  //     });
+  //   dispatch(setproducts(response.data));
+  //   console.log()
+  // };
+
+  // useEffect(() => {
+  //   fetchProducts();
+  // }, []);
 
   const [searchInput, setSearchInput] = useState('');
   const [selectedDomains, setSelectedDomains] = useState([]);
@@ -45,10 +60,10 @@ function Home() {
       <div className='home'>
       <div className="productpage-header">
         <h1>Data Products</h1>
-        <p style={{ marginTop: '10px', marginBottom:'20px' }}>
+        {/* <p style={{ marginTop: '10px', marginBottom:'20px' }}>
           Duis Bibendum neque egestas congue quisque egestas diam in arcu cursus. Massa tincidunt dui ut ornare
           lectus. A diam maecenas sed enim ut. Cras semper auctor neque vitae tempus quam pellentesque nec nam.
-        </p>
+        </p> */}
         <div style={{ position: 'relative' }}>
           <input
             placeholder="Enter term to search..."
@@ -62,7 +77,7 @@ function Home() {
       </div>
 
       <div className='productpage-header'>
-        <h3>Filter by domain</h3>
+        {/* <h3>Filter by domain</h3> */}
         <div className='domains'>
           {domains.map((domain) => (
             <span
@@ -81,6 +96,7 @@ function Home() {
 
       <div className="products-container">
         {filteredProducts.map((product) => (
+<<<<<<< HEAD
           <AspectRatio ratio="1:1" key={product.key}>
             <ProductComponent
               name={product.name}
@@ -92,6 +108,19 @@ function Home() {
               productStage="product"
             />
           </AspectRatio>
+=======
+          <ProductComponent
+            key={product.key}
+            id={product.key}
+            name={product.name}
+            desc={product.desc}
+            img={product.img}
+            by={product.by}
+            url={product.url}
+            domains={product.domains}
+            productStage="product"
+          />
+>>>>>>> upstream/main
         ))}
       </div>
       </div>

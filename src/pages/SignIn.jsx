@@ -5,13 +5,14 @@ import bg_Img from '../images/background_image.jpg'
 import { useDispatch } from 'react-redux';
 import { login } from '../global/AuthSlice'
 import { useCookies } from 'react-cookie';
+import { useNavigate } from 'react-router-dom';
 
 function SignIn() {
 
   const [username, setUserName] = useState();
   const [password, SetPassword] = useState();
   const [cookies, setcookies] = useCookies(['isValid','isAdmin']);
-
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const handleSubmit = async e => {
@@ -25,6 +26,7 @@ function SignIn() {
     // );
     setcookies('isValid', true);
     setcookies('isAdmin', true);
+    navigate('/');
   }
 
   return (
