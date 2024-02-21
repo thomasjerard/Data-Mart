@@ -88,7 +88,7 @@ const AddForm = ({ isOpen, handleClose, handleAddConsumer }) => {
   const suggestedUsernames = additionalRows.map(row => row.username);
 
   return (
-    <Modal open={isOpen} onRequestClose={handleClose} primaryButtonText="Add">
+    <Modal launcherButtonRef={Button} primaryButtonText="Add"  secondaryButtonText="Cancel" onRequestSubmit={handleSubmit} open={isOpen} onRequestClose={handleClose}>
       <div className='modal-form'>
         
         <h2 style={{marginBottom:'20px'}}>Add Consumer</h2>
@@ -118,6 +118,7 @@ const AddForm = ({ isOpen, handleClose, handleAddConsumer }) => {
               value={formData.stage}
               onChange={(e) => setFormData({ ...formData, stage: e.target.value })}
               required
+              disabled
             />
             <DatePicker dateFormat='m/d/Y'datePickerType="single">
             <DatePickerInput
@@ -127,12 +128,9 @@ const AddForm = ({ isOpen, handleClose, handleAddConsumer }) => {
               value={formData.lastviewed}
               onChange={(e) => setFormData({ ...formData, lastviewed: e.target.value })}
               required
+              disabled
             />
             </DatePicker>
-
-          <Button style={{marginTop:'30px'}} className="add" type="submit">
-            Add Consumer
-          </Button>
         </form>
       </div>
     </Modal>
