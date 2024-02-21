@@ -84,6 +84,7 @@ function Published() {
       {filteredProducts.map((product) => (
         <ProductComponent
           key={product.key}
+          id={product.key}
           name={product.name}
           desc={product.desc}
           img={product.img}

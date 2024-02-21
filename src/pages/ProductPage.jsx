@@ -1,52 +1,39 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import '../styles/ProductPage.scss'
 import { TableHeader, TableRow, TableHead, TableBody, TableCell , Table} from '@carbon/react'
 import Navbar from '../components/Navbar'
 import prodImg from '../images/product.jpg'
+import {useParams} from "react-router-dom"
+import { useDispatch, useSelector } from "react-redux";
+import { setproduct, product, remproduct } from '../global/SelectProductSlice'
+import axios from 'axios'
 
 function Product() {
 
-  const product = {
-    productName: "Factori Raw Location Data | Global mobile location data (1 year history)",
-    productDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc iaculis erat at turpis rhoncus, at ultrices turpis feugiat. In eu aliquam nunc. Integer venenatis purus at elit tincidunt, non congue.",
-    DataList: [
-      {
-        DataName:"Data 1",
-        DataDescription:"Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        creationDate: "19/11/2003",
-        UpdationDate:"20/4/2023",
-        link:"https://www.google.co.in/"
-      },
-      {
-        DataName:"Data 2",
-        DataDescription:"Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        creationDate: "19/11/2003",
-        UpdationDate:"20/4/2023",
-        link:"https://www.google.co.in/"
-      },
-      {
-        DataName:"Data 3",
-        DataDescription:"Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        creationDate: "19/11/2003",
-        UpdationDate:"20/4/2023",
-        link:"https://www.google.co.in/"
-      },{
-        DataName:"Data 4",
-        DataDescription:"Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        creationDate: "19/11/2003",
-        UpdationDate:"20/4/2023",
-        link:"https://www.google.co.in/"
-      }
-    ]
-  } 
+  const { productId } = useParams();
+  const selproduct = useSelector(product); 
 
   const handleClick = (e) => {
     window.open("https://www.google.co.in/","_blank");
   }
 
-  const handleCopy = (e) => {
-    e.preventDefault();
-  }
+  const dispatch = useDispatch();
+
+  // const fetchProductDetail = async (id) => {
+  //   const response = await axios
+  //     .get(`https://fakestoreapi.com/products/${id}`)
+  //     .catch((err) => {
+  //       console.log("Err: ", err);
+  //     });
+  //   dispatch(setproduct(response.data));
+  // };
+
+  // useEffect(() => {
+  //   if (productId && productId !== "") fetchProductDetail(productId);
+  //   return () => {
+  //     dispatch(remproduct());
+  //   };
+  // }, [productId]);
 
   return (
     <div>
@@ -55,12 +42,12 @@ function Product() {
         <div className="heading">
           <img src={prodImg} alt="prod" height="140px" />
           <div className='heading-content'>
-            <h2>{product.productName}</h2>
+            <h2>{selproduct.productName}</h2>
             <p>By produce name</p>
           </div>
         </div>
         <h4>Description</h4>
-        <p>{product.productDescription}</p>
+        <p>{selproduct.productDescription}</p>
         <hr/>
         <Table aria-label="sample table">
           <TableHead>
@@ -84,7 +71,7 @@ function Product() {
           </TableHead>
           <TableBody>
             {
-              product.DataList.map(Data => (
+              selproduct.DataList.map(Data => (
                 <TableRow onClick={handleClick} id={Data.link} key={Data.name}>
                 <TableCell>
                   {Data.DataName}
