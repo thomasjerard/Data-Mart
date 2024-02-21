@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import ProductComponent from '../components/ProductComponent';
+import { AspectRatio } from '@carbon/react';
 import Navbar from '../components/Navbar';
 import '../styles/Home.scss';
 import img1 from '../images/product-bgd.jpg'
@@ -81,17 +82,18 @@ return (
     </div>
 
     <div className="products-container">
-      {filteredProducts.map((product) => (
-        <ProductComponent
-          key={product.key}
-          name={product.name}
-          desc={product.desc}
-          img={product.img}
-          by={product.by}
-          url={product.url}
-          domains={product.domains}
-          productStage="draftedproduct"
-          />
+        {filteredProducts.map((product) => (
+          <AspectRatio ratio="1:1" key={product.key}>
+            <ProductComponent
+              name={product.name}
+              desc={product.desc}
+              img={product.img}
+              by={product.by}
+              url={product.url}
+              domains={product.domains}
+              productStage="draftedproduct"
+            />
+          </AspectRatio>
         ))}
       </div>
     </div>

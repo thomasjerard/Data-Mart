@@ -6,6 +6,8 @@ import img1 from '../images/product-bgd.jpg'
 import del from '../images/delete.png'
 import { useNavigate } from 'react-router-dom';
 import { Search } from '@carbon/icons-react';
+import { AspectRatio } from '@carbon/react';
+
 
 
 function Published() {
@@ -81,19 +83,18 @@ function Published() {
     </div>
 
     <div className="products-container">
-      {filteredProducts.map((product) => (
-        <ProductComponent
-          key={product.key}
-          name={product.name}
-          desc={product.desc}
-          img={product.img}
-          by={product.by}
-          url={product.url}
-          domains={product.domains}
-          productStage="publishedproduct"
-          image={product.del}
-          />
-      
+        {filteredProducts.map((product) => (
+          <AspectRatio ratio="1:1" key={product.key}>
+            <ProductComponent
+              name={product.name}
+              desc={product.desc}
+              img={product.img}
+              by={product.by}
+              url={product.url}
+              domains={product.domains}
+              productStage="publishedproduct"
+            />
+          </AspectRatio>
         ))}
       </div>
 

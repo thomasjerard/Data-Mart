@@ -5,7 +5,7 @@ import '../styles/Home.scss';
 import img1 from '../images/product-bgd.jpg';
 import { useNavigate } from 'react-router-dom';
 import { Search } from '@carbon/icons-react';
-
+import { AspectRatio } from '@carbon/react';
 
 function Home() {
   const products = [
@@ -81,16 +81,17 @@ function Home() {
 
       <div className="products-container">
         {filteredProducts.map((product) => (
-          <ProductComponent
-            key={product.key}
-            name={product.name}
-            desc={product.desc}
-            img={product.img}
-            by={product.by}
-            url={product.url}
-            domains={product.domains}
-            productStage="product"
-          />
+          <AspectRatio ratio="1:1" key={product.key}>
+            <ProductComponent
+              name={product.name}
+              desc={product.desc}
+              img={product.img}
+              by={product.by}
+              url={product.url}
+              domains={product.domains}
+              productStage="product"
+            />
+          </AspectRatio>
         ))}
       </div>
       </div>
