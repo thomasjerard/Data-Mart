@@ -21,6 +21,7 @@
     }
     h4{
         font-weight: bold;
+        color: #111111;
     }
     img{
         box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
@@ -36,3 +37,16 @@
         flex-direction: row;
     }
 }
+
+.heading-content{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: #131212;
+}
+.head{
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size:20px;
+    font-weight:300;
+}
+.table{
+    background:transparent;
+  }

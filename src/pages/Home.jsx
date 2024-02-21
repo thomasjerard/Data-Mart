@@ -2,10 +2,11 @@ import React, { useState, useEffect} from 'react';
 import ProductComponent from '../components/ProductComponent';
 import Navbar from '../components/Navbar';
 import '../styles/Home.scss';
-import { Search } from '@carbon/icons-react';
+import { Search, WhitePaper } from '@carbon/icons-react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setproducts, allproducts } from '../global/ProductsSlice';
 import axios from "axios";
+
 
 
 function Home() {
@@ -51,17 +52,17 @@ function Home() {
   let domains=['Weather Data','Healthcare Data','Legal Data','Brand Data','Mobile App Data','Environmental Data'];
   
   return (
-    <div>
+    <div >
       <Navbar />
       <div className='home'>
       <div className="productpage-header">
-        <h1>Data Products</h1>
+        <h1 className='head'>Data Products</h1>
         {/* <p style={{ marginTop: '10px', marginBottom:'20px' }}>
           Duis Bibendum neque egestas congue quisque egestas diam in arcu cursus. Massa tincidunt dui ut ornare
           lectus. A diam maecenas sed enim ut. Cras semper auctor neque vitae tempus quam pellentesque nec nam.
         </p> */}
-        <div style={{ position: 'relative' }}>
-          <input
+        <div  style={{ position: 'relative' }}>
+          <input className='search'
             placeholder="Enter term to search..."
             type="text"
             value={searchInput}
@@ -81,7 +82,9 @@ function Home() {
               className='domain-list domain-button'
               onClick={() => handleDomainSelect(domain)}
               style={{
-                backgroundColor: selectedDomains.includes(domain) ? '#7FC7D9' : '#F2F1EB',
+                backgroundColor: selectedDomains.includes(domain) ? '#3E8DE3' : '#F2F1EB',
+                
+                
               }}
             >
               <span className='small'>⚫</span> {domain}

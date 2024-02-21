@@ -43,13 +43,15 @@ function Product() {
           <img src={prodImg} alt="prod" height="140px" />
           <div className='heading-content'>
             <h2>{selproduct.productName}</h2>
-            <p>By produce name</p>
+            <p className='head'>By produce name</p>
           </div>
         </div>
         <h4>Description</h4>
         <p>{product.productDescription}</p>
         <hr />
-       <DataTable
+        <div className='table'>
+       <DataTable 
+       
           rows={selproduct.DataList}
           headers={[
             { header: 'Name', key: 'DataName' },
@@ -85,6 +87,7 @@ function Product() {
             </Table>
           )}
         </DataTable>
+        </div>
       </div>
     </div>
   );
