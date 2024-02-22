@@ -92,6 +92,8 @@ function Home() {
         {filteredProducts.map((product) => (
           <AspectRatio ratio="1:1" key={product.key}>
             <ProductComponent
+              key={product.key}
+              id={product.key}
               name={product.name}
               desc={product.desc}
               img={product.img}
