@@ -64,7 +64,7 @@ function PublishedProduct() {
           <img src={prodImg} alt="prod" height="140px" />
           <div className="heading-content">
             <h2>{product.productName}</h2>
-            <p>By produce name</p>
+            <h5>By produce name</h5>
           </div>
         </div>
         <h4>Description</h4>
@@ -82,8 +82,8 @@ function PublishedProduct() {
           isSortable
         >
           {({ rows, headers, getTableProps, getHeaderProps, getRowProps, getSelectionProps }) => (
-            <Table {...getTableProps()}>
-              <TableHead>
+            <Table  {...getTableProps()}>
+              <TableHead >
                 <TableRow>
                   {/* <TableSelectAll {...getSelectionProps()}></TableSelectAll> */}
                   {headers.map((header) => (
@@ -106,7 +106,7 @@ function PublishedProduct() {
             </Table>
           )}
         </DataTable>
-        <Button onClick={()=>window.location.href="/consumer"}>Add Consumer</Button>
+        <Button className='purple' onClick={()=>window.location.href="/consumer"}>Add Consumer</Button>
       </div>
   );
 }

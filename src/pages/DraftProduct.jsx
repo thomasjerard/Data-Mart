@@ -5,6 +5,7 @@ import { Edit } from '@carbon/icons-react';
 import Button from '@carbon/react/lib/components/Button';
 import EditFormProduct from '../components/EditFormProduct';
 import AddFormProduct from '../components/AddFormProduct';
+import '../styles/DraftProduct.scss'
 
 function DraftProduct() {
 
@@ -197,7 +198,7 @@ function DraftProduct() {
         )}
       </DataTable>
       <br />
-      <Button onClick={handleOpenAddForm}>Add Data</Button>
+      <Button className='purple' onClick={handleOpenAddForm}>Add Data</Button>
       <EditFormProduct
         isOpen={isEditFormOpen}
         handleClose={handleCloseEditForm}

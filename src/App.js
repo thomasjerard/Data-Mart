@@ -47,7 +47,7 @@ function App() {
           <Route path="publishedproduct/:productId" element={<PublishedProduct/>}></Route>
           <Route path="draftedproduct/:productId" element={<DraftProduct/>}></Route>
           <Route path="consumer" element={<ConsumerPage/>}></Route>
-          <Route path= "navbar" element={<Navbar/>}></Route>
+          {/* <Route path= "navbar" element={<Navbar/>}></Route> */}
           <Route path= "consumer" element={<ConsumerPage/>}></Route>
           <Route path= "table" element={<CarbonTable/>}></Route>
         </Route>

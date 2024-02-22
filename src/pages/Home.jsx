@@ -79,10 +79,10 @@ function Home() {
               className='domain-list domain-button'
               onClick={() => handleDomainSelect(domain)}
               style={{
-                backgroundColor: selectedDomains.includes(domain) ? '#7FC7D9' : '#F2F1EB',
+                backgroundColor: selectedDomains.includes(domain) ? '#E2CFEA' : '#FFF0F5',
               }}
             >
-              <span className='small'>⚫</span> {domain}
+             {domain}
             </span>
           ))}
         </div>
