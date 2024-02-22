@@ -7,8 +7,7 @@ import { AspectRatio } from '@carbon/react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setproducts, allproducts } from '../global/ProductsSlice';
 import axios from "axios";
-
-
+import addIcon from '../images/Add.png'
 function Home() {
   const products = useSelector(allproducts);
   const dispatch = useDispatch();
@@ -80,13 +79,17 @@ function Home() {
               className='domain-list domain-button'
               onClick={() => handleDomainSelect(domain)}
               style={{
-                backgroundColor: selectedDomains.includes(domain) ? '#7FC7D9' : '#F2F1EB',
+                backgroundColor: selectedDomains.includes(domain) ? '#E2CFEA' : '#FFF0F5',
               }}
             >
-              <span className='small'>⚫</span> {domain}
+             {domain}
             </span>
           ))}
+          <div className='add-icon'>
+          <img src={addIcon} className='add-icon-img' alt="Add Icon"></img>
         </div>
+        </div>
+        
       </div>
 
       <div className="products-container">
@@ -102,12 +105,17 @@ function Home() {
               url={product.url}
               domains={product.domains}
               productStage="product"
+              category=""
             />
           </AspectRatio>
         ))}
       </div>
+      
       </div>
+      
   );
 }
 
 export default Home;
+
+//This one has redux

@@ -1,13 +1,18 @@
 #navbar{
     width: 100%;
     height: 3rem;
-    background-color: black;
+    background-color: #6F4685;
     color: aliceblue;
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
+    *{
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    }
+    
+
     Button{
-        background-color: black;
+        background-color: #6F4685;
         font-size: medium;
     }
     .empty{
@@ -18,4 +23,9 @@
         font-size: large;
         justify-self: flex-start;
     }
+    .current{
+        background-color: #A06CB5;
+    }
 }
+
+//392A48

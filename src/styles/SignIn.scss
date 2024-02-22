@@ -11,6 +11,11 @@
     background-size: cover;
     background-position: center;
     background-color: #e0e0e0;
+
+    *{
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    }
+    
     .wrapper{
         width:420px;
         background:transparent;
@@ -43,7 +48,7 @@
         color: white;
         padding: 20px 45px 20px 20px;
     }
-    user-name input::placeholder{
+    .user-name input::placeholder{
         color:white;
     }
     .user-name i{
@@ -62,7 +67,7 @@
         border-radius: 40px;
         box-shadow:0 0 10px rgba(0,0,0,.1);
         cursor:pointer;
-        font-size: 16px;
+        font-size: 20px;
         color:#333;
         font-weight: 600;
         margin-bottom: 10px;
@@ -70,4 +75,13 @@
     .table{
         width: 1250px;
     }  
+    h1{
+        color:white
+    }
+    .pink{
+        color:white
+    }
+    thead{
+        background-color:white !important;
+    }
 }

@@ -91,7 +91,7 @@ const AddForm = ({ isOpen, handleClose, handleAddConsumer }) => {
     <Modal launcherButtonRef={Button} primaryButtonText="Add"  secondaryButtonText="Cancel" onRequestSubmit={handleSubmit} open={isOpen} onRequestClose={handleClose}>
       <div className='modal-form'>
         
-        <h2 style={{marginBottom:'20px'}}>Add Consumer</h2>
+        <h2 style={{marginBottom:'20px', color:'#102B3F'}}>Add Consumer</h2>
         <form onSubmit={handleSubmit}>
             <TextInput
               className='text-input'
