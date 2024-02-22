@@ -120,7 +120,7 @@ const AddForm = ({ isOpen, handleClose, handleAddConsumer }) => {
               required
               disabled
             />
-            <DatePicker dateFormat='m/d/Y'datePickerType="single">
+            <DatePicker dateFormat='m/d/Y' datePickerType="single">
             <DatePickerInput
               name="lastviewed"
               id="lastviewed"

@@ -59,8 +59,6 @@ function PublishedProduct() {
   
 
   return (
-    <div>
-      <Navbar />
       <div id="productPage">
         <div className="heading">
           <img src={prodImg} alt="prod" height="140px" />
@@ -87,7 +85,7 @@ function PublishedProduct() {
             <Table {...getTableProps()}>
               <TableHead>
                 <TableRow>
-                  <TableSelectAll {...getSelectionProps()}></TableSelectAll>
+                  {/* <TableSelectAll {...getSelectionProps()}></TableSelectAll> */}
                   {headers.map((header) => (
                     <TableHeader {...getHeaderProps({ header })}>{header.header}</TableHeader>
                   ))}
@@ -96,7 +94,7 @@ function PublishedProduct() {
               <TableBody>
                 {rows.map((row, rowIndex) => (
                   <TableRow {...getRowProps({ row })} key={rowIndex}>
-                    <TableSelectRow {...getSelectionProps({ row, id: rowIndex })}></TableSelectRow>
+                    {/* <TableSelectRow {...getSelectionProps({ row, id: rowIndex })}></TableSelectRow> */}
                     {row.cells.map((cell, cellIndex) => (
                       <TableCell key={cell.id}>
                         {cell.value}
@@ -109,9 +107,7 @@ function PublishedProduct() {
           )}
         </DataTable>
         <Button onClick={()=>window.location.href="/consumer"}>Add Consumer</Button>
-
       </div>
-    </div>
   );
 }
 

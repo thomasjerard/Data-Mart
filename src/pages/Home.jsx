@@ -51,8 +51,6 @@ function Home() {
   let domains=['Weather Data','Healthcare Data','Legal Data','Brand Data','Mobile App Data','Environmental Data'];
   
   return (
-    <div>
-      <Navbar />
       <div className='home'>
       <div className="productpage-header">
         <h1>Data Products</h1>
@@ -106,7 +104,6 @@ function Home() {
         ))}
       </div>
       </div>
-    </div>
   );
 }
 

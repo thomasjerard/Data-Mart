@@ -36,8 +36,6 @@ function Product() {
   // }, [productId]);
 
   return (
-    <div>
-      <Navbar />
       <div id="productPage">
         <div className="heading">
           <img src={prodImg} alt="prod" height="140px" />
@@ -86,7 +84,6 @@ function Product() {
           )}
         </DataTable>
       </div>
-    </div>
   );
 }
 

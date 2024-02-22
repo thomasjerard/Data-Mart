@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import '../styles/EditForm.scss';
+// import '../styles/EditForm.scss';
 import '../styles/AddFormProduct.scss';
 import { Modal, TextInput, TextArea, DatePicker, DatePickerInput, Button } from '@carbon/react';
 const EditFormProduct = ({ isOpen, handleClose, handleEditProduct, rowData }) => {
@@ -29,27 +29,35 @@ const EditFormProduct = ({ isOpen, handleClose, handleEditProduct, rowData }) =>
       [name]: value,
     }));
   };
-  const handleDateChange = (event) => {
-    const { name, value } = event.target;
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      [name]: value,
-    }));
-  };
+
+  const date = new Date();
+  const getFullDate = () => {
+    return (date.getDate() + '/' + date.getMonth() + '/' + date.getFullYear());
+  }
+  
+  // const handleDateChange = (event) => {
+  //   const { name, value } = event.target;
+  //   setFormData((prevFormData) => ({
+  //     ...prevFormData,
+  //     [name]: value,
+  //   }));
+  // };
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleEditProduct(formData);
+    handleEditProduct({...formData, lastupdateddate: getFullDate()});
     handleClose();
+    setFormData({
+      name: '',
+      description: '',
+      creationdate: '',
+      lastupdateddate: '',
+      copyurl: '',      
+    })
   };
   return (
     <Modal launcherButtonRef={Button} primaryButtonText="Edit"  secondaryButtonText="Cancel" onRequestSubmit={handleSubmit} open={isOpen} onRequestClose={handleClose}>
-      
-      <div className="edit-form-container">
-        
-        <h2 class="Heading">Edit
-
-        </h2>
-        <form onSubmit={handleSubmit}>
+      <div className="add-form-container">
+        <h2 class="Heading">Edit</h2>
         <div class="name">
           <label>
             Name
@@ -69,7 +77,7 @@ const EditFormProduct = ({ isOpen, handleClose, handleEditProduct, rowData }) =>
           <TextArea
             id="Description"
             name="Description"
-            value={formData.Description}
+            value={formData.description}
             onChange={handleChange}
             required
           />
@@ -83,9 +91,8 @@ const EditFormProduct = ({ isOpen, handleClose, handleEditProduct, rowData }) =>
             <DatePickerInput
               id="creationdate"
               name="creationdate"
-              placeholder="mm/dd/yyyy"
               value={formData.creationdate}
-              onChange={handleDateChange}
+              disabled
               required
             />
             
@@ -99,10 +106,9 @@ const EditFormProduct = ({ isOpen, handleClose, handleEditProduct, rowData }) =>
             <DatePickerInput
               id="lastupdateddate"
               name="lastupdateddate"
-              placeholder="mm/dd/yyyy"
-              value={formData.lastupdateddate}
-              onChange={handleDateChange}
+              value={getFullDate()}
               required
+              disabled
             />
           </DatePicker>
           </div>
@@ -111,21 +117,13 @@ const EditFormProduct = ({ isOpen, handleClose, handleEditProduct, rowData }) =>
             URL 
           </label>
           <TextInput
-            id="url"
-            name="url"
-            value={formData.url}
+            id="copyurl"
+            name="copyurl"
+            value={formData.copyurl}
             onChange={handleChange}
             required
           />
           </div>
-          {/* <div class = "button"> 
-         
-        
-          <Button className="add" type="submit">
-            Edit
-          </Button>
-          </div> */}
-        </form>
       </div>
     </Modal>
   );
