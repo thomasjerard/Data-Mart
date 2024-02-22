@@ -1,20 +1,9 @@
 import '../styles/ConsumerPage.scss';
 import React, { useState } from 'react';
 import '../App.scss';
-import {
-  DataTable,
-  Table,
-  TableHead,
-  TableRow,
-  TableHeader,
-  TableBody,
-  TableCell,
-  TableSelectRow,
-  TableSelectAll,
-} from '@carbon/react';
+import { DataTable, Table, TableHead, TableRow, TableHeader, TableBody, TableCell, TableSelectRow, TableSelectAll } from '@carbon/react';
 import Button from '@carbon/react/lib/components/Button';
 import { Edit } from '@carbon/icons-react';
-
 import Navbar from '../components/Navbar';
 import boypic from '../images/boypic.png';
 import girlpic from '../images/girlpic.png';
@@ -23,36 +12,7 @@ import AddForm from '../components/AddForm';
 
 function ConsumerPage() {
   const [selectedRows, setSelectedRows] = useState([]);
-  const [isEditFormOpen, setIsEditFormOpen] = useState(false);
-  const [selectedRowData, setSelectedRowData] = useState(null);
   const [isAddFormOpen, setIsAddFormOpen] = useState(false);
-
-  const handleEdit = (rowId) => {
-    const selectedRow = rows.find((row) => row.id === rowId);
-    if (selectedRow) {
-      setSelectedRowData(selectedRow);
-      setIsEditFormOpen(true);
-    }
-  };
-
-  const handleEditConsumer = (formData) => {
-    setConsumers((prevConsumers) =>
-      prevConsumers.map((consumer) =>
-        consumer.id === selectedRowData.id ? { ...consumer, ...formData } : consumer
-      )
-    );
-    setRows((prevRows) =>
-      prevRows.map((row) =>
-        row.id === selectedRowData.id ? { ...row, ...formData } : row
-      )
-    );
-    handleCloseEditForm();
-  };
-
-  const handleCloseEditForm = () => {
-    setIsEditFormOpen(false);
-    setSelectedRowData(null);
-  };
 
   const handleOpenAddForm = () => {
     setIsAddFormOpen(true);
@@ -63,19 +23,6 @@ function ConsumerPage() {
   };
 
   const headers = [
-    {
-      key: 'select',
-      header: () => (
-        <TableSelectAll
-          onChange={(event) =>
-            setSelectedRows(
-              event.target.checked ? rows.map((row) => row.id) : []
-            )
-          }
-          checked={selectedRows.length === rows.length}
-        />
-      ),
-    },
     {
       key: 'profile',
       header: 'Profile',
@@ -111,9 +58,6 @@ function ConsumerPage() {
     },
   ];
 
-
-
-  const [consumers, setConsumers] = useState(initialRows);
   const [rows, setRows] = useState([...initialRows]);
 
   const handleAddConsumer = (formData) => {
@@ -122,24 +66,14 @@ function ConsumerPage() {
       profile: <img src={boypic} alt="pic" />,
       ...formData,
     };
-
-    setConsumers((prevConsumers) => [...prevConsumers, newConsumer]);
     setRows((prevRows) => [...prevRows, newConsumer]);
   };
 
   return (
-    <div>
-      <Navbar />
       <div className="consumerPage">
         <div className="content">
           <h1>Consumers Page</h1>
           <Button onClick={handleOpenAddForm}>Add Consumer</Button>
-          <EditForm
-            isOpen={isEditFormOpen}
-            handleClose={handleCloseEditForm}
-            handleEditConsumer={handleEditConsumer}
-            rowData={selectedRowData}
-          />
           <AddForm
             handleAddConsumer={handleAddConsumer}
             isOpen={isAddFormOpen}
@@ -180,7 +114,6 @@ function ConsumerPage() {
         </DataTable>
         <br />
       </div>
-    </div>
   );
 }
 

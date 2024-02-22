@@ -41,8 +41,6 @@ function Drafts() {
 
 
 return (
-  <div>
-    <Navbar />
     <div className='home'>
     <div className="productpage-header">
       <h1>Drafted Data Products</h1>
@@ -95,7 +93,6 @@ return (
           />
         ))}
       </div>
-    </div>
     </div>
   );
 }

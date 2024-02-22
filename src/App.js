@@ -31,9 +31,12 @@ function App() {
     //   return <SignIn/>;
   // }
   
+  const path = window.location.pathname;
+  console.log(path);
+
   return (
     <BrowserRouter>
-      {/* <Navbar/> */}
+      {path !== "/signin" && <Navbar/>}
       <Routes>
         <Route path="/">
           <Route index element={<Home/>}></Route>

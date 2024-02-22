@@ -1,32 +1,23 @@
 import React, { useState } from 'react';
 import prodImg from '../images/product.jpg'
-import {
-  DataTable,
-  Table,
-  TableHead,
-  TableRow,
-  TableHeader,
-  TableBody,
-  TableCell,
-  TableSelectRow,
-  TableSelectAll,
-} from '@carbon/react';
+import { DataTable, Table, TableHead, TableRow, TableHeader, TableBody, TableCell, TableSelectRow, TableSelectAll } from '@carbon/react';
 import { Edit } from '@carbon/icons-react';
 import Button from '@carbon/react/lib/components/Button';
-import Navbar from '../components/Navbar';
 import EditFormProduct from '../components/EditFormProduct';
 import AddFormProduct from '../components/AddFormProduct';
+
 function DraftProduct() {
+
   const product = {
     productName: "Factori Raw Location Data | Global mobile location data (1 year history)",
     productDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc iaculis erat at turpis rhoncus, at ultrices turpis feugiat. In eu aliquam nunc. Integer venenatis purus at elit tincidunt, non congue.",
-
   }
   
   const [selectedRows, setSelectedRows] = useState([]);
   const [isEditFormOpen, setIsEditFormOpen] = useState(false);
   const [selectedRowData, setSelectedRowData] = useState(null);
   const [isAddFormOpen, setIsAddFormOpen] = useState(false);
+
   const handleEdit = (rowId) => {
     const selectedRow = rows.find((row) => row.id === rowId);
     if (selectedRow) {
@@ -38,12 +29,14 @@ function DraftProduct() {
     setIsEditFormOpen(false);
     setSelectedRowData(null);
   };
+
   const handleOpenAddForm = () => {
     setIsAddFormOpen(true);
   };
   const handleCloseAddForm = () => {
     setIsAddFormOpen(false);
   };
+  
   const headers = [
     {
       key: 'select',
@@ -84,53 +77,54 @@ function DraftProduct() {
       id: 'a',
       name: 'Data 1',
       description: 'Google',
-      creationdate: '2022-01-01',
-      lastupdateddate: '2022-01-05',
+      creationdate: '2022/01/01',
+      lastupdateddate: '2022/01/05',
       copyurl: 'www.google.com',
     },
     {
       id: 'b',
       name: 'Data 2',
       description: 'IBM',
-      creationdate: '2022-01-02',
-      lastupdateddate: '2022-01-06',
+      creationdate: '2022/01/02',
+      lastupdateddate: '2022/01/06',
       copyurl: 'www.ibm.com',
     },
     {
       id: 'c',
       name: 'Data 3',
       description: 'Google',
-      creationdate: '2022-01-01',
-      lastupdateddate: '2022-01-05',
+      creationdate: '2022/01/01',
+      lastupdateddate: '2022/01/05',
       copyurl: 'www.google.com',
     },
     {
       id: 'd',
       name: 'Data 4',
       description: 'IBM',
-      creationdate: '2022-01-02',
-      lastupdateddate: '2022-01-06',
+      creationdate: '2022/01/02',
+      lastupdateddate: '2022/01/06',
       copyurl: 'www.ibm.com',
     },
     {
       id: 'e',
       name: 'Data 5',
       description: 'Google',
-      creationdate: '2022-01-01',
-      lastupdateddate: '2022-01-05',
+      creationdate: '2022/01/01',
+      lastupdateddate: '2022/01/05',
       copyurl: 'www.google.com',
     },
     {
       id: 'f',
       name: 'Data 6',
       description: 'IBM',
-      creationdate: '2022-01-02',
-      lastupdateddate: '2022-01-06',
+      creationdate: '2022/01/02',
+      lastupdateddate: '2022/01/06',
       copyurl: 'www.ibm.com',
     },
   ];
+
   const [products, setProducts] = useState(initialRows);
-  const [rows, setRows] = useState(products);
+  const [rows, setRows] = useState([...initialRows]);
 
   const handleAddProduct = (formData) => {
     const newProduct = {
@@ -140,7 +134,7 @@ function DraftProduct() {
     setProducts((prevProducts) => [...prevProducts, newProduct]);
     setRows((prevRows) => [...prevRows, newProduct]);
   };
-  
+
   const handleEditProduct = (formData) => {
     setProducts((prevProducts) =>
       prevProducts.map((product) =>
@@ -153,8 +147,6 @@ function DraftProduct() {
     handleCloseEditForm();
   };
   return (
-    <div>
-      <Navbar />
       <div id="productPage">
         <div className="heading">
           <img src={prodImg} alt="prod" height="140px" />
@@ -213,7 +205,6 @@ function DraftProduct() {
         rowData={selectedRowData}
       />
       <AddFormProduct handleAddProduct={handleAddProduct} isOpen={isAddFormOpen} handleClose={handleCloseAddForm} />
-    </div>
     </div>
   );
 }
