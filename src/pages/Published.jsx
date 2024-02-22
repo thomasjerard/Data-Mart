@@ -81,20 +81,19 @@ function Published() {
     </div>
 
     <div className="products-container">
-      {filteredProducts.map((product) => (
-        <AspectRatio ratio="1:1" key={product.key}>
-        <ProductComponent
-          key={product.key}
-          id={product.key}
-          name={product.name}
-          desc={product.desc}
-          img={product.img}
-          by={product.by}
-          url={product.url}
-          domains={product.domains}
-          productStage="publishedproduct"
-          image={product.del}
-          />
+        {filteredProducts.map((product) => (
+          <AspectRatio ratio="1:1" key={product.key}>
+            <ProductComponent
+              key={product.key}
+              id={product.key}
+              name={product.name}
+              desc={product.desc}
+              img={product.img}
+              by={product.by}
+              url={product.url}
+              domains={product.domains}
+              productStage="publishedproduct"
+            />
           </AspectRatio>
         ))}
       </div>
