@@ -3,14 +3,10 @@ import ProductComponent from '../components/ProductComponent';
 import Navbar from '../components/Navbar';
 import '../styles/Home.scss';
 import { Search } from '@carbon/icons-react';
-<<<<<<< HEAD
 import { AspectRatio } from '@carbon/react';
-=======
 import { useDispatch, useSelector } from 'react-redux';
 import { setproducts, allproducts } from '../global/ProductsSlice';
 import axios from "axios";
-
->>>>>>> upstream/main
 
 function Home() {
   const products = useSelector(allproducts);
@@ -94,9 +90,10 @@ function Home() {
 
       <div className="products-container">
         {filteredProducts.map((product) => (
-<<<<<<< HEAD
           <AspectRatio ratio="1:1" key={product.key}>
             <ProductComponent
+              key={product.key}
+              id={product.key}
               name={product.name}
               desc={product.desc}
               img={product.img}
@@ -106,19 +103,6 @@ function Home() {
               productStage="product"
             />
           </AspectRatio>
-=======
-          <ProductComponent
-            key={product.key}
-            id={product.key}
-            name={product.name}
-            desc={product.desc}
-            img={product.img}
-            by={product.by}
-            url={product.url}
-            domains={product.domains}
-            productStage="product"
-          />
->>>>>>> upstream/main
         ))}
       </div>
       </div>
