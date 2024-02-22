@@ -81,10 +81,11 @@ function Published() {
     </div>
 
     <div className="products-container">
-<<<<<<< HEAD
         {filteredProducts.map((product) => (
           <AspectRatio ratio="1:1" key={product.key}>
             <ProductComponent
+              key={product.key}
+              id={product.key}
               name={product.name}
               desc={product.desc}
               img={product.img}
@@ -94,22 +95,6 @@ function Published() {
               productStage="publishedproduct"
             />
           </AspectRatio>
-=======
-      {filteredProducts.map((product) => (
-        <ProductComponent
-          key={product.key}
-          id={product.key}
-          name={product.name}
-          desc={product.desc}
-          img={product.img}
-          by={product.by}
-          url={product.url}
-          domains={product.domains}
-          productStage="publishedproduct"
-          image={product.del}
-          />
-      
->>>>>>> upstream/main
         ))}
       </div>
       </div>
