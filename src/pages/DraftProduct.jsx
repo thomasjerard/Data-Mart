@@ -156,6 +156,9 @@ function DraftProduct() {
             <p>By produce name</p>
           </div>
         </div>
+        <div className="action-bar">
+        <Button className='purple' onClick={handleOpenAddForm}>Add Data</Button>
+        </div>
         <h4>Description</h4>
         <p>{product.productDescription}</p>
         <hr/>
@@ -198,7 +201,6 @@ function DraftProduct() {
         )}
       </DataTable>
       <br />
-      <Button className='purple' onClick={handleOpenAddForm}>Add Data</Button>
       <EditFormProduct
         isOpen={isEditFormOpen}
         handleClose={handleCloseEditForm}
@@ -211,3 +213,5 @@ function DraftProduct() {
 }
 
 export default DraftProduct;
+
+

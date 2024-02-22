@@ -48,8 +48,8 @@
         color: white;
         padding: 20px 45px 20px 20px;
     }
-    user-name input::placeholder{
-        color:#E2CFEA;
+    .user-name input::placeholder{
+        color:white;
     }
     .user-name i{
         position: absolute;
@@ -61,7 +61,7 @@
     .wrapper .btn{
         width: 100%;
         height:45px;
-        background: #E2CFEA;
+        background: white;
         border:none;
         outline:none;
         border-radius: 40px;
@@ -76,12 +76,12 @@
         width: 1250px;
     }  
     h1{
-        color:#E2CFEA
+        color:white
     }
     .pink{
-        color:#E2CFEA
+        color:white
     }
     thead{
-        background-color:#E2CFEA !important;
+        background-color:white !important;
     }
 }

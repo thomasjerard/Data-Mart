@@ -90,6 +90,7 @@ function Published() {
               url={product.url}
               domains={product.domains}
               productStage="publishedproduct"
+              category="Published"
             />
           </AspectRatio>
         ))}

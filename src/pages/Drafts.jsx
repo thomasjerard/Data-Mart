@@ -89,6 +89,7 @@ return (
               url={product.url}
               domains={product.domains}
               productStage="draftedproduct"
+              category="Draft"
             />
           </AspectRatio>
         ))}

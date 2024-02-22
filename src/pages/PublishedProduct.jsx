@@ -67,9 +67,14 @@ function PublishedProduct() {
             <h5>By produce name</h5>
           </div>
         </div>
+        <div className="action-bar">
+        <Button className='purple' onClick={() => window.location.href="/consumer"}>Add Consumer</Button>
+      </div>
         <h4>Description</h4>
         <p>{product.productDescription}</p>
         <hr />
+
+        
        <DataTable
           rows={product.DataList}
           headers={[
@@ -106,7 +111,6 @@ function PublishedProduct() {
             </Table>
           )}
         </DataTable>
-        <Button className='purple' onClick={()=>window.location.href="/consumer"}>Add Consumer</Button>
       </div>
   );
 }

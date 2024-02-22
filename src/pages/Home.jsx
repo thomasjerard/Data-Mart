@@ -7,7 +7,7 @@ import { AspectRatio } from '@carbon/react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setproducts, allproducts } from '../global/ProductsSlice';
 import axios from "axios";
-
+import addIcon from '../images/Add.png'
 function Home() {
   const products = useSelector(allproducts);
   const dispatch = useDispatch();
@@ -85,7 +85,11 @@ function Home() {
              {domain}
             </span>
           ))}
+          <div className='add-icon'>
+          <img src={addIcon} className='add-icon-img' alt="Add Icon"></img>
         </div>
+        </div>
+        
       </div>
 
       <div className="products-container">
@@ -101,11 +105,14 @@ function Home() {
               url={product.url}
               domains={product.domains}
               productStage="product"
+              category=""
             />
           </AspectRatio>
         ))}
       </div>
+      
       </div>
+      
   );
 }
 
