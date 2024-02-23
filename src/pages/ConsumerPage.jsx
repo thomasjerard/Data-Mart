@@ -73,7 +73,7 @@ function ConsumerPage() {
       <div className="consumerPage">
         <div className="content">
           <h1>Consumers Page</h1>
-          <Button onClick={handleOpenAddForm}>Add Consumer</Button>
+          <Button className='purple' onClick={handleOpenAddForm}>Add Consumer</Button>
           <AddForm
             handleAddConsumer={handleAddConsumer}
             isOpen={isAddFormOpen}
@@ -90,7 +90,7 @@ function ConsumerPage() {
           {({ rows, headers, getTableProps, getHeaderProps, getRowProps, getSelectionProps }) => (
             <Table {...getTableProps()}>
               <TableHead>
-                <TableRow>
+                <TableRow className='head'>
                   <TableSelectAll {...getSelectionProps()}></TableSelectAll>
                   {headers.map((header) => (
                     <TableHeader {...getHeaderProps({ header })}>{header.header}</TableHeader>

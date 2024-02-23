@@ -7,8 +7,8 @@ import { AspectRatio } from '@carbon/react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setproducts, allproducts } from '../global/ProductsSlice';
 import axios from "axios";
-
-
+import addIcon from '../images/Add.png'
+import AddNewProduct from '../components/AddNewProduct';
 function Home() {
   const products = useSelector(allproducts);
   const dispatch = useDispatch();
@@ -29,6 +29,9 @@ function Home() {
 
   const [searchInput, setSearchInput] = useState('');
   const [selectedDomains, setSelectedDomains] = useState([]);
+
+
+
 
   const handleDomainSelect = (domain) => {
     if (selectedDomains.includes(domain)) {
@@ -80,13 +83,15 @@ function Home() {
               className='domain-list domain-button'
               onClick={() => handleDomainSelect(domain)}
               style={{
-                backgroundColor: selectedDomains.includes(domain) ? '#7FC7D9' : '#F2F1EB',
+                backgroundColor: selectedDomains.includes(domain) ? '#E2CFEA' : '#FFF0F5',
               }}
             >
-              <span className='small'>⚫</span> {domain}
+              {domain}
             </span>
           ))}
+
         </div>
+
       </div>
 
       <div className="products-container">
@@ -102,6 +107,7 @@ function Home() {
               url={product.url}
               domains={product.domains}
               productStage="product"
+              category=""
             />
           </AspectRatio>
         ))}
@@ -111,3 +117,5 @@ function Home() {
 }
 
 export default Home;
+
+//This one has redux

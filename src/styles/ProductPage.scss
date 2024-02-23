@@ -3,9 +3,20 @@
     padding: 2em;
     .heading-content{
         padding: 25px;
-        h2{
+        h2,h4{
             font-weight: 800;
+            color:#102B3F
         }
+        h5{
+            font-weight: 400;
+            color:#102B3F
+        }
+    
+       
+    }
+
+    *{
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     }
     
     p{
@@ -23,10 +34,10 @@
         font-weight: bold;
     }
     img{
-        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        box-shadow: #E2CFEA 0px 7px 29px 0px;
     }
     img:hover{
-        box-shadow: rgba(65, 65, 71, 0.2) 0px 14px 50px 0px;
+        box-shadow: #E2CFEA 0px 14px 50px 0px;
     }
     CopyButton{
         display: inline-block;
@@ -34,5 +45,17 @@
     .link{
         display: flex;
         flex-direction: row;
+    }
+    .head{
+        background-color: #E2CFEA;
+    }
+    .purple{
+        background-color: #A06CB5;
+        font-weight: 600;
+        font-size:1.1rem
+    }
+
+    .action-bar{
+        text-align: right;
     }
 }
