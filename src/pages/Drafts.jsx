@@ -4,11 +4,14 @@ import { AspectRatio } from '@carbon/react';
 import Navbar from '../components/Navbar';
 import '../styles/Home.scss';
 import img1 from '../images/product-bgd.jpg'
+import addIcon from '../images/Add.png'
 import { Search } from '@carbon/icons-react';
+import AddNewProduct from '../components/AddNewProduct';
+
 
 
 function Drafts() {
-  const products = [
+  const initialProducts = [
     { key: "1", domains:['Weather Data','Mobile App Data'], name: "Product 1", url:'product1',by:'Jake Weatherald', desc: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. ", img: img1 },
     { key: "2", domains:['Legal Data','Healthcare Data'],  name: "Product 2", url:'product2', by:'Jake Weatherald', desc: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. ", img: img1 },
     { key: "3", domains:['Brand Data','Mobile App Data'],  name: "Product 3", url:'product3', by:'Jake Weatherald', desc: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. ", img: img1 },
@@ -17,6 +20,14 @@ function Drafts() {
 
   const [searchInput, setSearchInput] = useState('');
   const [selectedDomains, setSelectedDomains] = useState([]);
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false); 
+
+  const [products, setProducts]=useState(initialProducts)
+
+  const handleAddProduct = (newProduct) => {
+    setProducts([...products, newProduct]);
+  };
+
 
   const handleDomainSelect = (domain) => {
     if (selectedDomains.includes(domain)) {
@@ -73,7 +84,11 @@ return (
              {domain}
           </span>
         ))}
+        <div className='add-icon' onClick={() => setIsAddModalOpen(true)}>
+          <img src={addIcon} className='add-icon-img' alt="Add Icon" />
+        </div>
       </div>
+
     </div>
 
     <div className="products-container">
@@ -94,6 +109,11 @@ return (
           </AspectRatio>
         ))}
       </div>
+      <AddNewProduct
+        isOpen={isAddModalOpen}
+        handleClose={() => setIsAddModalOpen(false)}
+        handleAddProduct={handleAddProduct}
+      />
     </div>
   );
 }

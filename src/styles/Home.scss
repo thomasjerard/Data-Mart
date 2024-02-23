@@ -116,7 +116,13 @@
    }
 
    .add-icon-img{
-    width:40px
+    width:40px;
+    cursor: pointer;
+   }
+
+   .add-icon-img:hover{
+    background-color: #E2CFEA;
+    border-radius: 40px;
    }
 
    .add-icon{

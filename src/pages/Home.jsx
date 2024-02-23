@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setproducts, allproducts } from '../global/ProductsSlice';
 import axios from "axios";
 import addIcon from '../images/Add.png'
+import AddNewProduct from '../components/AddNewProduct';
 function Home() {
   const products = useSelector(allproducts);
   const dispatch = useDispatch();
@@ -28,6 +29,9 @@ function Home() {
 
   const [searchInput, setSearchInput] = useState('');
   const [selectedDomains, setSelectedDomains] = useState([]);
+
+  
+
 
   const handleDomainSelect = (domain) => {
     if (selectedDomains.includes(domain)) {
@@ -85,9 +89,7 @@ function Home() {
              {domain}
             </span>
           ))}
-          <div className='add-icon'>
-          <img src={addIcon} className='add-icon-img' alt="Add Icon"></img>
-        </div>
+          
         </div>
         
       </div>
@@ -110,6 +112,7 @@ function Home() {
           </AspectRatio>
         ))}
       </div>
+      
       
       </div>
       
