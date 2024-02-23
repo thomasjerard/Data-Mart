@@ -25,9 +25,14 @@ function Drafts() {
   const [products, setProducts]=useState(initialProducts)
 
   const handleAddProduct = (newProduct) => {
-    setProducts([...products, newProduct]);
+    const newProductId = (products.length + 1).toString();
+        const updatedProduct = {
+      ...newProduct,
+      key: newProductId,
+    };
+  
+    setProducts([...products, updatedProduct]);
   };
-
 
   const handleDomainSelect = (domain) => {
     if (selectedDomains.includes(domain)) {
