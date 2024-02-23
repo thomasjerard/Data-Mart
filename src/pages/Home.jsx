@@ -6,6 +6,7 @@ import { Search } from '@carbon/icons-react';
 import { AspectRatio } from '@carbon/react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setproducts, allproducts } from '../global/ProductsSlice';
+
 import axios from "axios";
 function Home() {
   const products = useSelector(allproducts);
