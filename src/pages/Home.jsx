@@ -7,8 +7,6 @@ import { AspectRatio } from '@carbon/react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setproducts, allproducts } from '../global/ProductsSlice';
 import axios from "axios";
-import addIcon from '../images/Add.png'
-import AddNewProduct from '../components/AddNewProduct';
 function Home() {
   const products = useSelector(allproducts);
   const dispatch = useDispatch();
@@ -58,10 +56,6 @@ function Home() {
     <div className='home'>
       <div className="productpage-header">
         <h1>Data Products</h1>
-        {/* <p style={{ marginTop: '10px', marginBottom:'20px' }}>
-          Duis Bibendum neque egestas congue quisque egestas diam in arcu cursus. Massa tincidunt dui ut ornare
-          lectus. A diam maecenas sed enim ut. Cras semper auctor neque vitae tempus quam pellentesque nec nam.
-        </p> */}
         <div style={{ position: 'relative' }}>
           <input
             placeholder="Enter term to search..."
@@ -117,5 +111,3 @@ function Home() {
 }
 
 export default Home;
-
-//This one has redux
