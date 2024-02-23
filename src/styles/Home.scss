@@ -1,31 +1,32 @@
-.home{
-
-  *{
+.home {
+  * {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   }
+
   .products-container {
     display: flex;
     flex-wrap: wrap;
-    justify-content:space-around;
+    justify-content: space-around;
     gap: 10px;
-    margin:40px;
+    margin: 40px;
   }
-  
 
-  h1{
+
+  h1 {
     color: #102B3F;
   }
-  .productpage-header{
-  text-align: center;
-  margin-top:30px;
-  margin-left: 30px;
-  margin-right:30px;
+
+  .productpage-header {
+    text-align: center;
+    margin-top: 30px;
+    margin-left: 30px;
+    margin-right: 30px;
   }
-  
-  .products-container img{
+
+  .products-container img {
     margin-top: 1rem;
   }
-  
+
   .product-component {
     width: 400px;
     box-sizing: border-box;
@@ -35,22 +36,23 @@
     background-color: #FFF0F5;
     margin-bottom: 30px;
     border-radius: 5px;
-    transition: box-shadow 0.3s ease-in-out; /* Add transition for a smooth effect */
-  
-    
+    transition: box-shadow 0.3s ease-in-out;
+    /* Add transition for a smooth effect */
+
+
   }
-  
-  .product-component:hover{
+
+  .product-component:hover {
     box-shadow: 5px 5px 10px #E2CFEA;
-    cursor:pointer;
+    cursor: pointer;
   }
-  
+
   .product-component img {
-    max-width: 100%; 
-    margin:0;
+    max-width: 100%;
+    margin: 0;
     border-radius: 5px;
   }
-  
+
   .product-info {
     margin-top: 10px;
     padding-left: 20px;
@@ -58,76 +60,79 @@
     padding-bottom: 20px;
     background-color: #FFF0F5;
   }
-  
-  .product-info p{
+
+  .product-info p {
     margin-top: 10px;
   }
 
-  .domain-list{
-  margin:8px;
-  border-radius:10px;
-  padding-left:8px;
-  padding-right:8px;
-  padding-top:5px;
-  padding-bottom:3px;
+  .domain-list {
+    margin: 8px;
+    border-radius: 10px;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-top: 5px;
+    padding-bottom: 3px;
 
   }
 
   input {
-    margin-top:30px;
+    margin-top: 30px;
     border-radius: 5px;
-    padding:10px;
+    padding: 10px;
     font-size: 1rem;
     width: 80%;
     position: relative;
-    color:#102B3F
-  };
+    color: #102B3F
+  }
 
-.search-icon{
+  ;
+
+  .search-icon {
     position: relative;
     top: 50%;
     right: 40px;
     color: #102B3F;
-  };
+  }
 
-  .domains{
-    margin-top:15px
-   }
+  ;
 
-   .small{
-    
-      font-size:0.6rem;
-      text-align: justify;
-      margin-top:1px;
-      margin-bottom:3px
-  
-   }
+  .domains {
+    margin-top: 15px
+  }
 
-   .domain-button{
-      margin-bottom: 5px;
-      margin-top:5px;
-      display:inline-block;
-      padding-left:15px;
-      padding-right:15px;
-      border-style: solid;
-      border-width:1px;
-      height:25px;
-      padding-top: 5px;
-   }
+  .small {
 
-   .add-icon-img{
-    width:40px;
+    font-size: 0.6rem;
+    text-align: justify;
+    margin-top: 1px;
+    margin-bottom: 3px
+  }
+
+  .domain-button {
+    margin-bottom: 5px;
+    margin-top: 5px;
+    display: inline-block;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-style: solid;
+    border-width: 1px;
+    height: 25px;
+    padding-top: 5px;
+  }
+
+  .add-icon-img {
+    width: 40px;
     cursor: pointer;
-   }
+  }
 
-   .add-icon-img:hover{
+  .add-icon-img:hover {
     background-color: #E2CFEA;
     border-radius: 40px;
-   }
-
-   .add-icon{
-    position: fixed;
-    bottom:20px;
-    right:20px
-   }
   }
+
+  .add-icon {
+    position: fixed;
+    bottom: 20px;
+    right: 20px
+  }
+}
