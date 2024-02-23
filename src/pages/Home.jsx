@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import ProductComponent from '../components/ProductComponent';
 import Navbar from '../components/Navbar';
 import '../styles/Home.scss';
@@ -49,10 +49,10 @@ function Home() {
     setSearchInput(searchText);
   }
 
-  let domains=['Weather Data','Healthcare Data','Legal Data','Brand Data','Mobile App Data','Environmental Data'];
-  
+  let domains = ['Weather Data', 'Healthcare Data', 'Legal Data', 'Brand Data', 'Mobile App Data', 'Environmental Data'];
+
   return (
-      <div className='home'>
+    <div className='home'>
       <div className="productpage-header">
         <h1>Data Products</h1>
         {/* <p style={{ marginTop: '10px', marginBottom:'20px' }}>
@@ -66,9 +66,9 @@ function Home() {
             value={searchInput}
             onChange={handleSearchInputChange}
           />
-          <span className='search-icon'><Search/></span>
+          <span className='search-icon'><Search /></span>
         </div>
-        
+
       </div>
 
       <div className='productpage-header'>
@@ -91,7 +91,7 @@ function Home() {
 
       <div className="products-container">
         {filteredProducts.map((product) => (
-          <AspectRatio ratio="1:1" key={product.key}>
+          <AspectRatio ratio="1x1.5" key={product.key}>
             <ProductComponent
               key={product.key}
               id={product.key}
@@ -106,7 +106,7 @@ function Home() {
           </AspectRatio>
         ))}
       </div>
-      </div>
+    </div>
   );
 }
 
