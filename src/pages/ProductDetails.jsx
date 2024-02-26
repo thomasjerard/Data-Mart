@@ -11,6 +11,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { setproduct, product, remproduct } from '../global/SelectProductSlice'
 import { useParams, useNavigate } from 'react-router-dom';
 import '../styles/ProductPage.scss'
+import DeleteIcon from '../images/Deleteicon.png'
+import { useLocation } from 'react-router-dom';
 
 
 function ProductDetails({ category }) {
@@ -19,6 +21,8 @@ function ProductDetails({ category }) {
     const selproduct = useSelector(product);
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const location = useLocation();
+    const isDraftedOrPublished = location.pathname.includes('/drafted/') || location.pathname.includes('/published/');
 
     // const fetchProductDetail = async (id) => {
     //   const response = await axios
@@ -268,6 +272,11 @@ function ProductDetails({ category }) {
                 handleEditProduct={handleEditProduct}
                 rowData={selectedRowData}
             />
+            {isDraftedOrPublished && (
+                <div className='delete-icon'>
+                    <img src={DeleteIcon} alt="Delete icon"/>
+                </div>
+            )}
         </div>
     );
 }

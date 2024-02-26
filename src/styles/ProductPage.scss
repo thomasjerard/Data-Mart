@@ -53,13 +53,9 @@
         font-weight: bold;
     }
 
-    img {
-        box-shadow: #E2CFEA 0px 7px 29px 0px;
-    }
+    
 
-    img:hover {
-        box-shadow: #E2CFEA 0px 14px 50px 0px;
-    }
+    
 
     CopyButton {
         display: inline-block;
@@ -82,5 +78,17 @@
 
     .action-bar {
         text-align: right;
+    }
+    
+    .delete-icon img{
+        border-radius: 45px;
+        width: 45px;
+        position:fixed;
+        right:40px;
+        bottom:40px
+    }
+
+    .delete-icon img:hover{
+        box-shadow: #aa70c3 0px 14px 50px 0px;
     }
 }
