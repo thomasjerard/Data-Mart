@@ -91,14 +91,14 @@ const AddForm = ({ isOpen, handleClose, handleAddConsumer }) => {
     <Modal launcherButtonRef={Button} primaryButtonText="Add"  secondaryButtonText="Cancel" onRequestSubmit={handleSubmit} open={isOpen} onRequestClose={handleClose}>
       <div className='modal-form'>
         
-        <h2 style={{marginBottom:'20px', color:'#102B3F'}}>Add Consumer</h2>
+        <h2 style={{marginBottom:'20px', color:'#102B3F', fontWeight:'bold'}}>Add Consumer</h2>
         <form onSubmit={handleSubmit}>
+            <label style={{fontSize:'16px', marginTop:'15px'}}>Username</label>
             <TextInput
               className='text-input'
               type="text"
               id="username"
               name="username"
-              labelText="Username"
               list="usernameSuggestions"
               value={formData.username}
               onChange={handleUsernameChange}
@@ -109,22 +109,23 @@ const AddForm = ({ isOpen, handleClose, handleAddConsumer }) => {
                 <option key={index} value={username} />
               ))}
             </datalist>
-
+            
+            <label style={{fontSize:'16px',marginTop:'15px', color:'grey'}}>Stage</label>
             <TextInput
               type="text"
               id="stage"
               name="stage"
-              labelText="Stage"
               value={formData.stage}
               onChange={(e) => setFormData({ ...formData, stage: e.target.value })}
               required
               disabled
             />
+
+            <label style={{fontSize:'16px',marginTop:'15px', color:'grey'}}>Last Viewed</label>
             <DatePicker dateFormat='m/d/Y' datePickerType="single">
             <DatePickerInput
               name="lastviewed"
               id="lastviewed"
-              labelText="Last Viewed"
               value={formData.lastviewed}
               onChange={(e) => setFormData({ ...formData, lastviewed: e.target.value })}
               required

@@ -64,7 +64,7 @@ const EditFormProduct = ({ isOpen, isAdd, handleClose, handleEditProduct, rowDat
         <div className="add-form-container">
           <h2 class="Heading">{isAdd ? "Add" : "Edit"}</h2>
           <div class="name">
-            <label>
+            <label style={{fontSize:'16px'}}>
               Name
             </label>
             <TextInput
@@ -76,7 +76,7 @@ const EditFormProduct = ({ isOpen, isAdd, handleClose, handleEditProduct, rowDat
             />
           </div>
           <div class="Description">
-            <label>
+            <label style={{fontSize:'16px'}}>
               Description
             </label>
             <TextArea
@@ -88,7 +88,7 @@ const EditFormProduct = ({ isOpen, isAdd, handleClose, handleEditProduct, rowDat
             />
           </div>
           <div class="CreationDate">
-            <label>
+            <label style={{fontSize:'16px'}}>
               Creation Date
             </label>
 
@@ -103,8 +103,8 @@ const EditFormProduct = ({ isOpen, isAdd, handleClose, handleEditProduct, rowDat
             </DatePicker>
           </div>
           <div class="LastUpdatedDate">
-            <label>
-              LastUpdatedDate
+            <label style={{fontSize:'16px'}}>
+              Last Updated Date
             </label>
             <DatePicker dateFormat="m/d/Y" datePickerType="single">
               <DatePickerInput
@@ -117,7 +117,7 @@ const EditFormProduct = ({ isOpen, isAdd, handleClose, handleEditProduct, rowDat
             </DatePicker>
           </div>
           <div class="URL">
-            <label>
+            <label style={{fontSize:'16px'}}>
               URL
             </label>
             <TextInput

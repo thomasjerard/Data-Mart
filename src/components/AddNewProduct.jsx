@@ -1,24 +1,23 @@
 import React, { useState } from 'react';
 import '../styles/FormProduct.scss'
-import { Modal, TextInput, TextArea, Button, MultiSelect } from '@carbon/react';
+import { Modal, TextInput, TextArea, Button, MultiSelect, Dropdown} from '@carbon/react';
 import img1 from '../images/product-bgd.jpg'
 
 
 const AddNewProduct = ({ isOpen, handleClose, handleAddProduct }) => {
   const [formData, setFormData] = useState({
     name: '',
-    desc: '',
-    domains: [],
-    by: '',
+    description: '',
+    domain:'',
+    producer: '',
     img: img1
   });
 
-  const [selectedDomains, setSelectedDomains] = useState([]); // State for selected domains
+  const [selectedDomain, setSelectedDomain] = useState(''); 
 
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    console.log(name, value);
     setFormData((prevFormData) => ({
       ...prevFormData,
       [name]: value,
@@ -26,8 +25,8 @@ const AddNewProduct = ({ isOpen, handleClose, handleAddProduct }) => {
   };
 
 
-  const handleDomainChange = (selectedItems) => {
-    setSelectedDomains(selectedItems); // Update the selected domains state
+  const handleDomainChange = (selectedItem) => {
+    setSelectedDomain(selectedItem);
   };
 
 
@@ -36,19 +35,19 @@ const AddNewProduct = ({ isOpen, handleClose, handleAddProduct }) => {
     e.preventDefault();
     handleAddProduct({
       ...formData,
-      domains: selectedDomains.map((item) => item.label),
-
-    });
+      domain: selectedDomain ? selectedDomain.label : '',
+      });
     handleClose();
     setFormData({
       name: '',
-      desc: '',
-      domains: [],
-      by: ''
+      description: '',
+      domain: '',
+      producer: '',
+      img:img1
     });
   };
 
-  const domainsOptions = [
+  const domainOptions = [
     { id: 'weather', label: 'Weather Data' },
     { id: 'healthcare', label: 'Healthcare Data' },
     { id: 'legal', label: 'Legal Data' },
@@ -64,11 +63,12 @@ const AddNewProduct = ({ isOpen, handleClose, handleAddProduct }) => {
       <Modal launcherButtonRef={Button} primaryButtonText="Add" secondaryButtonText="Cancel" onRequestSubmit={handleSubmit} open={isOpen} onRequestClose={handleClose}>
         <h2 class="heading">Add Data</h2>
         <div className="add-form-container">
-          <div class="name">
-            <label>
+          <div className="name">
+            <label style={{ fontSize: '16px', fontWeight: 'bold', marginBottom:'-10px' }} >
               Name
             </label>
             <TextInput
+              className='form-label'
               id="name"
               name="name"
               onChange={handleChange}
@@ -76,38 +76,39 @@ const AddNewProduct = ({ isOpen, handleClose, handleAddProduct }) => {
               required
             />
           </div>
-          <div class="Description">
-            <label>
+          <div className="Description">
+            <label style={{ fontSize: '16px', fontWeight: 'bold',  marginBottom:'-10px' }}>
               Producer
             </label>
             <TextInput
-              id="By"
-              name="by"
+              id="producer"
+              name="producer"
               onChange={handleChange}
-              value={formData.by}
+              value={formData.producer}
             />
           </div>
-          <div class="Description">
-            <label>
+          <div className="Description">
+            <label style={{ fontSize: '16px', fontWeight: 'bold' , marginTop:'15px'}} >
               Description
             </label>
             <TextArea
               id="Description"
-              name="desc"
+              name="description"
               onChange={handleChange}
-              value={formData.desc}
+              value={formData.description}
             />
           </div>
           <div className="Domains">
-            <label>Domains</label>
-            <MultiSelect
-              id="domains"
-              label=""
-              items={domainsOptions}
-              itemToString={(item) => item.label}
-              onChange={({ selectedItems }) => handleDomainChange(selectedItems)}
-              selectedItems={selectedDomains}
+            <label style={{ fontSize: '16px', fontWeight: 'bold', marginTop:'15px' }}>Domain</label>
+            <Dropdown 
+            id="domain" 
+            label="Select a domain" 
+            items={domainOptions} 
+            itemToString={item => item ? item.label : ''} 
+            onChange={({ selectedItem }) => handleDomainChange(selectedItem)}
+
             />
+
           </div>
 
         </div>
@@ -116,12 +117,3 @@ const AddNewProduct = ({ isOpen, handleClose, handleAddProduct }) => {
   );
 };
 export default AddNewProduct;
-
-
-
-
-
-
-
-
-
