@@ -1,61 +1,86 @@
-#productPage{
-    margin: auto 10%; 
+#productPage {
+    margin: auto 10%;
     padding: 2em;
-    .heading-content{
+
+    .heading-content {
         padding: 25px;
-        h2,h4{
+
+        h2,
+        h4 {
             font-weight: 800;
-            color:#102B3F
+            color: #102B3F
         }
-        h5{
+
+        h5 {
             font-weight: 400;
-            color:#102B3F
+            color: #102B3F
         }
-    
-       
     }
 
-    *{
+    .editicon {
+        width: 20px;
+    }
+
+    .purple {
+        background-color: #A06CB5;
+        font-weight: 600;
+    }
+
+    h4,
+    p {
+        color: #102B3F
+    }
+
+    .action-bar {
+        text-align: right;
+    }
+
+    * {
         font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     }
-    
-    p{
+
+    p {
         margin: 0.5em 0;
     }
-    Table{
-        margin: 1em 0;
-    }
-    .heading{
+
+    .heading {
         display: flex;
         flex-direction: row;
         margin: 1.2em 0;
     }
-    h4{
+
+    h4 {
         font-weight: bold;
     }
-    img{
+
+    img {
         box-shadow: #E2CFEA 0px 7px 29px 0px;
     }
-    img:hover{
+
+    img:hover {
         box-shadow: #E2CFEA 0px 14px 50px 0px;
     }
-    CopyButton{
+
+    CopyButton {
         display: inline-block;
     }
-    .link{
+
+    .link {
         display: flex;
         flex-direction: row;
     }
-    .head{
+
+    .head {
         background-color: #E2CFEA;
     }
-    .purple{
+
+    .purple {
         background-color: #A06CB5;
         font-weight: 600;
-        font-size:1.1rem
+        font-size: 1.1rem
     }
 
-    .action-bar{
+    .action-bar {
         text-align: right;
     }
 }

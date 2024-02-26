@@ -1,14 +1,14 @@
+.consumerPage {
 
-.consumerPage{
-
-    margin: auto 10%; 
+    margin: auto 10%;
     padding: 2em;
     font-size: small;
-    *{
+
+    * {
         font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     }
 
-.content{
+    .content {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
@@ -16,31 +16,33 @@
         padding-left: 0;
     }
 
-img{
+    img {
         width: 50px;
         border-radius: 50%;
         border: 2px solid black;
     }
 
-td,th{
+    td,
+    th {
         font-size: large;
     }
 
+    .edit {
+        font-size: 1rem;
+    }
 
-.edit{
-    font-size: 1rem;
-}
+    .purple {
+        background-color: #A06CB5;
+        font-weight: 600;
+        font-size: 1.1rem
+    }
 
-.purple{
-    background-color: #A06CB5;
-    font-weight: 600;
-    font-size:1.1rem
-}
-h1{
-    color:#102B3F
-}
-.head{
-    color:#102B3F
-}
+    h1 {
+        color: #102B3F
+    }
+
+    .head {
+        color: #102B3F
+    }
 
 }

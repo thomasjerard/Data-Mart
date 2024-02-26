@@ -1,6 +1,181 @@
-import React from 'react'
+// import React, { useState } from 'react';
+// import {
+//   DataTable,
+//   TableContainer,
+//   TableToolbar,
+//   TableBatchActions,
+//   TableBatchAction,
+//   Table,
+//   TableHead,
+//   TableRow,
+//   TableHeader,
+//   TableBody,
+//   TableCell,
+//   TableSelectAll,
+//   TableSelectRow,
+// } from '@carbon/react';
+// import { TrashCan } from '@carbon/icons-react';
+
+// const CarbonTable = () => {
+//   const [selectedRows, setSelectedRows] = useState([]);
+
+//   const rows = [
+//     {
+//       id: 'a',
+//       name: 'Data 1',
+//       description: 'Google',
+//       creationdate: '2022/01/01',
+//       lastupdateddate: '2022/01/05',
+//       copyurl: 'www.google.com',
+//     },
+//     {
+//       id: 'b',
+//       name: 'Data 2',
+//       description: 'IBM',
+//       creationdate: '2022/01/02',
+//       lastupdateddate: '2022/01/06',
+//       copyurl: 'www.ibm.com',
+//     },
+//     {
+//       id: 'c',
+//       name: 'Data 3',
+//       description: 'Google',
+//       creationdate: '2022/01/01',
+//       lastupdateddate: '2022/01/05',
+//       copyurl: 'www.google.com',
+//     },
+//     {
+//       id: 'd',
+//       name: 'Data 4',
+//       description: 'IBM',
+//       creationdate: '2022/01/02',
+//       lastupdateddate: '2022/01/06',
+//       copyurl: 'www.ibm.com',
+//     },
+//     {
+//       id: 'e',
+//       name: 'Data 5',
+//       description: 'Google',
+//       creationdate: '2022/01/01',
+//       lastupdateddate: '2022/01/05',
+//       copyurl: 'www.google.com',
+//     },
+//     {
+//       id: 'f',
+//       name: 'Data 6',
+//       description: 'IBM',
+//       creationdate: '2022/01/02',
+//       lastupdateddate: '2022/01/06',
+//       copyurl: 'www.ibm.com',
+//     },
+//   ];
+
+//   const headers = [
+//     {
+//       key: 'name',
+//       header: 'Name',
+//     },
+//     {
+//       key: 'description',
+//       header: 'Description',
+//     },
+//     {
+//       key: 'creationdate',
+//       header: 'Creation Date',
+//     },
+//     {
+//       key: 'lastupdateddate',
+//       header: 'Last Updated Date',
+//     },
+//     {
+//       key: 'copyurl',
+//       header: 'Copy URL',
+//     },
+//     {
+//       key: 'edit',
+//       header: 'Edit',
+//     },
+//   ];
+
+//   const handleRowSelect = (row) => {
+//     const index = selectedRows.findIndex((r) => r.id === row.id);
+//     if (index === -1) {
+//       setSelectedRows([...selectedRows, row]);
+//     } else {
+//       setSelectedRows(selectedRows.filter((r) => r.id !== row.id));
+//     }
+//   };
+
+//   const handleBatchActionClick = () => {
+//     // Perform batch action on selectedRows
+//     console.log('Batch action clicked:', selectedRows);
+//     setSelectedRows([]); // Clear selected rows after action
+//   };
+
+//   return (
+//     <DataTable rows={rows} headers={headers}>
+//       {({
+//         rows,
+//         headers,
+//         getHeaderProps,
+//         getSelectionProps,
+//         getBatchActionProps,
+//         getToolbarProps,
+//         getRowProps,
+//       }) => (
+//         <TableContainer title="DataTable">
+//           <TableToolbar {...getToolbarProps()}>
+//             <TableBatchActions {...getBatchActionProps()}>
+//               <TableBatchAction
+//                 onClick={handleBatchActionClick}
+//                 tabIndex={0}
+//                 renderIcon={TrashCan}
+//               >
+//                 Delete
+//               </TableBatchAction>
+//             </TableBatchActions>
+//           </TableToolbar>
+//           <Table>
+//             <TableHead>
+//               <TableRow>
+//                 <TableSelectAll {...getSelectionProps()} />
+//                 {headers.map((header) => (
+//                   <TableHeader {...getHeaderProps({ header })}>
+//                     {header.header}
+//                   </TableHeader>
+//                 ))}
+//               </TableRow>
+//             </TableHead>
+//             <TableBody>
+//               {rows.map((row) => (
+//                 <TableRow {...getRowProps({ row })} key={row.id}>
+//                   <TableSelectRow
+//                     {...getSelectionProps({ row })}
+//                     onChange={() => handleRowSelect(row)}
+//                   />
+//                   {row.cells.map((cell) => (
+//                     <TableCell key={cell.id}>{cell.value}</TableCell>
+//                   ))}
+//                 </TableRow>
+//               ))}
+//             </TableBody>
+//           </Table>
+//         </TableContainer>
+//       )}
+//     </DataTable>
+//   );
+// };
+
+// export default CarbonTable;
+
+
+import React, { useState } from 'react';
 import {
   DataTable,
+  TableContainer,
+  TableToolbar,
+  TableBatchActions,
+  TableBatchAction,
   Table,
   TableHead,
   TableRow,
@@ -8,231 +183,127 @@ import {
   TableBody,
   TableCell,
   TableSelectAll,
-  TableSelectRow
+  TableSelectRow,
+  TableToolbarSearch,
+  Button,
+  TableToolbarContent,
 } from '@carbon/react';
+import { TrashCan } from '@carbon/icons-react';
 
-function CarbonTable() {
+const CarbonTable = () => {
+  const [selectedRows, setSelectedRows] = useState([]);
+  const [searchValue, setSearchValue] = useState('');
+  const [selectAllChecked, setSelectAllChecked] = useState(false);
 
   const rows = [
-    {
-      attached_groups: 'Kevin’s VM Groups',
-      id: 'a',
-      name: 'Load Balancer 3',
-      port: 3000,
-      protocol: 'HTTP',
-      rule: 'Round robin',
-      status: <a disabled href="#">Disabled</a>
-    },
-    {
-      attached_groups: 'Maureen’s VM Groups',
-      id: 'b',
-      name: 'Load Balancer 1',
-      port: 443,
-      protocol: 'HTTP',
-      rule: 'Round robin',
-      status: <a href="#">Starting</a>
-    },
-    {
-      attached_groups: 'Andrew’s VM Groups',
-      id: 'c',
-      name: 'Load Balancer 2',
-      port: 80,
-      protocol: 'HTTP',
-      rule: 'DNS delegation',
-      status: <a href="#">Active</a>
-    },
-    {
-      attached_groups: 'Marc’s VM Groups',
-      id: 'd',
-      name: 'Load Balancer 6',
-      port: 3000,
-      protocol: 'HTTP',
-      rule: 'Round robin',
-      status: <a disabled href="#">Disabled</a>
-    },
-    {
-      attached_groups: 'Mel’s VM Groups',
-      id: 'e',
-      name: 'Load Balancer 4',
-      port: 443,
-      protocol: 'HTTP',
-      rule: 'Round robin',
-      status: <a href="#">Starting</a>
-    },
-    {
-      attached_groups: 'Ronja’s VM Groups',
-      id: 'f',
-      name: 'Load Balancer 5',
-      port: 80,
-      protocol: 'HTTP',
-      rule: 'DNS delegation',
-      status: <a href="#">Active</a>
-    }
-];
+    { id: 'a', name: 'Row 1', description: 'Description 1' },
+    { id: 'b', name: 'Row 2', description: 'Description 2' },
+    { id: 'c', name: 'Row 3', description: 'Description 3' },
+  ];
 
-const headers = [
-  {
-    header: 'Name',
-    key: 'name'
-  },
-  {
-    header: 'Protocol',
-    key: 'protocol'
-  },
-  {
-    header: 'Port',
-    key: 'port'
-  },
-  {
-    header: 'Rule',
-    key: 'rule'
-  },
-  {
-    header: 'Attached groups',
-    key: 'attached_groups'
-  },
-  {
-    header: 'Status',
-    key: 'status'
-  }
-];
+  const headers = [
+    { key: 'name', header: 'Name' },
+    { key: 'description', header: 'Description' },
+  ];
+
+  const handleRowSelect = (row) => {
+    const index = selectedRows.findIndex((r) => r.id === row.id);
+    if (index === -1) {
+      setSelectedRows([...selectedRows, row]);
+    } else {
+      setSelectedRows(selectedRows.filter((r) => r.id !== row.id));
+    }
+  };
+
+  const handleSelectAll = () => {
+    if (!selectAllChecked) {
+      setSelectedRows([...rows]);
+    } else {
+      setSelectedRows([]);
+    }
+    setSelectAllChecked(!selectAllChecked);
+  };
+
+  const handleBatchActionClick = () => {
+    // Perform batch action on selectedRows
+    console.log('Batch action clicked:', selectedRows);
+    setSelectedRows([]); // Clear selected rows after action
+    setSelectAllChecked(false); // Uncheck select all
+  };
+
+  const handleButtonClick = () => {
+    // Handle button click action
+    console.log('Button clicked');
+  };
+
+  const handleSearchChange = (e) => {
+    setSearchValue(e.target.value);
+  };
+
+  const filteredRows = rows.filter((row) =>
+    row.name.toLowerCase().includes(searchValue.toLowerCase())
+  );
+
   return (
-    <div>
-      <DataTable rows={rows} headers={headers}>
-      {({ rows, headers, getTableProps, getHeaderProps, getRowProps, getSelectionProps, selectedRows }) => (
-        <Table {...getTableProps()}>       
-          <TableHead>
-            <TableRow>
-              <TableSelectAll {...getSelectionProps()}></TableSelectAll>  
-              {headers.map((header) => (
-                  <TableHeader {...getHeaderProps({ header, isSortable: true })}>
+    <DataTable rows={filteredRows} headers={headers}>
+      {({
+        rows,
+        headers,
+        getHeaderProps,
+        getSelectionProps,
+        getBatchActionProps,
+        getToolbarProps,
+        getRowProps,
+      }) => (
+        <TableContainer title="DataTable">
+          <TableToolbar {...getToolbarProps()}>
+            <TableBatchActions {...getBatchActionProps()}>
+              <TableBatchAction
+                onClick={handleBatchActionClick}
+                tabIndex={0}
+                renderIcon={TrashCan}
+              >
+                Delete
+              </TableBatchAction>
+            </TableBatchActions>
+            <TableToolbarContent>
+              <TableToolbarSearch onChange={handleSearchChange} />
+              <Button onClick={handleButtonClick}>Custom Button</Button>
+            </TableToolbarContent>
+          </TableToolbar>
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableSelectAll
+                  {...getSelectionProps()}
+                  checked={selectAllChecked}
+                  onChange={handleSelectAll}
+                />
+                {headers.map((header) => (
+                  <TableHeader {...getHeaderProps({ header })}>
                     {header.header}
                   </TableHeader>
-              ))}
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {rows.map((row) => (
-              <TableRow {...getRowProps({ row })}>
-                <TableSelectRow {...getSelectionProps({row})}></TableSelectRow>
-                {row.cells.map((cell) => (
-                  <TableCell key={cell.id}>{cell.value}</TableCell>
                 ))}
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
+            </TableHead>
+            <TableBody>
+              {rows.map((row) => (
+                <TableRow {...getRowProps({ row })} key={row.id}>
+                  <TableSelectRow
+                    {...getSelectionProps({ row })}
+                    onChange={() => handleRowSelect(row)}
+                  />
+                  {row.cells.map((cell) => (
+                    <TableCell key={cell.id}>{cell.value}</TableCell>
+                  ))}
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
       )}
     </DataTable>
-    </div>
-  )
-}
+  );
+};
 
-export default CarbonTable
-
-
-// import React, { useState } from 'react';
-// import '../App.scss';
-// import {
-//   DataTable,
-//   Table,
-//   TableHead,
-//   TableRow,
-//   TableHeader,
-//   TableBody,
-//   TableCell,
-//   TableSelectRow,
-//   TableSelectAll,
-// } from '@carbon/react';
-
-// import Navbar from '../components/Navbar';
-// import '../styles/ConsumerPage.scss';
-
-// function ConsumerPage() {
-//   const [selectedRows, setSelectedRows] = useState([]);
-//   const headers = [
-//     {
-//       key: 'select',
-//       header: () => (
-//         <TableSelectAll
-//           onChange={(event) =>
-//             setSelectedRows(event.target.checked ? rows.map((row) => row.id) : [])
-//           }
-//           checked={selectedRows.length === rows.length}
-//         />
-//       ),
-//     },
-//     {
-//       key: 'profile',
-//       header: 'Profile',
-//     },
-//     {
-//       key: 'username',
-//       header: 'UserName',
-//     },
-//     {
-//       key: 'stage',
-//       header: 'Stage',
-//     },
-//     {
-//       key: 'lastviewed',
-//       header: 'Last Viewed',
-//     },
-//   ];
-//   const rows = [
-//     {
-//       id: 'a',
-//       profile: 'fejkewke',
-//       username: 'Thomas123',
-//       stage: 'Consumer',
-//       lastviewed: '2020-02-23',
-//     },
-//     {
-//       id: 'b',
-//       profile: 'fwhjwehfj',
-//       username: 'vaidehi456',
-//       stage: 'Consumer',
-//       lastviewed: '2020-07-12',
-//     },
-//   ];
-//   return (
-//     <DataTable
-//       rows={rows}
-//       headers={headers}
-//       isSortable
-//       onSelect={({ selectedRows }) => setSelectedRows(selectedRows)}
-//       selectedRows={selectedRows}
-//     >
-//       {({ rows, headers, getTableProps, getHeaderProps, getRowProps, getSelectionProps }) => (
-//         <Table {...getTableProps()}>
-//           <TableHead>
-//             <TableRow>
-//             <TableSelectAll {...getSelectionProps()}></TableSelectAll> 
-//               {headers.map((header) => (
-//                 <TableHeader {...getHeaderProps({ header })}>
-//                   {header.header}
-//                 </TableHeader>
-//               ))}
-//             </TableRow>
-//           </TableHead>
-//           <TableBody>
-//             {rows.map((row, rowIndex) => (
-//               <TableRow {...getRowProps({ row })} key={row.id}>
-//                 {/* <TableSelectRow
-//                   {...getRowProps({ row })}
-//                   id={row.id}
-//                   isSelected={selectedRows.includes(row.id)}
-//                 /> */} 
-//                 <TableSelectRow {...getSelectionProps({row})}></TableSelectRow>
-//                 {row.cells.map((cell, cellIndex) => (
-//                   <TableCell key={cell.id}>{cell.value}</TableCell>
-//                 ))}
-//               </TableRow>
-//             ))}
-//           </TableBody>
-//         </Table>
-//       )}
-//     </DataTable>
-//   );
-// }
-// export default ConsumerPage;
+export default CarbonTable;

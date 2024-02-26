@@ -1,20 +1,23 @@
-.editicon{
-    width: 20px;
-    
+#productPage {
+    .editicon {
+        width: 20px;
+    }
 
-}
+    * {
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    }
 
-*{
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-}
+    .purple {
+        background-color: #A06CB5;
+        font-weight: 600;
+    }
 
-.purple{
-    background-color: #A06CB5;
-    font-weight: 600;
-}
-h4,p{
-    color:#102B3F
-}
-.action-bar{
-    text-align: right;
+    h4,
+    p {
+        color: #102B3F
+    }
+
+    .action-bar {
+        text-align: right;
+    }
 }

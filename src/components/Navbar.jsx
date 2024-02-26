@@ -14,7 +14,7 @@ function Navbar() {
   }
 
   const handleDraft = () => {
-    navigate("/drafts");
+    navigate("/drafted");
   }
 
   const handleHome = () => {
@@ -29,7 +29,8 @@ function Navbar() {
 
   const isCurrentSection = (path) => {
     // Compare the current location with the path to determine if it's the current section
-    return location.pathname === path;
+    // return location.pathname === path;
+    return false;
   }
 
   return (
@@ -37,7 +38,7 @@ function Navbar() {
       <Button className={`home ${isCurrentSection("/") ? "current" : ""}`} onClick={handleHome}>Data Mart</Button>
       <div className='empty'></div>
       <Button className={`published ${isCurrentSection("/published") ? "current" : ""}`} onClick={handlePublished}>Published</Button>
-      <Button className={`drafts ${isCurrentSection("/drafts") ? "current" : ""}`} onClick={handleDraft}>Drafts</Button>
+      <Button className={`drafts ${isCurrentSection("/drafted") ? "current" : ""}`} onClick={handleDraft}>Drafts</Button>
       <Button className="signOut" onClick={handleSignOut}>Log Out</Button>
     </div>
   );
