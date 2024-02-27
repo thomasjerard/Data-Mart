@@ -7,7 +7,7 @@ import { useCookies } from 'react-cookie';
 function Navbar() {
   const navigate = useNavigate();
   const location = useLocation();
-  const [cookie, setCookie, removeCookie] = useCookies(['isValid', 'isAdmin']);
+  const [cookie, setCookie, removeCookie] = useCookies(['userRole', 'username']);
 
   const handlePublished = () => {
     navigate("/published");
@@ -24,6 +24,7 @@ function Navbar() {
   const handleSignOut = async e => {
     e.preventDefault();
     setCookie('userRole', null);
+    setCookie('username', null)
     navigate("/signin");
   }
 

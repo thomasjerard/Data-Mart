@@ -10,22 +10,22 @@ const EditFormProduct = ({ isOpen, isAdd, handleClose, handleEditProduct, rowDat
   }
 
   const [formData, setFormData] = useState({
-    name: '',
-    description: '',
+    urlName: '',
+    urlDescription: '',
     creationDate: getFullDate(),
-    updationDate: getFullDate(),
-    url: '',
+    lastUpdateDate: getFullDate(),
+    copyUrl: '',
   });
 
 
   useEffect(() => {
     if (rowData) {
       setFormData({
-        name: rowData.name || '',
-        description: rowData.description || '',
+        urlName: rowData.urlName || '',
+        urlDescription: rowData.urlDescription || '',
         creationDate: rowData.creationDate || getFullDate(),
-        updationDate: rowData.updationDate || getFullDate(),
-        url: rowData.url || '',
+        lastUpdateDate: rowData.lastUpdateDate || getFullDate(),
+        copyUrl: rowData.copyUrl || '',
       });
     }
   }, [rowData]);
@@ -48,14 +48,14 @@ const EditFormProduct = ({ isOpen, isAdd, handleClose, handleEditProduct, rowDat
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleEditProduct({ ...formData, updationDate: getFullDate() });
+    handleEditProduct({ ...formData, lastUpdateDate: getFullDate() });
     handleClose();
     setFormData({
-      name: '',
-      description: '',
-      creationDate: '',
-      updationDate: '',
-      url: '',
+      urlName: '',
+      urlDescription: '',
+      creationDate: getFullDate(),
+      lastUpdateDate: '',
+      copyUrl: '',
     })
   };
   return (
@@ -64,31 +64,31 @@ const EditFormProduct = ({ isOpen, isAdd, handleClose, handleEditProduct, rowDat
         <div className="add-form-container">
           <h2 class="Heading">{isAdd ? "Add" : "Edit"}</h2>
           <div class="name">
-            <label style={{fontSize:'16px'}}>
+            <label style={{ fontSize: '16px' }}>
               Name
             </label>
             <TextInput
               id="name"
-              name="name"
-              value={formData.name}
+              name="urlName"
+              value={formData.urlName}
               onChange={handleChange}
               required
             />
           </div>
           <div class="Description">
-            <label style={{fontSize:'16px'}}>
+            <label style={{ fontSize: '16px' }}>
               Description
             </label>
             <TextArea
               id="Description"
-              name="description"
-              value={formData.description}
+              name="urlDescription"
+              value={formData.urlDescription}
               onChange={handleChange}
               required
             />
           </div>
           <div class="CreationDate">
-            <label style={{fontSize:'16px'}}>
+            <label style={{ fontSize: '16px' }}>
               Creation Date
             </label>
 
@@ -102,28 +102,28 @@ const EditFormProduct = ({ isOpen, isAdd, handleClose, handleEditProduct, rowDat
               />
             </DatePicker>
           </div>
-          <div class="LastUpdatedDate">
-            <label style={{fontSize:'16px'}}>
+          <div className="LastUpdatedDate">
+            <label style={{ fontSize: '16px' }}>
               Last Updated Date
             </label>
             <DatePicker dateFormat="m/d/Y" datePickerType="single">
               <DatePickerInput
                 id="lastupdateddate"
-                name="lastupdateddate"
+                name="lastUpdateDate"
                 value={getFullDate()}
                 required
                 disabled
               />
             </DatePicker>
           </div>
-          <div class="URL">
-            <label style={{fontSize:'16px'}}>
+          <div className="URL">
+            <label style={{ fontSize: '16px' }}>
               URL
             </label>
             <TextInput
               id="copyurl"
-              name="url"
-              value={formData.url}
+              name="copyUrl"
+              value={formData.copyUrl}
               onChange={handleChange}
               required
             />

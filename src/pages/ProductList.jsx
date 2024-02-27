@@ -8,6 +8,8 @@ import { allproducts, setproducts } from '../global/ProductsSlice';
 import AddNewProduct from '../components/AddNewProduct';
 import { useNavigate } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
+import img from '../images/product-bgd.jpg';
+import axios from 'axios';
 
 function ProductList({ category }) {
   const initialProducts = useSelector(allproducts);
@@ -17,7 +19,7 @@ function ProductList({ category }) {
   const [selectedDomains, setSelectedDomains] = useState([]);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [products, setProducts] = useState(initialProducts);
-  const [cookies] = useCookies(['userRole']);
+  const [cookies] = useCookies(['userRole', 'username']);
 
   const handleAddProduct = (newProduct) => {
     const newProductId = (products.length + 1).toString();
@@ -32,7 +34,24 @@ function ProductList({ category }) {
     setProducts([...products, updatedProduct]);
   };
 
+  const fetchProducts = async () => {
+    try {
+      const response = await axios.get("http://localhost:9090/dpx/data_products/", {
+        headers: {
+          Username: cookies.username
+        }
+      });
+      // console.log("response data", response.data);
+      setProducts(response.data);
+      dispatch(setproducts(response.data));
+      // console.log("products", products);
+    } catch (error) {
+      alert("Error: ", error);
+    }
+  };
+
   useEffect(() => {
+    fetchProducts();
     dispatch(setproducts(products));
   }, [products, dispatch]);
 
@@ -102,7 +121,7 @@ function ProductList({ category }) {
             id={product.id}
             name={product.name}
             description={product.description}
-            img={product.img}
+            img={img}
             producer={product.producer}
             domain={product.domain}
             category

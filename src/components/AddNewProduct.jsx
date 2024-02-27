@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import '../styles/FormProduct.scss'
-import { Modal, TextInput, TextArea, Button, MultiSelect, Dropdown} from '@carbon/react';
+import { Modal, TextInput, TextArea, Button, MultiSelect, Dropdown } from '@carbon/react';
 import img1 from '../images/product-bgd.jpg'
 
 
@@ -8,12 +8,12 @@ const AddNewProduct = ({ isOpen, handleClose, handleAddProduct }) => {
   const [formData, setFormData] = useState({
     name: '',
     description: '',
-    domain:'',
+    domain: '',
     producer: '',
     img: img1
   });
 
-  const [selectedDomain, setSelectedDomain] = useState(''); 
+  const [selectedDomain, setSelectedDomain] = useState('');
 
 
   const handleChange = (event) => {
@@ -36,14 +36,14 @@ const AddNewProduct = ({ isOpen, handleClose, handleAddProduct }) => {
     handleAddProduct({
       ...formData,
       domain: selectedDomain ? selectedDomain.label : '',
-      });
+    });
     handleClose();
     setFormData({
       name: '',
       description: '',
       domain: '',
       producer: '',
-      img:img1
+      img: img1
     });
   };
 
@@ -64,7 +64,7 @@ const AddNewProduct = ({ isOpen, handleClose, handleAddProduct }) => {
         <h2 class="heading">Add Data</h2>
         <div className="add-form-container">
           <div className="name">
-            <label style={{ fontSize: '16px', fontWeight: 'bold', marginBottom:'-10px' }} >
+            <label style={{ fontSize: '16px', fontWeight: 'bold', marginBottom: '-10px' }} >
               Name
             </label>
             <TextInput
@@ -77,7 +77,7 @@ const AddNewProduct = ({ isOpen, handleClose, handleAddProduct }) => {
             />
           </div>
           <div className="Description">
-            <label style={{ fontSize: '16px', fontWeight: 'bold',  marginBottom:'-10px' }}>
+            <label style={{ fontSize: '16px', fontWeight: 'bold', marginBottom: '-10px' }}>
               Producer
             </label>
             <TextInput
@@ -88,7 +88,7 @@ const AddNewProduct = ({ isOpen, handleClose, handleAddProduct }) => {
             />
           </div>
           <div className="Description">
-            <label style={{ fontSize: '16px', fontWeight: 'bold' , marginTop:'15px'}} >
+            <label style={{ fontSize: '16px', fontWeight: 'bold', marginTop: '15px' }} >
               Description
             </label>
             <TextArea
@@ -99,16 +99,14 @@ const AddNewProduct = ({ isOpen, handleClose, handleAddProduct }) => {
             />
           </div>
           <div className="Domains">
-            <label style={{ fontSize: '16px', fontWeight: 'bold', marginTop:'15px' }}>Domain</label>
-            <Dropdown 
-            id="domain" 
-            label="Select a domain" 
-            items={domainOptions} 
-            itemToString={item => item ? item.label : ''} 
-            onChange={({ selectedItem }) => handleDomainChange(selectedItem)}
-
+            <label style={{ fontSize: '16px', fontWeight: 'bold', marginTop: '15px' }}>Domain</label>
+            <Dropdown
+              id="domain"
+              label="Select a domain"
+              items={domainOptions}
+              itemToString={item => item ? item.label : ''}
+              onChange={({ selectedItem }) => handleDomainChange(selectedItem)}
             />
-
           </div>
 
         </div>

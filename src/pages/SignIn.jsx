@@ -3,7 +3,7 @@ import '../styles/SignIn.scss';
 import { useState, useEffect } from 'react';
 import bg_Img from '../images/background_image3.jpg'
 import { useDispatch } from 'react-redux';
-import { login } from '../global/AuthSlice'
+import { login } from '../global/AuthSlice';
 import { useCookies } from 'react-cookie';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios'
@@ -12,7 +12,7 @@ function SignIn() {
 
   const [username, setUserName] = useState();
   const [password, SetPassword] = useState();
-  const [cookies, setcookies] = useCookies(['isValid', 'isAdmin']);
+  const [cookies, setcookies] = useCookies(['userRole', 'username']);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -32,13 +32,18 @@ function SignIn() {
         }
       });
       console.log(response.data);
-      if (response.data.userRole === "consumer" || response.data.userRole === "producer")
+      if (response.data.status === "success") {
         setcookies('userRole', response.data.userRole);
-      else
+        setcookies('username', username);
+        navigate('/');
+      } else {
         setcookies('userRole', null);
-      navigate('/');
+        setcookies('username', null);
+        alert(response.data.message);
+      }
     } catch (error) {
-      console.error(error);
+      setcookies('userRole', null);
+      alert(error);
     }
   }
 

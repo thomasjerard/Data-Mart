@@ -60,10 +60,10 @@ function ConsumerPage() {
   };
 
   const headers = [
-    {
-      key: 'profile',
-      header: 'Profile',
-    },
+    // {
+    //   key: 'profile',
+    //   header: 'Profile',
+    // },
     {
       key: 'username',
       header: 'UserName',

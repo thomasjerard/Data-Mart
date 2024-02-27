@@ -30,7 +30,22 @@ function ProductDetails({ category }) {
     //     });
     //   dispatch(setproduct(response.data));
     // };
-
+    // const fetchProductDetail = async () => {
+    //     const username = "Harry";
+    //     try {
+    //       const response = await axios.get("http://localhost:5000/data", {
+    //         headers: {
+    //           Username: username
+    //         }
+    //       });
+    //       // console.log("response data", response.data);
+    //       setProducts(response.data);
+    //       dispatch(setproducts(response.data));
+    //       // console.log("products", products);
+    //     } catch (error) {
+    //       alert("Error: ", error);
+    //     }
+    // };
     // useEffect(() => {
     //   if (productId && productId !== "") fetchProductDetail(productId);
     //   return () => {
@@ -44,7 +59,7 @@ function ProductDetails({ category }) {
     const [selectedRowData, setSelectedRowData] = useState(null);
     const [isAddFormOpen, setIsAddFormOpen] = useState(false);
     const [searchValue, setSearchValue] = useState('');
-    const [rows, setRows] = useState(selproduct.DataList);
+    const [rows, setRows] = useState(selproduct.dataList);
     const [cookies, setcookies] = useCookies(['userRole']);
 
 
@@ -75,11 +90,11 @@ function ProductDetails({ category }) {
 
     const headers1 = [
         {
-            key: 'name',
+            key: 'urlName',
             header: 'Name',
         },
         {
-            key: 'description',
+            key: 'urlDescription',
             header: 'Description',
         },
         {
@@ -87,11 +102,11 @@ function ProductDetails({ category }) {
             header: 'Creation Date',
         },
         {
-            key: 'updationDate',
+            key: 'lastUpdateDate',
             header: 'Last Updated Date',
         },
         {
-            key: 'url',
+            key: 'copyUrl',
             header: 'Copy URL',
         },
         {
@@ -101,11 +116,11 @@ function ProductDetails({ category }) {
     ];
     const headers2 = [
         {
-            key: 'name',
+            key: 'urlName',
             header: 'Name',
         },
         {
-            key: 'description',
+            key: 'urlDescription',
             header: 'Description',
         },
         {
@@ -113,11 +128,11 @@ function ProductDetails({ category }) {
             header: 'Creation Date',
         },
         {
-            key: 'updationDate',
+            key: 'lastUpdateDate',
             header: 'Last Updated Date',
         },
         {
-            key: 'url',
+            key: 'copyUrl',
             header: 'Copy URL',
         },
     ]
@@ -127,7 +142,7 @@ function ProductDetails({ category }) {
     };
 
     const filteredRows = rows.filter((row) =>
-        row.name.toLowerCase().includes(searchValue.toLowerCase())
+        row.urlName.toLowerCase().includes(searchValue.toLowerCase())
     );
 
     useEffect(() => {
