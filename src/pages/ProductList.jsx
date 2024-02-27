@@ -38,7 +38,7 @@ function ProductList({ category }) {
         updatedProduct,
         {
           headers: {
-            'Username': cookies.username
+            Username: cookies.username
           }
         }
       );
