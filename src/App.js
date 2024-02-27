@@ -13,7 +13,7 @@ import ProductDetails from './pages/ProductDetails';
 function App() {
 
   const user = useSelector(selectUser);
-  const [cookies, setcookies] = useCookies(['isValid', 'isAdmin']);
+  const [cookies, setcookies] = useCookies(['userRole']);
 
   // useEffect(() => {
   //   if(!token){
@@ -27,24 +27,23 @@ function App() {
   //   return <SignIn/>;
   // }
 
-  const path = window.location.pathname;
-  console.log(path);
-
   return (
     <BrowserRouter>
-      {path !== "/signin" && <Navbar />}
+      {cookies.userRole && <Navbar />}
       <Routes>
         <Route path="/">
           <Route index element={<ProductList category="" />}></Route>
           <Route path="/:productId" element={<ProductDetails category="" />}></Route>
           <Route path="signin" element={<SignIn />}></Route>
-          <Route path="drafted" element={<ProductList category="drafted" />}></Route>
-          <Route path="published" element={<ProductList category="published" />}></Route>
-          <Route path="published/:productId" element={<ProductDetails category="published" />}></Route>
-          <Route path="drafted/:productId" element={<ProductDetails category="drafted" />}></Route>
-          <Route path="published/:productId/consumer" element={<ConsumerPage />}></Route>
-          {/* <Route path= "navbar" element={<Navbar/>}></Route> */}
-          {/* <Route path="consumer" element={<ConsumerPage />}></Route> */}
+          {cookies.userRole === "producer" &&
+            <>
+              <Route path="drafted" element={<ProductList category="drafted" />}></Route>
+              <Route path="published" element={<ProductList category="published" />}></Route>
+              <Route path="published/:productId" element={<ProductDetails category="published" />}></Route>
+              <Route path="drafted/:productId" element={<ProductDetails category="drafted" />}></Route>
+              <Route path="published/:productId/consumer" element={<ConsumerPage />}></Route>
+            </>
+          }
           <Route path="table" element={<CarbonTable />}></Route>
         </Route>
       </Routes>

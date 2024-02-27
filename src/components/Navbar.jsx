@@ -23,7 +23,7 @@ function Navbar() {
 
   const handleSignOut = async e => {
     e.preventDefault();
-    setCookie('isValid', false);
+    setCookie('userRole', null);
     navigate("/signin");
   }
 
@@ -36,9 +36,9 @@ function Navbar() {
   return (
     <div id="navbar">
       <Button className={`home ${isCurrentSection("/") ? "current" : ""}`} onClick={handleHome}>Data Mart</Button>
-      <div className='empty'></div>
-      <Button className={`published ${isCurrentSection("/published") ? "current" : ""}`} onClick={handlePublished}>Published</Button>
-      <Button className={`drafts ${isCurrentSection("/drafted") ? "current" : ""}`} onClick={handleDraft}>Drafts</Button>
+      <div className='empty' ></div>
+      {cookie.userRole === "producer" && <Button className={`published ${isCurrentSection("/published") ? "current" : ""}`} onClick={handlePublished}>Published</Button>}
+      {cookie.userRole === "producer" && <Button className={`drafts ${isCurrentSection("/drafted") ? "current" : ""}`} onClick={handleDraft}>Drafts</Button>}
       <Button className="signOut" onClick={handleSignOut}>Log Out</Button>
     </div>
   );

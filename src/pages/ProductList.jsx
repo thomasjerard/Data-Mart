@@ -6,14 +6,18 @@ import { Search } from '@carbon/icons-react';
 import { useDispatch, useSelector } from 'react-redux';
 import { allproducts, setproducts } from '../global/ProductsSlice';
 import AddNewProduct from '../components/AddNewProduct';
+import { useNavigate } from 'react-router-dom';
+import { useCookies } from 'react-cookie';
 
 function ProductList({ category }) {
   const initialProducts = useSelector(allproducts);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [searchInput, setSearchInput] = useState('');
   const [selectedDomains, setSelectedDomains] = useState([]);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [products, setProducts] = useState(initialProducts);
+  const [cookies] = useCookies(['userRole']);
 
   const handleAddProduct = (newProduct) => {
     const newProductId = (products.length + 1).toString();
@@ -50,7 +54,11 @@ function ProductList({ category }) {
     const searchText = event.target.value;
     setSearchInput(searchText);
   };
-
+  useEffect(() => {
+    if (!cookies.userRole) {
+      navigate('/signin');
+    }
+  }, [])
   let domains = ['Weather Data', 'Healthcare Data', 'Legal Data', 'Brand Data', 'Mobile App Data', 'Environmental Data'];
 
   return (

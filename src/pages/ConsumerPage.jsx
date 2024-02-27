@@ -8,16 +8,27 @@ import {
 import { TrashCan, Edit, AddLarge } from '@carbon/icons-react';
 import Button from '@carbon/react/lib/components/Button';
 import boypic from '../images/boypic.png';
-import girlpic from '../images/girlpic.png';
 import AddForm from '../components/AddForm';
 import { useDispatch, useSelector } from "react-redux";
 import { setconsumers, consumers, remconsumers } from '../global/ConsumersSlice'
+import { useCookies } from 'react-cookie';
+import { useNavigate } from 'react-router-dom';
 
 function ConsumerPage() {
   const [selectedRows, setSelectedRows] = useState([]);
   const [isAddFormOpen, setIsAddFormOpen] = useState(false);
   const [searchValue, setSearchValue] = useState('');
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [cookies, setcookies] = useCookies(['userRole']);
+
+
+  useEffect(() => {
+    console.log(cookies.userRole);
+    if (!cookies.userRole) {
+      navigate('/signin');
+    }
+  }, [])
 
   const handleOpenAddForm = () => {
     setIsAddFormOpen(true);
@@ -43,7 +54,6 @@ function ConsumerPage() {
   };
 
   const handleBatchActionClick = () => {
-    console.log('Batch action clicked:', selectedRows);
     setRows(rows.filter(row => !((selectedRows.map(r => r.id)).includes(row.id))));
     setSelectedRows(selectedRows.map(row => ({ ...row, isSelected: false })));
     setSelectedRows([]);
@@ -77,7 +87,6 @@ function ConsumerPage() {
   const handleAddConsumer = (formData) => {
     const newConsumer = {
       id: Date.now().toString(),
-      profile: <img src={boypic} alt="pic" />,
       ...formData,
     };
     setRows((prevRows) => [...prevRows, newConsumer]);
@@ -92,7 +101,6 @@ function ConsumerPage() {
     <div className="consumerPage">
       <div className="content">
         <h1>Consumers Management</h1>
-        <Button className='purple' onClick={handleOpenAddForm}>Add Consumer</Button>
         <AddForm
           handleAddConsumer={handleAddConsumer}
           isOpen={isAddFormOpen}
@@ -150,10 +158,11 @@ function ConsumerPage() {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {rows.map((row, rowIndex) => (
+                {rows.map((row) => (
                   <TableRow {...getRowProps({ row })} key={row.id}>
                     <TableSelectRow {...getSelectionProps({ row })} onChange={() => handleRowSelect(row)}></TableSelectRow>
-                    {row.cells.map((cell, cellIndex) => (
+                    {/* <TableCell><img src={boypic} /></TableCell> */}
+                    {row.cells.map((cell) => (
                       <TableCell key={cell.id}>
                         {cell.value}
                       </TableCell>

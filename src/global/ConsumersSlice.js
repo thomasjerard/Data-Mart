@@ -9,14 +9,12 @@ export const consumersSlice = createSlice({
         consumers: [
             {
                 id: 'a',
-                profile: <img src={boypic} alt="pic" />,
                 username: 'Thomas123',
                 stage: 'Consumer',
                 lastviewed: '02/29/2024',
             },
             {
                 id: 'b',
-                profile: <img src={girlpic} alt="pic" />,
                 username: 'vaidehi456',
                 stage: 'Consumer',
                 lastviewed: '02/29/2024',
