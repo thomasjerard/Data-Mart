@@ -13,7 +13,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import '../styles/ProductPage.scss'
 import DeleteIcon from '../images/Deleteicon.png'
 import { useCookies } from 'react-cookie';
-
+import axios from 'axios';
 
 function ProductDetails({ category }) {
 
@@ -21,6 +21,7 @@ function ProductDetails({ category }) {
     const selproduct = useSelector(product);
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const [cookies, setcookies] = useCookies(['userRole', 'username']);
 
     // const fetchProductDetail = async (id) => {
     //   const response = await axios
@@ -30,28 +31,30 @@ function ProductDetails({ category }) {
     //     });
     //   dispatch(setproduct(response.data));
     // };
-    // const fetchProductDetail = async () => {
-    //     const username = "Harry";
-    //     try {
-    //       const response = await axios.get("http://localhost:5000/data", {
-    //         headers: {
-    //           Username: username
-    //         }
-    //       });
-    //       // console.log("response data", response.data);
-    //       setProducts(response.data);
-    //       dispatch(setproducts(response.data));
-    //       // console.log("products", products);
-    //     } catch (error) {
-    //       alert("Error: ", error);
-    //     }
-    // };
-    // useEffect(() => {
-    //   if (productId && productId !== "") fetchProductDetail(productId);
-    //   return () => {
-    //     dispatch(remproduct());
-    //   };
-    // }, [productId]);
+
+    const fetchProductDetail = async (productId) => {
+        try {
+            const response = await axios.get(`http://localhost:9090/dpx/data_products/${productId}/datalist`, {
+                headers: {
+                    Username: cookies.username
+                }
+            });
+            // console.log("response data", response.data);
+            dispatch(setproduct(response.data));
+            // console.log("products", products);
+        } catch (error) {
+            alert("Error: ", error);
+        }
+    };
+
+    useEffect(() => {
+        if (productId && productId !== "") {
+            fetchProductDetail(productId);
+        }
+        // return () => {
+        //     dispatch(remproduct());
+        // };
+    }, [productId]);
 
 
     const [selectedRows, setSelectedRows] = useState([]);
@@ -59,8 +62,7 @@ function ProductDetails({ category }) {
     const [selectedRowData, setSelectedRowData] = useState(null);
     const [isAddFormOpen, setIsAddFormOpen] = useState(false);
     const [searchValue, setSearchValue] = useState('');
-    const [rows, setRows] = useState(selproduct.dataList);
-    const [cookies, setcookies] = useCookies(['userRole']);
+    const [rows, setRows] = useState(selproduct.dataLists);
 
 
     useEffect(() => {
@@ -137,16 +139,16 @@ function ProductDetails({ category }) {
         },
     ]
 
-    const handleSearchChange = (e) => {
-        setSearchValue(e.target.value);
-    };
+    // const handleSearchChange = (e) => {
+    //     setSearchValue(e.target.value);
+    // };
 
-    const filteredRows = rows.filter((row) =>
-        row.urlName.toLowerCase().includes(searchValue.toLowerCase())
-    );
+    // const filteredRows = rows.filter((row) =>
+    //     row.urlName.toLowerCase().includes(searchValue.toLowerCase())
+    // );
 
     useEffect(() => {
-        // fetchProducts();
+        // fetchProductDetail();
         dispatch(setproduct({ ...selproduct, DataList: rows }));
     }, [rows]);
 
@@ -207,7 +209,7 @@ function ProductDetails({ category }) {
                 </div>
             </div>
             <DataTable
-                rows={filteredRows}
+                rows={rows}
                 headers={category === "drafted" ? headers1 : headers2}
                 isSortable
                 onSelect={({ selectedRows }) => setSelectedRows(selectedRows)}
@@ -237,7 +239,7 @@ function ProductDetails({ category }) {
                                 </TableBatchAction>
                             </TableBatchActions>
                             <TableToolbarContent>
-                                <TableToolbarSearch onChange={handleSearchChange} />
+                                {/* <TableToolbarSearch onChange={handleSearchChange} /> */}
                                 {category == "drafted" &&
                                     <>
                                         <Button

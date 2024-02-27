@@ -62,8 +62,8 @@ const EditFormProduct = ({ isOpen, isAdd, handleClose, handleEditProduct, rowDat
     <div id="formproduct">
       <Modal launcherButtonRef={Button} primaryButtonText={isAdd ? "Add" : "Edit"} secondaryButtonText="Cancel" onRequestSubmit={handleSubmit} onRequestClose={handleClose} open={isOpen || isAdd}>
         <div className="add-form-container">
-          <h2 class="Heading">{isAdd ? "Add" : "Edit"}</h2>
-          <div class="name">
+          <h2 className="Heading">{isAdd ? "Add" : "Edit"}</h2>
+          <div className="name">
             <label style={{ fontSize: '16px' }}>
               Name
             </label>
@@ -75,7 +75,7 @@ const EditFormProduct = ({ isOpen, isAdd, handleClose, handleEditProduct, rowDat
               required
             />
           </div>
-          <div class="Description">
+          <div className="Description">
             <label style={{ fontSize: '16px' }}>
               Description
             </label>
@@ -87,7 +87,7 @@ const EditFormProduct = ({ isOpen, isAdd, handleClose, handleEditProduct, rowDat
               required
             />
           </div>
-          <div class="CreationDate">
+          <div className="CreationDate">
             <label style={{ fontSize: '16px' }}>
               Creation Date
             </label>

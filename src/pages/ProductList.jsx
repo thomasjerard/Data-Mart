@@ -21,22 +21,41 @@ function ProductList({ category }) {
   const [products, setProducts] = useState(initialProducts);
   const [cookies] = useCookies(['userRole', 'username']);
 
-  const handleAddProduct = (newProduct) => {
+  const handleAddProduct = async (newProduct) => {
     const newProductId = (products.length + 1).toString();
     const updatedProduct = {
-      id: newProductId,
       domain: newProduct.domain,
       name: newProduct.name,
-      producer: newProduct.producer,
+      // producer: newProduct.producer,
       description: newProduct.description,
-      img: newProduct.img,
+      date: "",
+      status: "draft"
     };
-    setProducts([...products, updatedProduct]);
+    try {
+      // Make a POST request to add the element
+      const response = await axios.post(
+        'http://localhost:9090/dpx/data_products',
+        updatedProduct,
+        {
+          headers: {
+            'Username': cookies.username
+          }
+        }
+      );
+      fetchProducts();
+      // Handle the response if needed
+      alert('Element added:', response.data);
+    } catch (error) {
+      // Handle errors
+      alert('Error adding element:', error);
+    }
+
+    // setProducts([...products, updatedProduct]);
   };
 
   const fetchProducts = async () => {
     try {
-      const response = await axios.get("http://localhost:9090/dpx/data_products/", {
+      const response = await axios.get("http://localhost:9090/dpx/data_products", {
         headers: {
           Username: cookies.username
         }
@@ -50,10 +69,12 @@ function ProductList({ category }) {
     }
   };
 
+
+
   useEffect(() => {
     fetchProducts();
     dispatch(setproducts(products));
-  }, [products, dispatch]);
+  }, [category]);
 
   const handleDomainSelect = (domain) => {
     if (selectedDomains.includes(domain)) {

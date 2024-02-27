@@ -61,7 +61,7 @@ const AddNewProduct = ({ isOpen, handleClose, handleAddProduct }) => {
   return (
     <div id="addformproduct">
       <Modal launcherButtonRef={Button} primaryButtonText="Add" secondaryButtonText="Cancel" onRequestSubmit={handleSubmit} open={isOpen} onRequestClose={handleClose}>
-        <h2 class="heading">Add Data</h2>
+        <h2 className="heading">Add Data</h2>
         <div className="add-form-container">
           <div className="name">
             <label style={{ fontSize: '16px', fontWeight: 'bold', marginBottom: '-10px' }} >

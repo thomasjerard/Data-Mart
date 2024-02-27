@@ -8,8 +8,8 @@ export const productSlice = createSlice({
             id: 1,
             name: "Factori Raw Location Data | Global mobile location data (1 year history)",
             description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc iaculis erat at turpis rhoncus, at ultrices turpis feugiat. In eu aliquam nunc. Integer venenatis purus at elit tincidunt, non congue.",
-            producer: "jack sparrow",
-            dataList: [
+            producer: "fjkfnv",
+            dataLists: [
                 {
                     id: 1,
                     urlName: "Data 1",
