@@ -13,15 +13,60 @@ import { useDispatch, useSelector } from "react-redux";
 import { setconsumers, consumers, remconsumers } from '../global/ConsumersSlice'
 import { useCookies } from 'react-cookie';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { useParams } from 'react-router-dom';
+import { productsSlice } from '../global/ProductsSlice';
 
 function ConsumerPage() {
   const [selectedRows, setSelectedRows] = useState([]);
   const [isAddFormOpen, setIsAddFormOpen] = useState(false);
   const [searchValue, setSearchValue] = useState('');
   const dispatch = useDispatch();
+  const { productId } = useParams();
   const navigate = useNavigate();
   const [cookies, setcookies] = useCookies(['userRole']);
 
+  const fetchProductUsers = async (productId) => {
+    try {
+      const response = await axios.get(`http://localhost:9090/dpx/data_products/${productId}/userlist`, {
+        headers: {
+          Username: cookies.username
+        }
+      });
+      const users = response.data.users.map(obj => ({
+        id: Date.now().toString() + Math.random().toString(36).substring(2, 9),
+        stage: "consumer",
+        username: obj.userName,
+        lastviewed: "12/12/23"
+      }));
+      dispatch(setconsumers(users));
+    } catch (error) {
+      console.error("Error fetching product users:", error);
+      // You might want to handle errors more gracefully, such as displaying an error message to the user
+    }
+  };
+
+  // useEffect(() => {
+  //   if (productId && productId !== "") {
+  //     fetchProductUsers(productId);
+  //   }
+  //   return () => {
+  //     dispatch(remconsumers());
+  //   };
+  // }, [productId]);
+
+  useEffect(() => {
+    if (productId && productId !== "") {
+      fetchProductUsers(productId);
+    }
+    return () => {
+      dispatch(remconsumers());
+    };
+  }, []);
+
+  useEffect(() => {
+    setRows([...initialRows]);
+  }, [dispatch]);
 
   useEffect(() => {
     console.log(cookies.userRole);
@@ -78,12 +123,13 @@ function ConsumerPage() {
     },
   ];
 
-  const initialRows = useSelector(consumers);
 
+  const initialRows = useSelector(consumers);
   const [rows, setRows] = useState([...initialRows]);
-  const filteredRows = rows.filter((row) =>
-    row.username.toLowerCase().includes(searchValue.toLowerCase())
-  );
+
+  // const filteredRows = rows.filter((row) =>
+  //   row.username.toLowerCase().includes(searchValue.toLowerCase())
+  // );
   const handleAddConsumer = (formData) => {
     const newConsumer = {
       id: Date.now().toString(),
@@ -108,7 +154,7 @@ function ConsumerPage() {
         />
       </div>
       <DataTable
-        rows={filteredRows}
+        rows={rows}
         headers={headers}
         isSortable
         onSelect={({ selectedRows }) => setSelectedRows(selectedRows)}
@@ -138,7 +184,7 @@ function ConsumerPage() {
                 </TableBatchAction>
               </TableBatchActions>
               <TableToolbarContent>
-                <TableToolbarSearch onChange={handleSearchChange} />
+                {/* <TableToolbarSearch onChange={handleSearchChange} /> */}
                 <Button
                   hasIconOnly
                   iconDescription="Icon Description"

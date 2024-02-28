@@ -11,7 +11,7 @@ import { useCookies } from 'react-cookie';
 import img from '../images/product-bgd.jpg';
 import axios from 'axios';
 
-function ProductList({ category }) {
+function ProductList({ category = "" }) {
   const initialProducts = useSelector(allproducts);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -26,7 +26,7 @@ function ProductList({ category }) {
     const updatedProduct = {
       domain: newProduct.domain,
       name: newProduct.name,
-      // producer: newProduct.producer,
+      producer: newProduct.producer,
       description: newProduct.description,
       date: "",
       status: "draft"
@@ -42,7 +42,7 @@ function ProductList({ category }) {
           }
         }
       );
-      fetchProducts();
+      fetchProducts(category);
       // Handle the response if needed
       alert('Element added:', response.data);
     } catch (error) {
@@ -53,14 +53,15 @@ function ProductList({ category }) {
     // setProducts([...products, updatedProduct]);
   };
 
-  const fetchProducts = async () => {
+  const fetchProducts = async (category) => {
     try {
-      const response = await axios.get("http://localhost:9090/dpx/data_products", {
+      console.log(category);
+      const response = await axios.get(`http://localhost:9090/dpx/data_products/${category}`, {
         headers: {
           Username: cookies.username
         }
       });
-      // console.log("response data", response.data);
+      console.log("response data", response.data);
       setProducts(response.data);
       dispatch(setproducts(response.data));
       // console.log("products", products);
@@ -72,7 +73,7 @@ function ProductList({ category }) {
 
 
   useEffect(() => {
-    fetchProducts();
+    fetchProducts(category);
     dispatch(setproducts(products));
   }, [category]);
 

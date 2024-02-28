@@ -3,7 +3,7 @@ import '../styles/ProductComponent.scss'
 import { useNavigate } from 'react-router';
 
 function Product({ id, name, producer, img, description, domain, category }) {
-  console.log('Product Props:', { id, name, producer, img, description, domain, category });
+  // console.log('Product Props:', { id, name, producer, img, description, domain, category });
 
   const navigate = useNavigate();
   const handleClick = () => {

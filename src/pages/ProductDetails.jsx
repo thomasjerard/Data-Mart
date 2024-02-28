@@ -23,15 +23,6 @@ function ProductDetails({ category }) {
     const navigate = useNavigate();
     const [cookies, setcookies] = useCookies(['userRole', 'username']);
 
-    // const fetchProductDetail = async (id) => {
-    //   const response = await axios
-    //     .get(`https://fakestoreapi.com/products/${id}`)
-    //     .catch((err) => {
-    //       console.log("Err: ", err);
-    //     });
-    //   dispatch(setproduct(response.data));
-    // };
-
     const fetchProductDetail = async (productId) => {
         try {
             const response = await axios.get(`http://localhost:9090/dpx/data_products/${productId}/datalist`, {
@@ -69,6 +60,7 @@ function ProductDetails({ category }) {
         if (!cookies.userRole) {
             navigate('/signin');
         }
+        fetchProductDetail(productId);
     }, [])
 
     const handleEdit = (rowId) => {
@@ -205,7 +197,7 @@ function ProductDetails({ category }) {
                 <img src={prodImg} alt="prod" height="140px" />
                 <div className='heading-content'>
                     <h2>{selproduct.name}</h2>
-                    <p>By produce name</p>
+                    <p>By {selproduct.producer}</p>
                 </div>
             </div>
             <DataTable
