@@ -44,7 +44,7 @@ function App() {
               <Route path="published/:productId/consumer" element={<ConsumerPage />}></Route>
             </>
           }
-          <Route path="table" element={<CarbonTable />}></Route>
+          {/* <Route path="table" element={<CarbonTable />}></Route> */}
         </Route>
       </Routes>
     </BrowserRouter>

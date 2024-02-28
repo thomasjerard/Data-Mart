@@ -32,6 +32,7 @@ function ProductDetails({ category }) {
             });
             // console.log("response data", response.data);
             dispatch(setproduct(response.data));
+            setRows(response.data.dataLists);
             // console.log("products", products);
         } catch (error) {
             alert("Error: ", error);
@@ -163,32 +164,129 @@ function ProductDetails({ category }) {
         setSelectAllChecked(!selectAllChecked);
     };
 
-    const handleBatchActionClick = () => {
+    const deleteDataList = async (dataId) => {
+        try {
+            const response = await axios.delete(`http://localhost:9090/dpx/data_products/${productId}/datalist/${dataId}`, {
+                headers: {
+                    Username: cookies.username
+                }
+            });
+            alert('Element Deleted:');
+            fetchProductDetail(productId);
+        } catch (error) {
+            alert("Error: " + error.message);
+        }
+    };
+
+    const handleBatchActionClick = async () => {
         console.log('Batch action clicked:', selectedRows);
-        setRows(rows.filter(row => !((selectedRows.map(r => r.id)).includes(row.id))));
-        setSelectedRows(selectedRows.map(row => ({ ...row, isSelected: false })));
+
+        for (const item of selectedRows) {
+            try {
+                await deleteDataList(item.id);
+            } catch (error) {
+                console.error("Error deleting data:", error);
+            }
+        }
+
+        // Once all deletions are completed, update the selected rows state
         setSelectedRows([]);
+    };
+
+
+    const addDataList = async (formData) => {
+        try {
+            // Make a POST request to add the element
+            const response = await axios.post(
+                `http://localhost:9090/dpx/data_products/${productId}/datalist`,
+                formData,
+                {
+                    headers: {
+                        Username: cookies.username
+                    }
+                }
+            );
+            alert('Element added:', response.data.id);
+            fetchProductDetail(productId);
+            // Handle the response if needed
+        } catch (error) {
+            // Handle errors
+            alert('Error adding element:', error);
+        }
+
+        // setProducts([...products, updatedProduct]);
+    };
+
+    const editDataList = async ({ formData, dataId }) => {
+        try {
+            // Make a POST request to add the element
+            const response = await axios.put(
+                `http://localhost:9090/dpx/data_products/${productId}/datalist/${dataId}`,
+                formData,
+                {
+                    headers: {
+                        Username: cookies.username
+                    }
+                }
+            );
+            alert('Element edited:', response.data.id);
+            fetchProductDetail(productId);
+            // Handle the response if needed
+        } catch (error) {
+            // Handle errors
+            alert('Error adding element:', error);
+        }
+
+        // setProducts([...products, updatedProduct]);
     };
 
     const handleEditProduct = (formData) => {
         if (selectedRowData) {
-            setRows((prevRows) =>
-                prevRows.map((row) => (row.id === selectedRowData.id ? { ...row, ...formData } : row))
-            );
+            // setRows((prevRows) =>
+            //     prevRows.map((row) => (row.id === selectedRowData.id ? { ...row, ...formData } : row))
+            // );
+            editDataList({ formData, dataId: selectedRowData.id });
+            // console.log(selectedRowData);
+            // console.log(formData);
             setSelectedRowData(null);
         } else {
             console.log(formData);
-            const newProduct = {
-                id: Date.now().toString(),
-                ...formData,
-            };
-            setRows((prevRows) => [...prevRows, newProduct]);
+            addDataList(formData);
+            // const newProduct = {
+            //     id: Date.now().toString(),
+            //     ...formData,
+            // };
+            // setRows((prevRows) => [...prevRows, newProduct]);
         }
         handleCloseEditForm();
     };
 
-    const handlePublish = () => {
-        console.log("publish");
+    const handlePublish = async () => {
+        try {
+            const response = await axios.get(`http://localhost:9090/dpx/data_products/${productId}/publish`, {
+                headers: {
+                    Username: cookies.username
+                }
+            });
+            alert(response.data);
+            navigate('/published');
+        } catch (error) {
+            alert("Error: ", error);
+        }
+    }
+
+    const handleDelete = async () => {
+        try {
+            const response = await axios.delete(`http://localhost:9090/dpx/data_products/${productId}`, {
+                headers: {
+                    Username: cookies.username
+                }
+            });
+            alert(response.data.message);
+            navigate('/drafted');
+        } catch (error) {
+            alert("Error: ", error);
+        }
     }
 
     return (
@@ -289,7 +387,7 @@ function ProductDetails({ category }) {
             />
             {category !== "" && (
                 <div className='delete-icon'>
-                    <img src={DeleteIcon} alt="Delete icon" />
+                    <img src={DeleteIcon} alt="Delete icon" onClick={handleDelete} />
                 </div>
             )}
         </div>

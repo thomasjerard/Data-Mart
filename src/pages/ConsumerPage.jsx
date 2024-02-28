@@ -16,6 +16,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { productsSlice } from '../global/ProductsSlice';
+import AddNewProduct from '../components/AddNewProduct';
 
 function ConsumerPage() {
   const [selectedRows, setSelectedRows] = useState([]);
@@ -34,12 +35,14 @@ function ConsumerPage() {
         }
       });
       const users = response.data.users.map(obj => ({
-        id: Date.now().toString() + Math.random().toString(36).substring(2, 9),
-        stage: "consumer",
-        username: obj.userName,
+        id: obj.id,
+        stage: obj.stage,
+        username: obj.username,
         lastviewed: "12/12/23"
       }));
-      dispatch(setconsumers(users));
+      console.log(response.data);
+      setRows(users);
+      // dispatch(users);
     } catch (error) {
       console.error("Error fetching product users:", error);
       // You might want to handle errors more gracefully, such as displaying an error message to the user
@@ -59,14 +62,14 @@ function ConsumerPage() {
     if (productId && productId !== "") {
       fetchProductUsers(productId);
     }
-    return () => {
-      dispatch(remconsumers());
-    };
-  }, []);
+    // return () => {
+    //   dispatch(remconsumers());
+    // };
+  }, [productId]);
 
-  useEffect(() => {
-    setRows([...initialRows]);
-  }, [dispatch]);
+  // useEffect(() => {
+  //   setRows([...initialRows]);
+  // }, [dispatch]);
 
   useEffect(() => {
     console.log(cookies.userRole);
@@ -98,11 +101,40 @@ function ConsumerPage() {
     }
   };
 
-  const handleBatchActionClick = () => {
-    setRows(rows.filter(row => !((selectedRows.map(r => r.id)).includes(row.id))));
-    setSelectedRows(selectedRows.map(row => ({ ...row, isSelected: false })));
+  const deleteUserList = async (username) => {
+    try {
+      const response = await axios.delete(
+        `http://localhost:9090/dpx/data_products/${productId}/userlist`,
+        {
+          headers: {
+            'Content-Type': 'text/plain',
+            'Username': cookies.username
+          },
+          data: username // Pass username as data payload
+        }
+      );
+      alert('Element Deleted:');
+      fetchProductUsers(productId);
+    } catch (error) {
+      alert("Error: " + error.message);
+    }
+  };
+
+  const handleBatchActionClick = async () => {
+    // console.log('Batch action clicked:', selectedRows[0].cells[0].value);
+
+    for (const item of selectedRows) {
+      try {
+        await deleteUserList(item.cells[0].value);
+      } catch (error) {
+        console.error("Error deleting data:", error);
+      }
+    }
+
+    // Once all deletions are completed, update the selected rows state
     setSelectedRows([]);
   };
+
 
   const headers = [
     // {
@@ -130,12 +162,37 @@ function ConsumerPage() {
   // const filteredRows = rows.filter((row) =>
   //   row.username.toLowerCase().includes(searchValue.toLowerCase())
   // );
+
+  const addNewUser = async (username) => {
+    try {
+      // Make a POST request to add the element
+      const response = await axios.post(
+        `http://localhost:9090/dpx/data_products/${productId}/userlist/`,
+        username, // Pass username directly as the data payload
+        {
+          headers: {
+            'Content-Type': 'text/plain', // Set content type to "text/plain"
+            'Username': cookies.username
+          }
+        }
+      );
+      alert('Element added:', response.data);
+      fetchProductUsers(productId);
+      // Handle the response if needed
+    } catch (error) {
+      // Handle errors
+      alert('Error adding element:', error);
+    }
+  };
+
   const handleAddConsumer = (formData) => {
-    const newConsumer = {
-      id: Date.now().toString(),
-      ...formData,
-    };
-    setRows((prevRows) => [...prevRows, newConsumer]);
+    addNewUser(formData.username);
+    // const newConsumer = {
+    //   id: Date.now().toString(),
+    //   ...formData,
+    // };
+    // console.log(newConsumer);
+    // setRows((prevRows) => [...prevRows, newConsumer]);
   };
 
   useEffect(() => {
