@@ -10,6 +10,7 @@ import { useNavigate } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import img from '../images/product-bgd.jpg';
 import axios from 'axios';
+import { Tooltip } from '@carbon/react';
 
 function ProductList({ category = "" }) {
   const initialProducts = useSelector(allproducts);
@@ -70,22 +71,25 @@ function ProductList({ category = "" }) {
     }
   };
 
-
-
   useEffect(() => {
     fetchProducts(category);
     dispatch(setproducts(products));
   }, [category]);
 
+
+
+  // Ensure only one domain is selected at a time
   const handleDomainSelect = (domain) => {
     if (selectedDomains.includes(domain)) {
-      setSelectedDomains(selectedDomains.filter((selectedDomain) => selectedDomain !== domain));
+      setSelectedDomains([]);
     } else {
-      setSelectedDomains([...selectedDomains, domain]);
+      setSelectedDomains([domain]);
     }
   };
 
-  const filteredProducts = products.filter((product) => {
+  //Handle error thrown when draft products array is empty
+
+  const filteredProducts = (Array.isArray(products) ? products : []).filter((product) => {
     const nameMatch = product.name.toLowerCase().includes(searchInput.toLowerCase());
     const domainMatches = selectedDomains.length === 0 || selectedDomains.some((domain) => product.domain === domain);
     return nameMatch && domainMatches;
@@ -153,7 +157,12 @@ function ProductList({ category = "" }) {
       {category === 'drafted' && (
         <>
           <div className="add-icon" onClick={() => setIsAddModalOpen(true)}>
+
+          {/* Added tooltip text for add icon */}
+
+            <Tooltip label="Add Product" align="left">
             <img src={addIcon} className="add-icon-img" alt="Add Icon" />
+            </Tooltip>
           </div>
           <AddNewProduct isOpen={isAddModalOpen} handleClose={() => setIsAddModalOpen(false)} handleAddProduct={handleAddProduct} />
         </>

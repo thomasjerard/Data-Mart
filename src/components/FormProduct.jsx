@@ -17,6 +17,9 @@ const EditFormProduct = ({ isOpen, isAdd, handleClose, handleEditProduct, rowDat
     copyUrl: '',
   });
 
+  //URL error state
+  const [urlError, setUrlError] = useState('');
+
 
   useEffect(() => {
     if (rowData) {
@@ -36,6 +39,12 @@ const EditFormProduct = ({ isOpen, isAdd, handleClose, handleEditProduct, rowDat
       ...prevFormData,
       [name]: value,
     }));
+
+    // Check URL validation
+    if (name === 'copyUrl') {
+      validateUrl(value);
+    }
+
   };
 
   // const handleDateChange = (event) => {
@@ -46,8 +55,42 @@ const EditFormProduct = ({ isOpen, isAdd, handleClose, handleEditProduct, rowDat
   //   }));
   // };
 
+
+  //URL validation
+
+  const validateUrl = (url) => {
+    const urlRegex = /^(ftp|http|https):\/\/[^ "]+$/;
+    if (url && !urlRegex.test(url)) {
+      setUrlError('Invalid URL format');
+    } else {
+      setUrlError('');
+    }
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
+
+     // Check URL validation before submitting the form
+     if (urlError) {
+      // Focus on the URL input
+      const urlInput = document.getElementById('copyurl');
+      if (urlInput) {
+        urlInput.focus();
+      }
+
+      const urlInputDiv = document.querySelector('.URLinput');
+      if (urlInputDiv) {
+        urlInputDiv.classList.add('error');
+      }
+  
+      return;
+    }
+
+    const urlInputDiv = document.querySelector('.URLinput');
+    if (urlInputDiv) {
+      urlInputDiv.classList.remove('error');
+    }
+
     handleEditProduct({ ...formData, lastUpdateDate: getFullDate() });
     handleClose();
     setFormData({
@@ -62,6 +105,7 @@ const EditFormProduct = ({ isOpen, isAdd, handleClose, handleEditProduct, rowDat
     <div id="formproduct">
       <Modal launcherButtonRef={Button} primaryButtonText={isAdd ? "Add" : "Edit"} secondaryButtonText="Cancel" onRequestSubmit={handleSubmit} onRequestClose={handleClose} open={isOpen || isAdd}>
         <div className="add-form-container">
+        
           <h2 className="Heading">{isAdd ? "Add" : "Edit"}</h2>
           <div className="name">
             <label style={{ fontSize: '16px' }}>
@@ -125,25 +169,18 @@ const EditFormProduct = ({ isOpen, isAdd, handleClose, handleEditProduct, rowDat
               name="copyUrl"
               value={formData.copyUrl}
               onChange={handleChange}
+              className={`URLinput ${urlError ? 'error' : ''}`}
               required
             />
+            {urlError && <p className="error-message">{urlError}</p>}
           </div>
         </div>
+
+      
       </Modal>
     </div>
   );
 };
 export default EditFormProduct;
-
-
-
-
-
-
-
-
-
-
-
 
 

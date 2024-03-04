@@ -81,5 +81,15 @@
     .form-label{
         font-size: 1.5rem;
     }
+
+    //Error classes
+    .error-message{
+        font-size: 0.75rem;
+        color:red;
+    }
+
+    .error input:focus{
+        border-color:red
+    }
     
 }
