@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import '../App.scss';
 import {
   DataTable, TableContainer, TableToolbar, TableBatchActions, TableBatchAction, Table, TableHead, TableRow,
-  TableHeader, TableBody, TableCell, TableSelectAll, TableSelectRow, TableToolbarContent, TableToolbarSearch
+  TableHeader, TableBody, TableCell, TableSelectAll, TableSelectRow, TableToolbarContent, TableToolbarSearch, Tooltip
 } from '@carbon/react';
 import { TrashCan, Edit, AddLarge } from '@carbon/icons-react';
 import Button from '@carbon/react/lib/components/Button';
@@ -242,6 +242,10 @@ function ConsumerPage() {
               </TableBatchActions>
               <TableToolbarContent>
                 {/* <TableToolbarSearch onChange={handleSearchChange} /> */}
+
+                {/* Added tooltip */}
+
+                <Tooltip label="Add Consumer" align='left'>
                 <Button
                   hasIconOnly
                   iconDescription="Icon Description"
@@ -249,6 +253,7 @@ function ConsumerPage() {
                   renderIcon={AddLarge}
                   onClick={handleOpenAddForm}
                 />
+                </Tooltip>
               </TableToolbarContent>
             </TableToolbar>
             <Table {...getTableProps()}>

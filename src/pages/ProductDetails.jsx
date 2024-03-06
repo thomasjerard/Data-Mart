@@ -14,6 +14,7 @@ import '../styles/ProductPage.scss'
 import DeleteIcon from '../images/Deleteicon.png'
 import { useCookies } from 'react-cookie';
 import axios from 'axios';
+import { Tooltip } from '@carbon/react';
 
 function ProductDetails({ category }) {
 
@@ -332,6 +333,8 @@ function ProductDetails({ category }) {
                                 {/* <TableToolbarSearch onChange={handleSearchChange} /> */}
                                 {category == "drafted" &&
                                     <>
+                                    {/* Added tooltip for the add button */}
+                                        <Tooltip label="Add data" align='left'>
                                         <Button
                                             hasIconOnly
                                             iconDescription="Icon Description"
@@ -339,6 +342,7 @@ function ProductDetails({ category }) {
                                             renderIcon={AddLarge}
                                             onClick={handleOpenAddForm}
                                         />
+                                        </Tooltip>
                                         <Button className='purple' onClick={handlePublish}>Publish</Button>
                                     </>
                                 }
@@ -388,9 +392,13 @@ function ProductDetails({ category }) {
                 handleEditProduct={handleEditProduct}
                 rowData={selectedRowData}
             />
+
+            {/* Added tooltip for delete icon */}
             {category !== "" && (
                 <div className='delete-icon'>
-                    <img src={DeleteIcon} alt="Delete icon" onClick={handleDelete} />
+                    <Tooltip label="Delete product" align="left">
+                    <img src={DeleteIcon} className='delete-icon' alt="Delete icon" onClick={handleDelete} />
+                    </Tooltip>
                 </div>
             )}
         </div>
