@@ -22,11 +22,10 @@ function ProductList({ category = "" }) {
   const [cookies] = useCookies(['userRole', 'username']);
 
   const handleAddProduct = async (newProduct) => {
-    const newProductId = (products.length + 1).toString();
     const updatedProduct = {
       domain: newProduct.domain,
       name: newProduct.name,
-      producer: newProduct.producer,
+      producer: cookies.username,
       description: newProduct.description,
       date: "",
       status: "draft"
@@ -61,11 +60,18 @@ function ProductList({ category = "" }) {
           Username: cookies.username
         }
       });
-      console.log("response data", response.data);
-      setProducts(response.data);
-      dispatch(setproducts(response.data));
+      console.log("response data", response);
+      if (response.data == 'products collection is empty') {
+        setproducts([]);
+        dispatch(setProducts([]))
+      } else {
+        setProducts(response.data);
+        // console.log(response)
+        dispatch(setproducts(response.data));
+      }
       // console.log("products", products);
     } catch (error) {
+      console.log(error);
       alert("Error: ", error);
     }
   };
@@ -74,7 +80,7 @@ function ProductList({ category = "" }) {
 
   useEffect(() => {
     fetchProducts(category);
-    dispatch(setproducts(products));
+    // dispatch(setproducts(products));
   }, [category]);
 
   const handleDomainSelect = (domain) => {
@@ -85,21 +91,23 @@ function ProductList({ category = "" }) {
     }
   };
 
-  const filteredProducts = products.filter((product) => {
+  const filteredProducts = (products) ? products.filter((product) => {
     const nameMatch = product.name.toLowerCase().includes(searchInput.toLowerCase());
     const domainMatches = selectedDomains.length === 0 || selectedDomains.some((domain) => product.domain === domain);
     return nameMatch && domainMatches;
-  });
+  }) : [];
 
   const handleSearchInputChange = (event) => {
     const searchText = event.target.value;
     setSearchInput(searchText);
   };
+
   useEffect(() => {
     if (!cookies.userRole) {
       navigate('/signin');
     }
   }, [])
+  
   let domains = ['Weather Data', 'Healthcare Data', 'Legal Data', 'Brand Data', 'Mobile App Data', 'Environmental Data'];
 
   return (
@@ -137,7 +145,7 @@ function ProductList({ category = "" }) {
       </div>
 
       <div className="products-container">
-        {filteredProducts.map((product) => (
+        {filteredProducts.length != 0 ? filteredProducts.map((product) => (
           <Product
             key={product.id}
             id={product.id}
@@ -148,7 +156,10 @@ function ProductList({ category = "" }) {
             domain={product.domain}
             category
           />
-        ))}
+        ))
+          :
+          <h3>No products Available</h3>
+        }
       </div>
       {category === 'drafted' && (
         <>

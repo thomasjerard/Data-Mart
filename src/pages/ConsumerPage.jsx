@@ -38,7 +38,7 @@ function ConsumerPage() {
         id: obj.id,
         stage: obj.stage,
         username: obj.username,
-        lastviewed: "12/12/23"
+        lastviewed: "01/03/24"
       }));
       console.log(response.data);
       setRows(users);

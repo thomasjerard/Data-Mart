@@ -76,7 +76,7 @@ const AddNewProduct = ({ isOpen, handleClose, handleAddProduct }) => {
               required
             />
           </div>
-          <div className="Description">
+          {/* <div className="Description">
             <label style={{ fontSize: '16px', fontWeight: 'bold', marginBottom: '-10px' }}>
               Producer
             </label>
@@ -86,7 +86,7 @@ const AddNewProduct = ({ isOpen, handleClose, handleAddProduct }) => {
               onChange={handleChange}
               value={formData.producer}
             />
-          </div>
+          </div> */}
           <div className="Description">
             <label style={{ fontSize: '16px', fontWeight: 'bold', marginTop: '15px' }} >
               Description

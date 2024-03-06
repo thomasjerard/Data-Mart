@@ -345,34 +345,37 @@ function ProductDetails({ category }) {
                                 {category == "published" && <Button className='purple' onClick={() => navigate("consumer")}>Add Consumer</Button>}
                             </TableToolbarContent>
                         </TableToolbar>
-                        <Table {...getTableProps()}>
-                            <TableHead>
-                                <TableRow>
-                                    {category === "drafted" && <TableSelectAll {...getSelectionProps()} onChange={handleSelectAll} />}
-                                    {headers.map((header) => (
-                                        <TableHeader {...getHeaderProps({ header })}>{header.header}</TableHeader>
-                                    ))}
-                                </TableRow>
-                            </TableHead>
-                            <TableBody>
-                                {rows.map((row, rowIndex) => (
-                                    <TableRow {...getRowProps({ row })} key={row.id}>
-                                        {category === "drafted" && <TableSelectRow {...getSelectionProps({ row })} onChange={() => handleRowSelect(row)} />}
-                                        {row.cells.map((cell, cellIndex) => (
-                                            <TableCell key={cell.id}>
-                                                {category == "drafted" && cellIndex === headers.length - 1 ? (
-                                                    <span className="edit" onClick={() => handleEdit(row.id)}>
-                                                        <Edit />
-                                                    </span>
-                                                ) : (
-                                                    cell.value
-                                                )}
-                                            </TableCell>
+                        {rows.length != 0 &&
+                            <Table {...getTableProps()}>
+                                <TableHead>
+                                    <TableRow>
+                                        {category === "drafted" && <TableSelectAll {...getSelectionProps()} onChange={handleSelectAll} />}
+                                        {headers.map((header) => (
+                                            <TableHeader {...getHeaderProps({ header })}>{header.header}</TableHeader>
                                         ))}
                                     </TableRow>
-                                ))}
-                            </TableBody>
-                        </Table>
+                                </TableHead>
+                                <TableBody>
+                                    {rows.map((row, rowIndex) => (
+                                        <TableRow {...getRowProps({ row })} key={row.id}>
+                                            {category === "drafted" && <TableSelectRow {...getSelectionProps({ row })} onChange={() => handleRowSelect(row)} />}
+                                            {row.cells.map((cell, cellIndex) => (
+                                                <TableCell key={cell.id}>
+                                                    {category == "drafted" && cellIndex === headers.length - 1 ? (
+                                                        <span className="edit" onClick={() => handleEdit(row.id)}>
+                                                            <Edit />
+                                                        </span>
+                                                    ) : (
+                                                        cell.value
+                                                    )}
+                                                </TableCell>
+                                            ))}
+                                        </TableRow>
+                                    ))}
+                                </TableBody>
+                            </Table>
+                        }
+                        {/* <p>No data items present</p> */}
                     </TableContainer>
                 )
                 }

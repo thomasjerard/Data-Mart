@@ -32,9 +32,13 @@ function App() {
       {cookies.userRole && <Navbar />}
       <Routes>
         <Route path="/">
-          <Route index element={<ProductList category="" />}></Route>
-          <Route path="/:productId" element={<ProductDetails category="" />}></Route>
           <Route path="signin" element={<SignIn />}></Route>
+          {cookies.userRole != null &&
+            <>
+              <Route index element={<ProductList category="" />}></Route>
+              <Route path="/:productId" element={<ProductDetails category="" />}></Route>
+            </>
+          }
           {cookies.userRole === "producer" &&
             <>
               <Route path="drafted" element={<ProductList category="drafted" />}></Route>
