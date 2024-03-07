@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/FormProduct.scss';
 import { Modal, TextInput, TextArea, DatePicker, DatePickerInput, Button } from '@carbon/react';
+import validator from 'validator';
 
 const EditFormProduct = ({ isOpen, isAdd, handleClose, handleEditProduct, rowData }) => {
 
@@ -59,8 +60,8 @@ const EditFormProduct = ({ isOpen, isAdd, handleClose, handleEditProduct, rowDat
   //URL validation
 
   const validateUrl = (url) => {
-    const urlRegex = /^(ftp|http|https):\/\/[^ "]+$/;
-    if (url && !urlRegex.test(url)) {
+    const isValidUrl = validator.isURL(url);
+    if (url && !isValidUrl) {
       setUrlError('Invalid URL format');
     } else {
       setUrlError('');
@@ -70,8 +71,8 @@ const EditFormProduct = ({ isOpen, isAdd, handleClose, handleEditProduct, rowDat
   const handleSubmit = (e) => {
     e.preventDefault();
 
-     // Check URL validation before submitting the form
-     if (urlError) {
+    // Check URL validation before submitting the form
+    if (urlError) {
       // Focus on the URL input
       const urlInput = document.getElementById('copyurl');
       if (urlInput) {
@@ -82,7 +83,7 @@ const EditFormProduct = ({ isOpen, isAdd, handleClose, handleEditProduct, rowDat
       if (urlInputDiv) {
         urlInputDiv.classList.add('error');
       }
-  
+
       return;
     }
 
@@ -105,7 +106,7 @@ const EditFormProduct = ({ isOpen, isAdd, handleClose, handleEditProduct, rowDat
     <div id="formproduct">
       <Modal launcherButtonRef={Button} primaryButtonText={isAdd ? "Add" : "Edit"} secondaryButtonText="Cancel" onRequestSubmit={handleSubmit} onRequestClose={handleClose} open={isOpen || isAdd}>
         <div className="add-form-container">
-        
+
           <h2 className="Heading">{isAdd ? "Add" : "Edit"}</h2>
           <div className="name">
             <label style={{ fontSize: '16px' }}>
@@ -176,7 +177,7 @@ const EditFormProduct = ({ isOpen, isAdd, handleClose, handleEditProduct, rowDat
           </div>
         </div>
 
-      
+
       </Modal>
     </div>
   );

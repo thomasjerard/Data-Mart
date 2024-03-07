@@ -129,4 +129,24 @@
     bottom: 30px;
     right: 30px
   }
+
+  .heading {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    // margin: 3rem 0;
+
+    button {
+      border-radius: 10px;
+      background-color: rgb(255, 240, 245);
+      border-color: #102B3F;
+      color: #102B3F;
+    }
+
+    button:hover {
+      background-color: rgb(226, 207, 234);
+    }
+  }
+
 }

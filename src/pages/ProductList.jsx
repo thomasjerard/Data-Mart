@@ -10,7 +10,7 @@ import { useNavigate } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import img from '../images/product-bgd.jpg';
 import axios from 'axios';
-import { Tooltip } from '@carbon/react';
+import { Button, Tooltip } from '@carbon/react';
 
 function ProductList({ category = "" }) {
   const initialProducts = useSelector(allproducts);
@@ -115,7 +115,15 @@ function ProductList({ category = "" }) {
   return (
     <div className="home">
       <div className="productpage-header">
-        <h1>{category.toUpperCase()} DATA PRODUCTS</h1>
+        {category == "drafted" ?
+          <div className='heading'>
+            <div style={{ width: "172px" }}></div>
+            <h1>{category.toUpperCase()} DATA PRODUCTS</h1>
+            <Button onClick={() => setIsAddModalOpen(true)}>Add Products</Button>
+          </div>
+          :
+          <h1>{category.toUpperCase()} DATA PRODUCTS</h1>
+        }
         <div style={{ position: 'relative' }}>
           <input
             placeholder="Enter term to search..."
@@ -169,14 +177,15 @@ function ProductList({ category = "" }) {
 
             {/* Added tooltip text for add icon */}
 
-            <Tooltip label="Add Product" align="left">
-              <img src={addIcon} className="add-icon-img" alt="Add Icon" />
-            </Tooltip>
+            {/* <Tooltip label="Add Product" align="left">
+            <img src={addIcon} className="add-icon-img" alt="Add Icon" />
+          </Tooltip> */}
           </div>
           <AddNewProduct isOpen={isAddModalOpen} handleClose={() => setIsAddModalOpen(false)} handleAddProduct={handleAddProduct} />
         </>
-      )}
-    </div>
+      )
+      }
+    </div >
   );
 }
 

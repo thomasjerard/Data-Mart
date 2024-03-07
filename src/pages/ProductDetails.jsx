@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import prodImg from '../images/product.jpg'
 import {
     DataTable, TableContainer, TableToolbar, TableBatchActions, TableBatchAction, Table, TableHead, TableRow,
-    TableHeader, TableBody, TableCell, TableSelectAll, TableSelectRow, TableToolbarContent, TableToolbarSearch
+    TableHeader, TableBody, TableCell, TableSelectAll, TableSelectRow, TableToolbarContent, TableToolbarSearch, ButtonSet
 } from '@carbon/react';
 import { TrashCan, Edit, Add, AddLarge } from '@carbon/icons-react';
-import Button from '@carbon/react/lib/components/Button';
+import { Button } from '@carbon/react/lib/components/Button';
 import EditFormProduct from '../components/FormProduct';
 import { useDispatch, useSelector } from "react-redux";
 import { setproduct, product, remproduct } from '../global/SelectProductSlice'
@@ -293,10 +293,32 @@ function ProductDetails({ category }) {
     return (
         <div id="productPage">
             <div className="heading">
-                <img src={prodImg} alt="prod" height="140px" />
-                <div className='heading-content'>
-                    <h2>{selproduct.name}</h2>
-                    <p>By {selproduct.producer}</p>
+                <div className='title'>
+                    <img src={prodImg} alt="prod" height="140px" />
+                    <div className='heading-content'>
+                        <h2>{selproduct.name}</h2>
+                        <p>By {selproduct.producer}</p>
+                    </div>
+                </div>
+                <div className='buttons'>
+                    <ButtonSet>
+                        {(category === "drafted" || category === "published") &&
+                            <Button kind="teritiary" renderIcon={TrashCan} size='md' onClick={handleDelete}>
+                                Delete Product
+                            </Button>
+                        }
+                        {category === "drafted" &&
+                            <Button onClick={handlePublish} kind="primary" size='md' className='purple'>
+                                Publish
+                            </Button>
+                        }
+                        {
+                            category === "published" &&
+                            <Button className='purple' onClick={() => navigate("consumer")}>
+                                Consumer
+                            </Button>
+                        }
+                    </ButtonSet>
                 </div>
             </div>
             <DataTable
@@ -333,20 +355,20 @@ function ProductDetails({ category }) {
                                 {/* <TableToolbarSearch onChange={handleSearchChange} /> */}
                                 {category == "drafted" &&
                                     <>
-                                    {/* Added tooltip for the add button */}
-                                        <Tooltip label="Add data" align='left'>
-                                        <Button
-                                            hasIconOnly
-                                            iconDescription="Icon Description"
-                                            kind='ghost'
-                                            renderIcon={AddLarge}
-                                            onClick={handleOpenAddForm}
-                                        />
-                                        </Tooltip>
-                                        <Button className='purple' onClick={handlePublish}>Publish</Button>
+                                        {/* Added tooltip for the add button */}
+                                        {/* <Tooltip label="Add data" align='left'>
+                                            <Button
+                                                hasIconOnly
+                                                iconDescription="Icon Description"
+                                                kind='ghost'
+                                                renderIcon={AddLarge}
+                                                onClick={handleOpenAddForm}
+                                            />
+                                        </Tooltip> */}
+                                        <Button className='purple' onClick={handleOpenAddForm} renderIcon={AddLarge}>Add Url Data</Button>
                                     </>
                                 }
-                                {category == "published" && <Button className='purple' onClick={() => navigate("consumer")}>Add Consumer</Button>}
+                                {/* {category == "published" && <Button className='purple' onClick={() => navigate("consumer")}>Add Consumer</Button>} */}
                             </TableToolbarContent>
                         </TableToolbar>
                         {rows.length != 0 &&
@@ -394,13 +416,13 @@ function ProductDetails({ category }) {
             />
 
             {/* Added tooltip for delete icon */}
-            {category !== "" && (
+            {/* {category !== "" && (
                 <div className='delete-icon'>
                     <Tooltip label="Delete product" align="left">
-                    <img src={DeleteIcon} className='delete-icon' alt="Delete icon" onClick={handleDelete} />
+                        <img src={DeleteIcon} className='delete-icon' alt="Delete icon" onClick={handleDelete} />
                     </Tooltip>
                 </div>
-            )}
+            )} */}
         </div>
     );
 }
